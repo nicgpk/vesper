@@ -2,7 +2,7 @@
 
 /**
  * @input Workspace source entries, Storybook's Vite config, Astryx StyleX plugin.
- * @output Storybook config with Vite and StyleX aliases from one package table.
+ * @output Storybook config with source aliases and a dark pre-hydration baseline.
  * @position Storybook configuration; keeps workspace packages usable unbuilt.
  */
 
@@ -179,7 +179,7 @@ const config: StorybookConfig = {
             return [
               {
                 tag: 'style',
-                children: ':root { color-scheme: light; }',
+                children: ':root { color-scheme: dark; }',
                 injectTo: 'head-prepend',
               },
             ];

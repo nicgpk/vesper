@@ -1,5 +1,11 @@
 // Copyright (c) Meta Platforms, Inc. and affiliates.
 
+/**
+ * @input Upstream stories, Vesper/Gothic themes, and direction toolbar state.
+ * @output Stories render inside original providers in the selected theme's mode.
+ * @position Standalone local baseline preview; components and stories stay upstream.
+ */
+
 import type {Preview, Decorator} from '@storybook/react';
 import * as React from 'react';
 import {
@@ -15,6 +21,11 @@ import {neutralTheme} from '@astryxdesign/theme-neutral';
 import {probeTheme} from '@astryxdesign/theme-probe';
 import {stoneTheme} from '@astryxdesign/theme-stone';
 import {y2kTheme} from '@astryxdesign/theme-y2k';
+import {
+  vesperDarkTheme,
+  vesperLightTheme,
+  vesperContrastTheme,
+} from '../themes/vesper';
 // Import the base reset stylesheet
 import '@astryxdesign/core/reset.css';
 
@@ -24,6 +35,9 @@ import '@astryxdesign/core/reset.css';
  * here is a theme nothing renders and nothing verifies.
  */
 const themes = {
+  'vesper-dark': vesperDarkTheme,
+  'vesper-light': vesperLightTheme,
+  'vesper-contrast': vesperContrastTheme,
   butter: butterTheme,
   chocolate: chocolateTheme,
   gothic: gothicTheme,
@@ -44,12 +58,11 @@ const themes = {
  * resolves correctly at every level of the page — not just inside the
  * Theme wrapper div.  Without this, the iframe's `<html>` and
  * `<body>` keep the browser-default `color-scheme` (typically "light")
- * and toggling the toolbar has no visible effect.
+ * and the baseline can briefly paint native controls in light mode.
  */
 const withTheme: Decorator = (Story, context) => {
-  // Get theme selection from toolbar
-  const themeKey = (context.globals?.astryxTheme || 'neutral') as string;
-  const mode = context.globals?.colorMode === 'dark' ? 'dark' : 'light';
+  const themeKey = (context.globals?.astryxTheme || 'vesper-dark') as string;
+  const mode = themeKey === 'vesper-light' ? 'light' : 'dark';
   const direction = context.globals?.direction === 'rtl' ? 'rtl' : 'ltr';
 
   // Sync color-scheme to the document root so light-dark() works
@@ -85,6 +98,7 @@ const withTheme: Decorator = (Story, context) => {
             dir={direction}
             style={{
               backgroundColor: 'var(--color-background-surface)',
+              minHeight: '100vh',
               padding: 16,
             }}>
             <Story />
@@ -110,32 +124,19 @@ const preview: Preview = {
   },
   globalTypes: {
     astryxTheme: {
-      description: 'Astryx Theme',
+      description: 'Vesper theme or original Gothic',
       toolbar: {
         title: 'Theme',
         icon: 'paintbrush',
         items: [
-          {value: 'none', title: 'None (base tokens)', icon: 'close'},
-          {value: 'neutral', title: 'Neutral', icon: 'circle'},
-          {value: 'stone', title: 'Stone', icon: 'circlehollow'},
-          {value: 'butter', title: 'Butter', icon: 'sun'},
-          {value: 'chocolate', title: 'Chocolate', icon: 'circle'},
-          {value: 'gothic', title: 'Gothic', icon: 'moon'},
-          {value: 'matcha', title: 'Matcha', icon: 'circlehollow'},
-          {value: 'probe', title: 'Probe (test fixture)', icon: 'beaker'},
-          {value: 'y2k', title: 'Y2K', icon: 'lightning'},
-        ],
-        dynamicTitle: true,
-      },
-    },
-    colorMode: {
-      description: 'Color mode',
-      toolbar: {
-        title: 'Mode',
-        icon: 'contrast',
-        items: [
-          {value: 'light', title: 'Light', icon: 'sun'},
-          {value: 'dark', title: 'Dark', icon: 'moon'},
+          {value: 'vesper-dark', title: 'Vesper Dark', icon: 'moon'},
+          {value: 'vesper-light', title: 'Vesper Light', icon: 'sun'},
+          {
+            value: 'vesper-contrast',
+            title: 'Vesper Contrast',
+            icon: 'contrast',
+          },
+          {value: 'gothic', title: 'Original Gothic', icon: 'moon'},
         ],
         dynamicTitle: true,
       },
@@ -154,8 +155,7 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    astryxTheme: 'neutral',
-    colorMode: 'light',
+    astryxTheme: 'vesper-dark',
     direction: 'ltr',
   },
   decorators: [withTheme],

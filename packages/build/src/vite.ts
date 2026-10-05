@@ -327,7 +327,11 @@ function renderSplitLayers(
   const productRules: unknown[] = [];
 
   for (const [filePath, rules] of rulesById.entries()) {
-    if (filePath.includes(options.libraryPattern)) {
+    if (
+      filePath
+        .replaceAll('\\', '/')
+        .includes(options.libraryPattern.replaceAll('\\', '/'))
+    ) {
       libraryRules.push(...rules);
     } else {
       productRules.push(...rules);

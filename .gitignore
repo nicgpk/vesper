@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Desktop verification evidence (machine paths, screenshots, and runtime logs)
+/local-baseline/
+
 # Build outputs
 dist/
 *.tsbuildinfo

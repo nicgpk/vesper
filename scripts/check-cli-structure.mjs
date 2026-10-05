@@ -273,7 +273,8 @@ function checkEnvironmentImports(label, files, baseDir, knownGaps) {
   let checked = 0;
   for (const filePath of files) {
     checked++;
-    const rel = path.relative(baseDir, filePath);
+    // Recorded paths use repository separators on every host.
+    const rel = path.relative(baseDir, filePath).replaceAll('\\', '/');
     const sources = importSources(filePath);
     /** @type {Set<string>} */
     const found = new Set();

@@ -52,6 +52,40 @@ function getLayerOrder(plugins: ReturnType<typeof astryxStylex>): string {
 }
 
 describe('astryxStylex layer order (modern API)', () => {
+  it('places Windows package rules below theme overrides', () => {
+    const rulesById = new Map([
+      [
+        String.raw`C:\workspace\packages\core\src\Button.tsx`,
+        [
+          [
+            'library-test',
+            {ltr: '.library-test { color: red; }', rtl: null},
+            1000,
+          ],
+        ],
+      ],
+    ]);
+    const plugins = astryxStylex({libraryPattern: 'packages/'});
+    const split = plugins.find(p => p.name === 'astryx-split-layers') as any;
+    const server = {
+      config: {plugins: [{__stylexGetSharedStore: () => ({rulesById})}]},
+      middlewares: {stack: [] as any[]},
+    };
+    split.configureServer(server)();
+    let css = '';
+    server.middlewares.stack[0].handle(
+      {url: '/virtual:stylex.css'},
+      {
+        setHeader() {},
+        end(value: string) {
+          css = value;
+        },
+      },
+      () => {},
+    );
+    expect(css).toContain('@layer astryx-base');
+    expect(css).not.toContain('@layer product');
+  });
   it('uses the astryx-* layer names (theme layer is astryx-theme)', () => {
     const order = getLayerOrder(astryxStylex());
     expect(order).toBe('@layer reset, astryx-base, astryx-theme, product;');
@@ -133,9 +167,9 @@ describe('astryxStylex locale aliases', () => {
     expect(applyAlias(aliases, '@astryxdesign/core/locales/fr-FR.json')).toBe(
       path.join(corePackage, 'locales/fr-FR.json'),
     );
-    expect(applyAlias(aliases, '@astryxdesign/core/Button')).toBe(
-      path.join(corePackage, 'src/Button'),
-    );
+    expect(
+      path.normalize(applyAlias(aliases, '@astryxdesign/core/Button')),
+    ).toBe(path.join(corePackage, 'src/Button'));
   });
 });
 

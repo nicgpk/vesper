@@ -76,6 +76,26 @@ describe('Astryx babel wrapper -- library StyleX prefix', () => {
     ).toBe(false);
   });
 
+  it('routes Windows library paths through the library prefix', () => {
+    const result = babel.transformSync(SOURCE, {
+      filename: String.raw`C:\workspace\packages\core\src\Box\Box.tsx`,
+      babelrc: false,
+      configFile: false,
+      plugins: [
+        [
+          astryxBabelPlugin,
+          {
+            unstable_moduleResolution: {
+              type: 'commonJS',
+              rootDir: process.cwd(),
+            },
+          },
+        ],
+      ],
+    });
+    expect(atomicClasses(result?.code ?? '').length).toBeGreaterThan(0);
+  });
+
   it('uses a configured custom prefix for library atoms', () => {
     const code = transformLibraryFile('lib');
     const atoms = atomicClasses(code);

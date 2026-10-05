@@ -48,7 +48,10 @@ module.exports = function astryxBabelPlugin(api, options) {
   const productPlugin = stylexPlugin(api, productOpts);
 
   function getPluginAndOpts(filename) {
-    const isLibrary = libraryPatterns.some(p => filename.includes(p));
+    const portableFilename = filename.replaceAll('\\', '/');
+    const isLibrary = libraryPatterns.some(p =>
+      portableFilename.includes(p.replaceAll('\\', '/')),
+    );
     return isLibrary
       ? {plugin: libraryPlugin, opts: libraryOpts}
       : {plugin: productPlugin, opts: productOpts};
