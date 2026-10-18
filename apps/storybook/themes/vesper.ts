@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: MIT
 // Vesper-owned local themes. Original Gothic source remains unchanged.
 /**
- * @input Supported Astryx theme inheritance and Gothic's typography/components.
- * @output Vesper Dark, parchment Light, and high-contrast Dark themes.
+ * @input Supported Astryx theme inheritance and Vesper's glass material.
+ * @output Glass Dark/Light with bright success signals and an opaque accessible Contrast palette.
  * @position Local explorer theme authoring; no upstream theme replacement.
  */
 import {
@@ -12,25 +12,27 @@ import {
   type DefineThemeInput,
 } from '@astryxdesign/core/theme';
 import {gothicTheme} from '@astryxdesign/theme-gothic';
+import {glassComponents, glassLocalTokens, glassTokens} from './glass';
 
 type Tokens = NonNullable<DefineThemeInput['tokens']>;
 const light: Tokens = {
-  '--color-background-body': '#F1EEE8',
-  '--color-background-surface': '#FAF8F3',
+  ...glassTokens,
+  '--color-background-body': '#F4F4F5',
+  '--color-background-surface': '#F4F4F5',
   '--color-background-card': '#FFFFFF',
   '--color-background-popover': '#FFFFFF',
-  '--color-background-muted': '#E6E2DA',
+  '--color-background-muted': '#E4E4E7',
   '--color-background-inverted': '#101314',
-  '--color-text-primary': '#171C20',
-  '--color-text-secondary': '#495056',
+  '--color-text-primary': '#18181B',
+  '--color-text-secondary': '#52525B',
   '--color-text-disabled': '#7B8084',
-  '--color-text-accent': '#233B50',
+  '--color-text-accent': '#2563EB',
   '--color-icon-primary': '#171C20',
   '--color-icon-secondary': '#495056',
   '--color-icon-disabled': '#7B8084',
-  '--color-icon-accent': '#233B50',
-  '--color-accent': '#233B50',
-  '--color-accent-muted': '#233B501A',
+  '--color-icon-accent': '#2563EB',
+  '--color-accent': '#2563EB',
+  '--color-accent-muted': '#2563EB1A',
   '--color-on-accent': '#FFFFFF',
   '--color-on-dark': '#FAF8F3',
   '--color-on-light': '#171C20',
@@ -38,12 +40,11 @@ const light: Tokens = {
   '--color-overlay': '#101314B3',
   '--color-overlay-hover': '#171C2010',
   '--color-overlay-pressed': '#171C2020',
-  '--color-border': '#807D76',
+  '--color-border': '#18181B26',
   '--color-border-emphasized': '#495056',
-  '--focus-outline-color': '#233B50',
-  '--color-success': '#31552C',
+  '--focus-outline-color': '#2563EB',
   '--color-success-muted': '#DCE8D4',
-  '--color-error': '#873C43',
+  '--color-error': '#D93443',
   '--color-error-muted': '#F0DDE0',
   '--color-warning': '#725310',
   '--color-warning-muted': '#F1E7C5',
@@ -56,7 +57,6 @@ const light: Tokens = {
   '--color-tint-hover': 'black',
   '--shadow-inset-hover': 'inset 0 0 0 1px #495056',
   '--shadow-inset-selected': 'inset 0 0 0 2px #233B50',
-  '--shadow-inset-success': 'inset 0 0 0 1px #31552C',
   '--shadow-inset-warning': 'inset 0 0 0 1px #725310',
   '--shadow-inset-error': 'inset 0 0 0 1px #873C43',
 };
@@ -194,23 +194,58 @@ const contrastSyntax = defineSyntaxTheme({
   },
 });
 
+const materialTheme = defineTheme({
+  name: 'vesper-material',
+  extends: gothicTheme,
+  typography: {
+    scale: {base: 14, ratio: 1.2},
+    body: {
+      family: 'Inter',
+      fallbacks: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    },
+    heading: {
+      family: 'Inter',
+      fallbacks: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    },
+    code: {family: 'ui-monospace', fallbacks: 'Consolas, monospace'},
+  },
+  motion: {fast: 150, medium: 250, slow: 400, ratio: 0.75},
+  tokens: glassTokens,
+  localTokens: glassLocalTokens,
+  components: glassComponents,
+});
+
 export const vesperDarkTheme = defineTheme({
   name: 'vesper-dark',
-  extends: gothicTheme,
+  extends: materialTheme,
   tokens: {
+    '--color-background-body': '#111215',
+    '--color-background-surface': '#18191D',
+    '--color-background-card': '#24262C',
+    '--color-background-popover': '#292C33',
+    '--color-background-muted': '#FFFFFF12',
+    '--color-text-primary': '#F4F4F5',
+    '--color-text-secondary': '#B7BBC4',
+    '--color-text-disabled': '#7D828C',
+    '--color-icon-primary': '#F4F4F5',
+    '--color-icon-secondary': '#B7BBC4',
+    '--color-neutral': '#FFFFFF18',
+    '--color-accent-muted': '#2563EB33',
+    '--color-text-accent': '#91B9FF',
+    '--color-icon-accent': '#91B9FF',
     '--color-text-pink': '#682039',
     '--color-icon-pink': '#682039',
     '--color-text-yellow': '#624910',
     '--color-icon-yellow': '#624910',
     '--color-data-categorical-purple': '#A58ADA',
     '--color-syntax-comment': '#96A0AB',
-    '--color-border': '#7B8892',
-    '--color-border-emphasized': '#8D9BA5',
+    '--color-border': '#FFFFFF26',
+    '--color-border-emphasized': '#A1A1AA',
   },
 });
 export const vesperLightTheme = defineTheme({
   name: 'vesper-light',
-  extends: gothicTheme,
+  extends: materialTheme,
   tokens: light,
   syntax: lightSyntax,
   onDark: {tokens: contrast},
@@ -221,11 +256,26 @@ export const vesperLightTheme = defineTheme({
 });
 export const vesperContrastTheme = defineTheme({
   name: 'vesper-contrast',
-  extends: gothicTheme,
+  extends: materialTheme,
   tokens: contrast,
   syntax: contrastSyntax,
   onDark: {tokens: contrast},
   onLight: {tokens: light},
+  localTokens: {
+    ...glassLocalTokens,
+    '--vesper-glass-fill': '#11181D',
+    '--vesper-glass-panel': '#11181D',
+    '--vesper-glass-rim': '#8D9BA5',
+    '--vesper-glass-gradient': 'none',
+    '--vesper-glass-shadow': 'none',
+    '--vesper-glass-inset': 'none',
+    '--vesper-glass-elevation': 'none',
+    '--vesper-notification-success': 'var(--color-success)',
+    '--vesper-notification-error': 'var(--color-error)',
+    '--vesper-notification-warning': 'var(--color-warning)',
+    '--vesper-notification-info': 'var(--color-accent)',
+    '--vesper-notification-ink': 'var(--color-on-accent)',
+  },
   components: {
     button: {
       'variant:secondary': {

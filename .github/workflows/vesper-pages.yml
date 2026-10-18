@@ -1,0 +1,66 @@
+# SPDX-License-Identifier: MIT
+# @input Vesper main branch, public packages, and native component demos.
+# @output Standalone Vesper component browser deployed as a Pages artifact.
+# @position Fork-only Pages owner; upstream retains its compatibility landing.
+name: Publish Vesper Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: vesper-github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.repository == 'nicgpk/vesper' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - name: Install workspace dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build the public component packages
+        env:
+          NODE_ENV: production
+        run: |
+          pnpm build
+          pnpm exec tsc --noEmit -p apps/storybook/vesper/site/tsconfig.json
+      - name: Verify Pages contracts
+        run: >-
+          node --test
+          scripts/build-vesper-pages.test.mjs
+          scripts/vesper-native-demos.test.mjs
+          scripts/vesper-catalog.test.mjs
+          scripts/vesper-output-path.test.mjs
+          scripts/vesper-power-search.test.mjs
+      - name: Assemble the native Vesper component browser
+        run: node scripts/build-vesper-pages.mjs
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: local-baseline/vesper-pages
+  deploy:
+    if: github.repository == 'nicgpk/vesper' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v6
+      - name: Deploy Vesper
+        id: deployment
+        uses: actions/deploy-pages@v5
