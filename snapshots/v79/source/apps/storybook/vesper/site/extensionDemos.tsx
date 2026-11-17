@@ -1,0 +1,769 @@
+/* eslint-disable @astryx/copyright-header -- Original Vesper extension. */
+// SPDX-License-Identifier: MIT
+/**
+ * @input Public built lab/richtext components, local fixtures, and gallery providers.
+ * @output Controlled extension previews with host-relative sizing, scoped surface hooks, and labeled rich text.
+ * @position Vesper Pages extension previews; compound members render in their owners.
+ */
+import {useEffect, useRef, useState} from 'react';
+import {useLexicalComposerContext} from '@lexical/react/LexicalComposerContext';
+import {Button} from '@astryxdesign/core/Button';
+import {ComplexSelector} from '@astryxdesign/core/ComplexSelector';
+import {Section} from '@astryxdesign/core/Section';
+import {Selector} from '@astryxdesign/core/Selector';
+import {Slider} from '@astryxdesign/core/Slider';
+import {Switch} from '@astryxdesign/core/Switch';
+import {TextInput} from '@astryxdesign/core/TextInput';
+import {
+  CircularProgress,
+  CodeEditor,
+  Drawer,
+  DrawerHeader,
+  InfoTip,
+  ListInput,
+  LogStream,
+  MobileTokenizer,
+  SVGIcon,
+  Schedule,
+  Stat,
+  Tour,
+  TourStep,
+  TransferList,
+  TransferListSelector,
+  createEventFromISO,
+  createScheduleListView,
+  heartIcon,
+  type LogEntry,
+  type SVGIconVariation,
+} from '@astryxdesign/lab';
+import {
+  RichTextEditor,
+  RichTextEditorAutoLinkPlugin,
+  RichTextEditorToolbar,
+  RichTextView,
+} from '@astryxdesign/richtext';
+
+import type {Demo} from './demos';
+
+function CircularProgressPreview() {
+  const [value, setValue] = useState(65);
+  return (
+    <div className="demo-stack">
+      <div className="demo-row">
+        <CircularProgress
+          label="Collection indexing"
+          value={value}
+          size="lg"
+          hasValueLabel
+          isLabelHidden={false}
+        />
+        <CircularProgress
+          label="Preparing preview"
+          isIndeterminate
+          isLabelHidden={false}
+        />
+      </div>
+      <Slider
+        label="Indexing completion"
+        value={value}
+        onChange={setValue}
+        min={0}
+        max={100}
+      />
+    </div>
+  );
+}
+
+const initialCode =
+  'const collection = {\n  name: "Vesper",\n  isPublished: false,\n};';
+function CodeEditorPreview() {
+  const [code, setCode] = useState(initialCode);
+  const [readOnly, setReadOnly] = useState(false);
+  return (
+    <div className="demo-stack">
+      <CodeEditor
+        className="vesper-code-editor"
+        label="Collection configuration"
+        language="javascript"
+        value={code}
+        onChange={setCode}
+        hasLineNumbers
+        isReadOnly={readOnly}
+        maxHeight={240}
+      />
+      <div className="demo-row">
+        <Switch
+          label="Read-only source"
+          value={readOnly}
+          onChange={setReadOnly}
+        />
+        <Button label="Reset source" onClick={() => setCode(initialCode)} />
+      </div>
+      <p className="demo-copy">
+        Local text only; nothing is executed. Press Escape then Tab to leave the
+        editor.
+      </p>
+    </div>
+  );
+}
+
+function DrawerPreview() {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState('Evening collection');
+  const [shared, setShared] = useState(false);
+  return (
+    <div className="demo-stack">
+      <Button label="Inspect collection" onClick={() => setOpen(true)} />
+      <p className="demo-copy">
+        {name} · {shared ? 'Shared locally' : 'Private collection'}
+      </p>
+      <Drawer
+        label="Collection inspector"
+        isOpen={open}
+        onOpenChange={setOpen}
+        purpose="form"
+        width={400}>
+        <DrawerHeader
+          title="Collection inspector"
+          subtitle="Changes stay in this preview"
+          onOpenChange={setOpen}
+        />
+        <Section padding={4}>
+          <div className="demo-stack">
+            <TextInput
+              label="Collection name"
+              value={name}
+              onChange={setName}
+            />
+            <Switch
+              label="Share collection"
+              value={shared}
+              onChange={setShared}
+            />
+            <Button label="Done" onClick={() => setOpen(false)} />
+          </div>
+        </Section>
+      </Drawer>
+    </div>
+  );
+}
+
+function InfoTipPreview() {
+  return (
+    <div className="demo-row">
+      <span className="demo-label">Collection visibility</span>
+      <InfoTip
+        label="About collection visibility"
+        content="Private collections are only visible to you. Sharing in this preview changes local state only."
+      />
+    </div>
+  );
+}
+
+function ListInputPreview() {
+  const nextID = useRef(3);
+  const [items, setItems] = useState([
+    {id: 1, name: 'Review contrast'},
+    {id: 2, name: 'Check keyboard navigation'},
+  ]);
+  return (
+    <ListInput
+      label="Release checklist"
+      description="Edit, add, remove, or drag the checklist rows."
+      value={items}
+      onChange={setItems}
+      getItemKey={item => item.id}
+      createItem={() => ({id: nextID.current++, name: ''})}
+      itemName="task"
+      maxItems={5}
+      isReorderable
+      columns={[
+        {
+          key: 'name',
+          header: 'Task',
+          renderInput: ({
+            item,
+            label,
+            isLabelHidden,
+            isDisabled,
+            status,
+            statusVariant,
+            updateItem,
+          }) => (
+            <TextInput
+              label={label}
+              isLabelHidden={isLabelHidden}
+              isDisabled={isDisabled}
+              status={status}
+              statusVariant={statusVariant}
+              value={item.name}
+              onChange={name => updateItem({...item, name})}
+            />
+          ),
+        },
+      ]}
+    />
+  );
+}
+
+const initialEntries: LogEntry[] = [
+  {
+    id: 'ready',
+    timestamp: '09:00:00',
+    level: 'info',
+    message: 'Preview ready. All entries are authored local fixtures.',
+  },
+  {
+    id: 'check',
+    timestamp: '09:00:01',
+    level: 'debug',
+    message: 'Loaded collection configuration.',
+  },
+  {
+    id: 'warning',
+    timestamp: '09:00:02',
+    level: 'warn',
+    message: 'One checklist task is incomplete.',
+    detail: (
+      <p className="demo-copy">
+        Review focus order before publishing the collection.
+      </p>
+    ),
+  },
+];
+function LogStreamPreview() {
+  const sequence = useRef(3);
+  const [entries, setEntries] = useState(initialEntries);
+  const [following, setFollowing] = useState(true);
+  return (
+    <div className="demo-stack">
+      <div className="demo-row">
+        <Button
+          label="Append local event"
+          onClick={() => {
+            const id = sequence.current++;
+            setEntries(current => [
+              ...current.slice(-19),
+              {
+                id: `local-${id}`,
+                timestamp: `09:00:${String(id).padStart(2, '0')}`,
+                level: 'info',
+                message: `Local check ${id} completed.`,
+              },
+            ]);
+          }}
+        />
+        <Button label="Clear log" onClick={() => setEntries([])} />
+        <Switch
+          label="Follow latest"
+          value={following}
+          onChange={setFollowing}
+        />
+      </div>
+      <LogStream
+        label="Local collection activity"
+        hasTimestamps={false}
+        entries={entries}
+        isFollowing={following}
+        onFollowChange={setFollowing}
+        maxHeight={240}
+      />
+      {entries.length === 0 && (
+        <p className="demo-copy" role="status">
+          Log cleared. Append a local event to begin again.
+        </p>
+      )}
+    </div>
+  );
+}
+
+const teammates = [
+  {id: 'riley', label: 'Riley Morgan'},
+  {id: 'kai', label: 'Kai Ortiz'},
+  {id: 'alex', label: 'Alex Chen'},
+  {id: 'amara', label: 'Amara Okafor'},
+  {id: 'noor', label: 'Noor Haddad'},
+  {id: 'priya', label: 'Priya Shah'},
+  {id: 'mateo', label: 'Mateo Rivera'},
+  {id: 'jules', label: 'Jules Martin'},
+  {id: 'hana', label: 'Hana Sato'},
+  {id: 'samira', label: 'Samira Ali'},
+  {id: 'leo', label: 'Leo Park'},
+  {id: 'ines', label: 'Ines Costa'},
+];
+const teammateSource = {
+  bootstrap: () => teammates,
+  search: (query: string) =>
+    teammates.filter(person =>
+      person.label.toLowerCase().includes(query.toLowerCase()),
+    ),
+};
+function MobileTokenizerPreview() {
+  const [value, setValue] = useState([teammates[0]]);
+  return (
+    <div className="demo-stack">
+      <MobileTokenizer
+        label="Collection reviewers"
+        description="Search an authored directory of 12 fictional reviewers; select names, then choose Done."
+        searchSource={teammateSource}
+        maxMenuItems={teammates.length}
+        value={value}
+        onChange={setValue}
+        placeholder="Choose reviewers"
+      />
+      <p className="demo-copy">
+        Selected:{' '}
+        {value.map(person => person.label).join(', ') || 'No reviewers'}
+      </p>
+    </div>
+  );
+}
+
+const iconVariations: SVGIconVariation[] = [
+  'linear',
+  'bold',
+  'twotone',
+  'bulk',
+  'broken',
+];
+function SVGIconPreview() {
+  const [variation, setVariation] = useState<SVGIconVariation>('twotone');
+  return (
+    <div className="demo-stack">
+      <div className="demo-row">
+        <SVGIcon
+          icon={heartIcon}
+          variation={variation}
+          size="lg"
+          color="accent"
+          aria-hidden="true"
+        />
+        <span className="demo-label">Heart · {variation}</span>
+      </div>
+      <Selector
+        label="Icon variation"
+        value={variation}
+        onChange={value => {
+          const next = iconVariations.find(variation => variation === value);
+          if (next) {setVariation(next);}
+        }}
+        options={iconVariations.map(value => ({value, label: value}))}
+      />
+    </div>
+  );
+}
+
+const scheduleDate = Date.parse('2026-10-19T09:00:00Z');
+const scheduleView = createScheduleListView({days: 3});
+const scheduleEvents = [
+  createEventFromISO({
+    id: 'review',
+    title: 'Design review',
+    start: '2026-10-19T09:00:00Z',
+    end: '2026-10-19T09:45:00Z',
+  }),
+  createEventFromISO({
+    id: 'handoff',
+    title: 'Collection handoff',
+    start: '2026-10-20T14:00:00Z',
+    end: '2026-10-20T15:00:00Z',
+  }),
+];
+function SchedulePreview() {
+  const [date, setDate] = useState(scheduleDate);
+  return (
+    <div className="demo-stack">
+      <p className="demo-copy">
+        Authored October 2026 agenda · UTC. Use the schedule arrows to change
+        the range. On narrow screens, scroll the agenda horizontally.
+      </p>
+      <div
+        className="schedule-preview-scroll"
+        role="region"
+        aria-label="Scrollable sample agenda"
+        tabIndex={0}>
+        <div className="schedule-preview">
+          <Schedule
+            view={scheduleView}
+            events={scheduleEvents}
+            date={date}
+            focusDate={scheduleDate}
+            onChangeDate={setDate}
+            timezoneID="UTC"
+          />
+        </div>
+      </div>
+      <Button
+        label="Return to sample agenda"
+        onClick={() => setDate(scheduleDate)}
+      />
+    </div>
+  );
+}
+
+function StatPreview() {
+  return (
+    <div className="demo-row">
+      <Stat
+        label="Reviewed components"
+        value="128"
+        delta={{value: '+16', direction: 'up'}}
+        description="Authored sample · vs. previous release"
+      />
+      <Stat
+        label="Open issues"
+        value="4"
+        delta={{value: '−3', direction: 'down', sentiment: 'positive'}}
+        description="Authored sample · fewer is better"
+      />
+    </div>
+  );
+}
+
+function TourPreview() {
+  const first = useRef<HTMLButtonElement>(null);
+  const second = useRef<HTMLButtonElement>(null);
+  const [active, setActive] = useState(false);
+  const [result, setResult] = useState('Start a two-step local walkthrough.');
+  return (
+    <div className="demo-stack">
+      <div className="demo-row">
+        <Button
+          ref={first}
+          label="Collection overview"
+          onClick={() => setResult('Collection overview selected.')}
+        />
+        <Button
+          ref={second}
+          label="Review checklist"
+          onClick={() => setResult('Review checklist selected.')}
+        />
+      </div>
+      <Button
+        label="Start guided tour"
+        isDisabled={active}
+        onClick={() => setActive(true)}
+      />
+      <p className="demo-copy" role="status">
+        {result}
+      </p>
+      <Tour
+        isActive={active}
+        isStepCountShown
+        onDismiss={source => {
+          setActive(false);
+          setResult(
+            source === 'complete'
+              ? 'Walkthrough completed.'
+              : 'Walkthrough dismissed. You can restart it.',
+          );
+        }}>
+        <TourStep targetRef={first} heading="Your collection">
+          Open the collection overview to inspect its details.
+        </TourStep>
+        <TourStep targetRef={second} heading="Review before publishing">
+          Keep release checks together in the review checklist.
+        </TourStep>
+      </Tour>
+    </div>
+  );
+}
+
+const fieldOptions = [
+  {value: 'name', label: 'Name'},
+  {value: 'status', label: 'Status'},
+  {value: 'owner', label: 'Owner'},
+  {value: 'updated', label: 'Last updated'},
+];
+function TransferListPreview() {
+  const [fields, setFields] = useState<readonly string[]>(['name', 'status']);
+  const [customFields, setCustomFields] = useState<readonly string[]>(['name']);
+  return (
+    <div className="demo-stack transfer-list-preview">
+      <TransferListSelector
+        width="min(41rem, 100cqi)"
+        label="Visible collection fields"
+        options={fieldOptions}
+        value={fields}
+        onChange={setFields}
+        triggerLabel={`${fields.length} visible fields`}
+        hasSearch
+        hasSelectAll
+        hasClear
+        commitBehavior="staged"
+      />
+      <ComplexSelector
+        label="Custom field picker"
+        triggerLabel={`${customFields.length} custom fields`}
+        value={customFields}
+        onChange={setCustomFields}>
+        {(_value, commit, close) => (
+          <div className="demo-stack">
+            <Button
+              label="Use compact preset"
+              onClick={() => commit(['name', 'owner'])}
+            />
+            <TransferList
+              label="Custom visible fields"
+              options={fieldOptions}
+              value={customFields}
+              onChange={commit}
+              hasSearch
+              hasClear
+              hasSelectAll
+            />
+            <Button label="Done" onClick={close} />
+          </div>
+        )}
+      </ComplexSelector>
+      <p className="demo-copy" role="status">
+        Applied fields: {fields.join(', ') || 'None'}. Custom:{' '}
+        {customFields.join(', ') || 'None'}.
+      </p>
+    </div>
+  );
+}
+
+// Lexical's public serialized state shape: one paragraph and one text node.
+const initialRichText = JSON.stringify({
+  root: {
+    children: [
+      {
+        children: [
+          {
+            detail: 0,
+            format: 0,
+            mode: 'normal',
+            style: '',
+            text: 'Review the collection, then share your notes.',
+            type: 'text',
+            version: 1,
+          },
+        ],
+        direction: null,
+        format: '',
+        indent: 0,
+        type: 'paragraph',
+        version: 1,
+        textFormat: 0,
+        textStyle: '',
+      },
+    ],
+    direction: null,
+    format: '',
+    indent: 0,
+    type: 'root',
+    version: 1,
+  },
+});
+function ReadOnlyPreviewLabel() {
+  const [editor] = useLexicalComposerContext();
+  useEffect(
+    () =>
+      editor.registerRootListener(root => {
+        root?.setAttribute('aria-label', 'Rendered collection notes');
+      }),
+    [editor],
+  );
+  return null;
+}
+
+function RichTextPreview() {
+  const [value, setValue] = useState(initialRichText);
+  const [linkStatus, setLinkStatus] = useState(
+    'Type an email address followed by a space to try auto-linking.',
+  );
+  return (
+    <div className="demo-stack">
+      <p className="demo-copy rich-text-scroll-hint">
+        More formatting tools → scroll the toolbar horizontally on narrow
+        screens.
+      </p>
+      <RichTextEditor
+        label="Collection notes"
+        defaultValue={initialRichText}
+        onChange={state => setValue(JSON.stringify(state.toJSON()))}
+        toolbar={<RichTextEditorToolbar />}
+        plugins={
+          <RichTextEditorAutoLinkPlugin
+            onChange={url =>
+              setLinkStatus(
+                url
+                  ? 'Auto-link created in your local notes.'
+                  : 'Auto-link removed.',
+              )
+            }
+          />
+        }
+        maxLength={800}
+      />
+      <p className="demo-copy" role="status">
+        {linkStatus}
+      </p>
+      <h4 className="demo-label">Read-only preview · updates as you type</h4>
+      <RichTextView
+        value={value}
+        plugins={<ReadOnlyPreviewLabel />}
+        errorFallback={
+          <p className="demo-copy">The note could not be rendered.</p>
+        }
+      />
+    </div>
+  );
+}
+
+const material =
+  'Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.';
+export const extensionDemos: Demo[] = [
+  {
+    id: 'circular-progress',
+    name: 'CircularProgress',
+    covers: ['CircularProgress'],
+    category: 'Feedback',
+    description:
+      'Adjust a labeled progress ring alongside an indeterminate state.',
+    material,
+    code: '<CircularProgress label="Collection indexing" value={value} hasValueLabel />',
+    Preview: CircularProgressPreview,
+  },
+  {
+    id: 'code-editor',
+    name: 'CodeEditor',
+    covers: ['CodeEditor'],
+    category: 'Forms',
+    description:
+      'Edit highlighted local source, toggle read-only mode, and reset the fixture.',
+    material,
+    heavy: true,
+    code: '<CodeEditor label="Collection configuration" language="javascript" value={code} onChange={setCode} hasLineNumbers />',
+    Preview: CodeEditorPreview,
+  },
+  {
+    id: 'drawer',
+    name: 'Drawer',
+    covers: ['Drawer', 'DrawerHeader'],
+    category: 'Overlays',
+    description:
+      'Inspect and edit collection details in a dismissible side panel.',
+    material,
+    code: '<Drawer label="Collection inspector" isOpen={open} onOpenChange={setOpen}><DrawerHeader title="Collection inspector" onOpenChange={setOpen} /><Section padding={4}>Inspector content</Section></Drawer>',
+    Preview: DrawerPreview,
+  },
+  {
+    id: 'info-tip',
+    name: 'InfoTip',
+    covers: ['InfoTip'],
+    category: 'Feedback',
+    description:
+      'Focus or hover the information button for concise contextual help.',
+    material,
+    code: '<InfoTip label="About collection visibility" content="Private collections are only visible to you." />',
+    Preview: InfoTipPreview,
+  },
+  {
+    id: 'list-input',
+    name: 'ListInput',
+    covers: ['ListInput'],
+    category: 'Forms',
+    description:
+      'A controlled checklist with editable cells, add/remove actions, and reordering.',
+    material,
+    code: '<ListInput label="Release checklist" value={items} onChange={setItems} getItemKey={item => item.id} createItem={createItem} columns={columns} isReorderable />',
+    Preview: ListInputPreview,
+  },
+  {
+    id: 'log-stream',
+    name: 'LogStream',
+    covers: ['LogStream'],
+    category: 'Feedback',
+    description:
+      'Append and clear local events, inspect warning details, and control tail following.',
+    material,
+    code: '<LogStream label="Local collection activity" entries={entries} hasTimestamps={false} isFollowing={following} onFollowChange={setFollowing} maxHeight={240} />',
+    Preview: LogStreamPreview,
+  },
+  {
+    id: 'mobile-tokenizer',
+    name: 'MobileTokenizer',
+    covers: ['MobileTokenizer'],
+    category: 'Forms',
+    description:
+      'Choose reviewers using a searchable touch-oriented sheet and removable tokens.',
+    material,
+    code: '<MobileTokenizer label="Collection reviewers" searchSource={teammateSource} value={value} onChange={setValue} />',
+    Preview: MobileTokenizerPreview,
+  },
+  {
+    id: 'rich-text-editor',
+    name: 'RichTextEditor',
+    covers: [
+      'RichTextEditor',
+      'RichTextEditorAutoLinkPlugin',
+      'RichTextEditorToolbar',
+      'RichTextView',
+    ],
+    category: 'Forms',
+    description:
+      'Author formatted notes with a real toolbar, automatic links, and a synchronized read-only view.',
+    material,
+    heavy: true,
+    code: '<RichTextEditor label="Collection notes" defaultValue={initialRichText} onChange={state => setValue(JSON.stringify(state.toJSON()))} toolbar={<RichTextEditorToolbar />} plugins={<RichTextEditorAutoLinkPlugin />} /><RichTextView value={value} />',
+    Preview: RichTextPreview,
+  },
+  {
+    id: 'schedule',
+    name: 'Schedule',
+    covers: ['Schedule'],
+    category: 'Data',
+    description:
+      'Navigate a three-day agenda of authored local events in an explicit UTC timezone.',
+    material,
+    heavy: true,
+    code: '<Schedule view={scheduleView} events={scheduleEvents} date={date} onChangeDate={setDate} timezoneID="UTC" />',
+    Preview: SchedulePreview,
+  },
+  {
+    id: 'stat',
+    name: 'Stat',
+    covers: ['Stat'],
+    category: 'Data',
+    description:
+      'Sample metrics with direction and sentiment-aware change indicators.',
+    material,
+    code: '<Stat label="Open issues" value="4" delta={{value: "−3", direction: "down", sentiment: "positive"}} />',
+    Preview: StatPreview,
+  },
+  {
+    id: 'svg-icon',
+    name: 'SVGIcon',
+    covers: ['SVGIcon'],
+    category: 'Content',
+    description:
+      'Switch a public heart icon definition between five native visual variations.',
+    material,
+    code: '<SVGIcon icon={heartIcon} variation={variation} size="lg" color="accent" aria-hidden="true" />',
+    Preview: SVGIconPreview,
+  },
+  {
+    id: 'tour',
+    name: 'Tour',
+    covers: ['Tour', 'TourStep'],
+    category: 'Overlays',
+    description:
+      'Start, advance, dismiss, and restart a two-step tour anchored to real controls.',
+    material,
+    code: '<Tour isActive={active} onDismiss={() => setActive(false)} isStepCountShown><TourStep targetRef={first} heading="Your collection">Inspect collection details.</TourStep><TourStep targetRef={second} heading="Review">Check before publishing.</TourStep></Tour>',
+    Preview: TourPreview,
+  },
+  {
+    id: 'transfer-list',
+    name: 'TransferList',
+    covers: ['TransferList', 'TransferListSelector'],
+    category: 'Forms',
+    description:
+      'Compare a staged selector with a custom immediate picker including a compact preset.',
+    material,
+    code: '<TransferListSelector label="Visible collection fields" width="min(41rem, 100cqi)" options={fieldOptions} value={fields} onChange={setFields} commitBehavior="staged" /><ComplexSelector label="Custom field picker" value={customFields} onChange={setCustomFields}>{(_value, commit) => <TransferList label="Custom visible fields" options={fieldOptions} value={customFields} onChange={commit} />}</ComplexSelector> // Immediate wrapper: container: vesper-transfer-list / inline-size',
+    Preview: TransferListPreview,
+  },
+];

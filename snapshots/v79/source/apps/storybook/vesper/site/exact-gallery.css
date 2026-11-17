@@ -1,0 +1,46 @@
+/* SPDX-License-Identifier: MIT
+ * Shell adapter only. Native demo interiors and original preview.css are not
+ * overridden here. Wide/workspace examples retain room for their real controls.
+ */
+.exact-gallery-shell{min-height:100vh;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body)}
+.exact-header,.exact-main{width:min(1320px,calc(100% - 64px));margin-inline:auto}
+.exact-header{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:88px;border-bottom:1px solid var(--color-border)}
+.exact-home{display:inline-flex;align-items:center;gap:12px;color:inherit;text-decoration:none;font-size:14px;font-weight:600}
+.exact-mark{display:grid;grid-template-columns:repeat(2,7px);gap:3px;transform:rotate(-12deg)}
+.exact-mark i{width:7px;height:7px;background:currentColor;border-radius:2px}
+.exact-appearance{display:flex;gap:4px;flex-wrap:wrap}
+.exact-appearance button,.exact-filters button,.exact-empty button{font:inherit;font-size:12px;border:1px solid transparent;border-radius:8px;padding:9px 12px;background:transparent;color:var(--color-text-secondary);cursor:pointer}
+.exact-appearance button[aria-pressed=true],.exact-filters button[aria-pressed=true]{background:var(--color-neutral);border-color:var(--color-border);color:var(--color-text-primary)}
+.exact-appearance button:hover,.exact-filters button:hover{background:var(--color-overlay-hover);color:var(--color-text-primary)}
+.exact-main{padding-block:44px 80px;outline:none}
+.exact-intro{margin-bottom:44px}
+.exact-intro h1{font-size:clamp(30px,3.2vw,44px);font-weight:600;line-height:1.1;letter-spacing:-.045em;margin:0 0 14px}
+.exact-intro p{font-size:14px;color:var(--color-text-secondary);margin:0;line-height:1.5}
+.exact-back{display:inline-block;color:var(--color-text-secondary);font-size:13px;text-decoration:none;margin-bottom:24px}
+.exact-collection-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}
+.exact-collection-bar h2{font-size:15px;font-weight:600;margin:0;display:flex;align-items:baseline;gap:12px}
+.exact-collection-bar h2 span{font-size:11px;font-weight:400;color:var(--color-text-secondary)}
+.exact-search{display:flex;align-items:center;gap:10px;border:1px solid var(--color-border);border-radius:9px;padding:0 10px;min-width:260px;min-height:40px}
+.exact-search input{font:inherit;font-size:13px;width:100%;min-width:0;background:transparent;border:0;color:inherit;outline:none;padding:10px 0}
+.exact-search:focus-within{outline:2px solid var(--focus-outline-color);outline-offset:3px}
+.exact-search kbd{font:inherit;font-size:11px;white-space:nowrap;color:var(--color-text-secondary)}
+.exact-filter-row{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.exact-filters{display:flex;flex-wrap:wrap;gap:4px;flex:1}
+.exact-count{font-size:11px;color:var(--color-text-secondary);white-space:nowrap}
+.exact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px;align-items:stretch}
+.exact-tile{min-width:0;margin:0}
+.exact-grid>.exact-tile[data-exact-layout=wide]{grid-column:span 2}
+.exact-grid>.exact-tile[data-exact-layout=workspace]{grid-column:1/-1}
+.exact-caption{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 2px 0}
+.exact-caption>a{display:flex;align-items:baseline;gap:8px;min-width:0;color:inherit;text-decoration:none;font-size:13px;font-weight:500;line-height:1.4}
+.exact-caption>a span{font-size:12px;color:var(--color-text-secondary)}
+.exact-caption>span{font-size:10px;color:var(--color-text-secondary);white-space:nowrap}
+.exact-caption>a:hover{text-decoration:underline;text-underline-offset:4px}
+.exact-detail{max-width:1000px;margin-inline:auto}
+.exact-empty{padding:64px 0;text-align:center}
+.exact-empty h2{font-size:20px}.exact-empty button{border-color:var(--color-border)}
+.exact-sr,.exact-skip:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.exact-skip:focus{position:fixed;top:12px;left:12px;z-index:10000;background:var(--color-background-surface);color:var(--color-text-primary);padding:12px}
+.exact-header a:focus-visible,.exact-header button:focus-visible,.exact-caption a:focus-visible,.exact-filters button:focus-visible,.exact-back:focus-visible,.exact-empty button:focus-visible{outline:2px solid var(--focus-outline-color);outline-offset:3px}
+@media(max-width:1040px){.exact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.exact-header,.exact-main{width:calc(100% - 32px)}.exact-header{min-height:76px;gap:12px}.exact-main{padding-top:32px}.exact-intro{margin-bottom:32px}.exact-grid{grid-template-columns:minmax(0,1fr);gap:28px}.exact-grid>.exact-tile[data-exact-layout=wide]{grid-column:auto}.exact-collection-bar{align-items:stretch;flex-direction:column;gap:16px}.exact-search{min-width:0}.exact-filter-row{align-items:flex-start}.exact-count{padding-top:10px}.exact-appearance button{padding:8px;font-size:11px}.exact-caption>span{white-space:normal;text-align:right}}

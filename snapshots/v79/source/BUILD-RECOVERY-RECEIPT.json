@@ -1,0 +1,100 @@
+{
+  "commit": "01ebdf616a14b5eaaea090762864eaad51327752",
+  "files": [
+    {
+      "path": "packages/build/build.mjs",
+      "sha": "a37d3b4769f0ba1dbc282a0a6a72482acd6a8eaa",
+      "bytes": 1491
+    },
+    {
+      "path": "packages/build/package.json",
+      "sha": "aae7d38d029feaca406cede9cf162fa1ad4ee098",
+      "bytes": 1511
+    },
+    {
+      "path": "packages/build/src/babel.js",
+      "sha": "cbbfe24e62e49469c7286c7da6d4d274d541f764",
+      "bytes": 3575
+    },
+    {
+      "path": "packages/build/src/babel.test.mjs",
+      "sha": "49ffd7bb175801534335b883935f19c2953864fd",
+      "bytes": 4113
+    },
+    {
+      "path": "packages/build/src/config.js",
+      "sha": "69196ae504d557e0447caf2ce3231a91d8bed8f0",
+      "bytes": 3416
+    },
+    {
+      "path": "packages/build/src/index.js",
+      "sha": "94dca894051859c2b63408723f544a38ac3b30d9",
+      "bytes": 8033
+    },
+    {
+      "path": "packages/build/src/next.js",
+      "sha": "27578e59ea7f51fbe2fcaee19c42ce20b0ea037c",
+      "bytes": 13541
+    },
+    {
+      "path": "packages/build/src/vite.ts",
+      "sha": "82dad9c71bdfaef4cb9c47c083ccaf1d02dc383a",
+      "bytes": 20660
+    },
+    {
+      "path": "packages/build/tsconfig.build.json",
+      "sha": "d42d57702441dffe5df40141a2b6e7341b0e1466",
+      "bytes": 271
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha": "87cf4f1acb63724a9b8f21f6d0561f6da9c30a9f",
+      "bytes": 4885
+    },
+    {
+      "path": "scripts/build-css.mjs",
+      "sha": "4c69edc3c1d9e72901495d7bfa621e95160b912c",
+      "bytes": 5887
+    },
+    {
+      "path": "scripts/build-css.test.mjs",
+      "sha": "945b5b25787e4e4543924a9a01140f7c780c8495",
+      "bytes": 6630
+    },
+    {
+      "path": "scripts/check-fully-specified.mjs",
+      "sha": "6b255272222701d59c51992926661dea1947bc2e",
+      "bytes": 5797
+    },
+    {
+      "path": "scripts/check-no-dev-jsx.mjs",
+      "sha": "a8b386380e1cb20aaa81892c1cf2c8dbd9d1f1e6",
+      "bytes": 2890
+    },
+    {
+      "path": "scripts/clean-dist.mjs",
+      "sha": "982a038e055f09ab9dbd7ad6f6b48b2aa2abf47b",
+      "bytes": 404
+    },
+    {
+      "path": "scripts/component-packages.cjs",
+      "sha": "6ca7e88956fd970cf66d84b8a4cbe4dcfe4511ed",
+      "bytes": 7941
+    },
+    {
+      "path": "scripts/generate-cldr-weekdays.mjs",
+      "sha": "9e88a72681ce780be765a46bcc98e82028bbd8dc",
+      "bytes": 8824
+    },
+    {
+      "path": "scripts/generate-i18n-runtime.mjs",
+      "sha": "11727db9635f6c5845b473cfcaf59e83658d371e",
+      "bytes": 8859
+    },
+    {
+      "path": "scripts/lib/workspace-globs.mjs",
+      "sha": "81814a46786388a5d1057ddd8612061d69a2ba1a",
+      "bytes": 2989
+    }
+  ]
+}

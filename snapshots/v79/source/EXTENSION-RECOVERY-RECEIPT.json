@@ -1,0 +1,1783 @@
+{
+  "commit": "01ebdf616a14b5eaaea090762864eaad51327752",
+  "transport": "GitHub connector base64, no registry dist",
+  "count": 221,
+  "counts": {
+    "charts": 51,
+    "lab": 131,
+    "richtext": 18,
+    "packages/themes/gothic": 9,
+    "vega": 12
+  },
+  "failures": [],
+  "files": [
+    {
+      "path": "packages/charts/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56148157372749b3e1d7845a55f9b79a92b8b0ca",
+      "size": 102,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/56148157372749b3e1d7845a55f9b79a92b8b0ca"
+    },
+    {
+      "path": "packages/charts/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26cb01eb49982d0b078ccfdb9e54d61915efb49e",
+      "size": 2424,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/26cb01eb49982d0b078ccfdb9e54d61915efb49e"
+    },
+    {
+      "path": "packages/charts/astryx.integration.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b46ee20ece634a6b824956c0306124e0ed7819df",
+      "size": 307,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b46ee20ece634a6b824956c0306124e0ed7819df"
+    },
+    {
+      "path": "packages/charts/babel-plugin-add-extensions.cjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6139ec4a68a0bc2aa56f050ab94e30e732b7db6e",
+      "size": 3233,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/6139ec4a68a0bc2aa56f050ab94e30e732b7db6e"
+    },
+    {
+      "path": "packages/charts/babel.config.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83f8a6a536c0caa8d2a7cd8c98ad4ad14aeba6da",
+      "size": 664,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/83f8a6a536c0caa8d2a7cd8c98ad4ad14aeba6da"
+    },
+    {
+      "path": "packages/charts/docs/CHARTV2_PHASE1_PLAN.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74868c581f72d19fce1e0eae981ca9dcf476306b",
+      "size": 12164,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/74868c581f72d19fce1e0eae981ca9dcf476306b"
+    },
+    {
+      "path": "packages/charts/docs/CHARTV2_READINESS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81264e9a30c644fdf547da825e4f1a5f6388723a",
+      "size": 7872,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/81264e9a30c644fdf547da825e4f1a5f6388723a"
+    },
+    {
+      "path": "packages/charts/docs/CHARTV2_STAGE1_DESIGN.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e1c66a28ae162a31b4028201699b1102fa7500e7",
+      "size": 21890,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e1c66a28ae162a31b4028201699b1102fa7500e7"
+    },
+    {
+      "path": "packages/charts/docs/CHARTV2_VERIFICATION_CHECKLIST.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1c25d0a7156cf53ebfca3254f26f3532062aebe",
+      "size": 15321,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b1c25d0a7156cf53ebfca3254f26f3532062aebe"
+    },
+    {
+      "path": "packages/charts/docs/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec7a4050ec7a13cc409508fbcace4031215e4c30",
+      "size": 733,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/ec7a4050ec7a13cc409508fbcace4031215e4c30"
+    },
+    {
+      "path": "packages/charts/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05a71de5944b2614f57634edee359782c42ffeea",
+      "size": 3026,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/05a71de5944b2614f57634edee359782c42ffeea"
+    },
+    {
+      "path": "packages/charts/src/Chart.spec.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fae12eb57ed68c4b3f1d4e3b04d67879c2cbde3b",
+      "size": 19082,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/fae12eb57ed68c4b3f1d4e3b04d67879c2cbde3b"
+    },
+    {
+      "path": "packages/charts/src/Chart.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "465dcfdac8b333b9fff1e5278996243d7fd09493",
+      "size": 16790,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/465dcfdac8b333b9fff1e5278996243d7fd09493"
+    },
+    {
+      "path": "packages/charts/src/ChartAxis.spec.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5edbd258c023f5aa53384e46d087655e19272df9",
+      "size": 20647,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5edbd258c023f5aa53384e46d087655e19272df9"
+    },
+    {
+      "path": "packages/charts/src/ChartAxis.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c90a0290a5241de7936578506b12cfb33fe4d4c",
+      "size": 10396,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/8c90a0290a5241de7936578506b12cfb33fe4d4c"
+    },
+    {
+      "path": "packages/charts/src/ChartContext.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50f9ecb186441e5abcebe50fd2ea3abafc256137",
+      "size": 455,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/50f9ecb186441e5abcebe50fd2ea3abafc256137"
+    },
+    {
+      "path": "packages/charts/src/ChartGrid.spec.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19cb25b00577524c912a8f3b6ac7cb63792258a5",
+      "size": 14980,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/19cb25b00577524c912a8f3b6ac7cb63792258a5"
+    },
+    {
+      "path": "packages/charts/src/ChartGrid.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bca124f0f1a17e0ad059315f380e23a51d5da77",
+      "size": 3575,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/7bca124f0f1a17e0ad059315f380e23a51d5da77"
+    },
+    {
+      "path": "packages/charts/src/ChartLegend.spec.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3be2294ebed5cbc5b8d4b7ab2838930f09e2df94",
+      "size": 17535,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/3be2294ebed5cbc5b8d4b7ab2838930f09e2df94"
+    },
+    {
+      "path": "packages/charts/src/ChartLegend.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f6bc71f4453ee58a875f1051190464046401a9d",
+      "size": 2216,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/6f6bc71f4453ee58a875f1051190464046401a9d"
+    },
+    {
+      "path": "packages/charts/src/ChartSwatch.spec.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ed40a75d66acf84ad657b85101120599af174a4",
+      "size": 15127,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/3ed40a75d66acf84ad657b85101120599af174a4"
+    },
+    {
+      "path": "packages/charts/src/ChartSwatch.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18a8036032c71057f6d6a37b5e26ab1558fa5b63",
+      "size": 2421,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/18a8036032c71057f6d6a37b5e26ab1558fa5b63"
+    },
+    {
+      "path": "packages/charts/src/ChartTooltip.spec.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fdec5aa7f57586d2809b4c79debbf7afd44279d4",
+      "size": 29027,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/fdec5aa7f57586d2809b4c79debbf7afd44279d4"
+    },
+    {
+      "path": "packages/charts/src/ChartTooltip.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aff58d45ca2ec7603c9b3f3b82be3a82e472bdfe",
+      "size": 15920,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/aff58d45ca2ec7603c9b3f3b82be3a82e472bdfe"
+    },
+    {
+      "path": "packages/charts/src/formatters.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4186fed070a0db8c08a8fd8dedba9459bfd05bc",
+      "size": 5941,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e4186fed070a0db8c08a8fd8dedba9459bfd05bc"
+    },
+    {
+      "path": "packages/charts/src/getChartColors.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "afc22345c8c91093be376bde19e765064dd6be70",
+      "size": 8720,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/afc22345c8c91093be376bde19e765064dd6be70"
+    },
+    {
+      "path": "packages/charts/src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04045e55bf70507677cd1f557942fb1dc74cc0b9",
+      "size": 1787,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/04045e55bf70507677cd1f557942fb1dc74cc0b9"
+    },
+    {
+      "path": "packages/charts/src/layout.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2856eb940f902dadf7d12bdae252bc8f6242c3c9",
+      "size": 13417,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/2856eb940f902dadf7d12bdae252bc8f6242c3c9"
+    },
+    {
+      "path": "packages/charts/src/legend.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c48371ffc57f0e250e954e9b342d4d3d9d2cbd05",
+      "size": 1374,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c48371ffc57f0e250e954e9b342d4d3d9d2cbd05"
+    },
+    {
+      "path": "packages/charts/src/markColor.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abe0d25c3d448cead3fbce946a07aa1b375537c2",
+      "size": 2306,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/abe0d25c3d448cead3fbce946a07aa1b375537c2"
+    },
+    {
+      "path": "packages/charts/src/marks/area.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9dc88cc0ec7b2c2c7464ca57c598b6e5d5ad51a7",
+      "size": 4220,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/9dc88cc0ec7b2c2c7464ca57c598b6e5d5ad51a7"
+    },
+    {
+      "path": "packages/charts/src/marks/band.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bdf7309013adeee750b5833950961965f113796",
+      "size": 2312,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/6bdf7309013adeee750b5833950961965f113796"
+    },
+    {
+      "path": "packages/charts/src/marks/bar.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f4a18410e55638f5483f467f907cfc1c4298c7c",
+      "size": 6173,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/9f4a18410e55638f5483f467f907cfc1c4298c7c"
+    },
+    {
+      "path": "packages/charts/src/marks/candlestick.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "881a259e40e583abbeb3870eeebc1bb7b31b9e42",
+      "size": 3982,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/881a259e40e583abbeb3870eeebc1bb7b31b9e42"
+    },
+    {
+      "path": "packages/charts/src/marks/dot.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4ebb2fe04d40299aba701716364c8e44ade6fd9",
+      "size": 3534,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c4ebb2fe04d40299aba701716364c8e44ade6fd9"
+    },
+    {
+      "path": "packages/charts/src/marks/dotGL.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdd981e4f2685dd3fb772dee4ebfddfbd52c52a5",
+      "size": 7469,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/cdd981e4f2685dd3fb772dee4ebfddfbd52c52a5"
+    },
+    {
+      "path": "packages/charts/src/marks/dotGLInteractive.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "465c8fdd63cb316bba4ff2fde990bda64e58d6bf",
+      "size": 19744,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/465c8fdd63cb316bba4ff2fde990bda64e58d6bf"
+    },
+    {
+      "path": "packages/charts/src/marks/errorBar.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ceaec16c8a83e537350151f755902ca42a21fa4",
+      "size": 3485,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5ceaec16c8a83e537350151f755902ca42a21fa4"
+    },
+    {
+      "path": "packages/charts/src/marks/heatmapGL.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7cda01e3e5f59e6baf4c7d4e534535714b02fce1",
+      "size": 11563,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/7cda01e3e5f59e6baf4c7d4e534535714b02fce1"
+    },
+    {
+      "path": "packages/charts/src/marks/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96ad673a38c8a28be39dc0cb0b98cf6361c6fdba",
+      "size": 767,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/96ad673a38c8a28be39dc0cb0b98cf6361c6fdba"
+    },
+    {
+      "path": "packages/charts/src/marks/line.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6819cc05640952cf457970f28fa53ade7bcce00",
+      "size": 3005,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/a6819cc05640952cf457970f28fa53ade7bcce00"
+    },
+    {
+      "path": "packages/charts/src/marks/referenceLine.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e89834601a7300052b27f2184fcd794f1bb1f95f",
+      "size": 6807,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e89834601a7300052b27f2184fcd794f1bb1f95f"
+    },
+    {
+      "path": "packages/charts/src/marks/streamGL.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "942e82421b60afb8b68af483b89727f2dd5f5759",
+      "size": 10654,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/942e82421b60afb8b68af483b89727f2dd5f5759"
+    },
+    {
+      "path": "packages/charts/src/tooltip.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f99aa7bf17d59a755b667fc7b8dc70f80e002287",
+      "size": 2312,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/f99aa7bf17d59a755b667fc7b8dc70f80e002287"
+    },
+    {
+      "path": "packages/charts/src/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9db666f3a4a27f64eb87245cc2c72a58d03bdb2",
+      "size": 7431,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/f9db666f3a4a27f64eb87245cc2c72a58d03bdb2"
+    },
+    {
+      "path": "packages/charts/src/useChartColors.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "256b86d7f5d1e409ccdecd8fcd8c3fee7ebead4f",
+      "size": 1389,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/256b86d7f5d1e409ccdecd8fcd8c3fee7ebead4f"
+    },
+    {
+      "path": "packages/charts/src/utils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac38b13891429f5a0d26347ec45a96f4730b13c3",
+      "size": 1428,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/ac38b13891429f5a0d26347ec45a96f4730b13c3"
+    },
+    {
+      "path": "packages/charts/src/webgl.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e2c5fe2cedfc24a3d5b5da4ee2bc92514db535c",
+      "size": 8010,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/8e2c5fe2cedfc24a3d5b5da4ee2bc92514db535c"
+    },
+    {
+      "path": "packages/charts/tsconfig.build.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5966f8174f566aadbdd4cf75f3467f1465bc035b",
+      "size": 445,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5966f8174f566aadbdd4cf75f3467f1465bc035b"
+    },
+    {
+      "path": "packages/charts/tsconfig.docs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13f1e12f3faacc5f8dec726c6c26024dba841d40",
+      "size": 202,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/13f1e12f3faacc5f8dec726c6c26024dba841d40"
+    },
+    {
+      "path": "packages/charts/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49e05cea1eecaba17123efc7f56c8ae1ae8c1b68",
+      "size": 136,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/49e05cea1eecaba17123efc7f56c8ae1ae8c1b68"
+    },
+    {
+      "path": "packages/lab/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44241425088771e0713365484cc89ef912b10de9",
+      "size": 1996,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/44241425088771e0713365484cc89ef912b10de9"
+    },
+    {
+      "path": "packages/lab/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3439ac152b11672aafb95d46e260a31e6aadde01",
+      "size": 6007,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/3439ac152b11672aafb95d46e260a31e6aadde01"
+    },
+    {
+      "path": "packages/lab/astryx.integration.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fff99b896572bfffe1143e52fa2205df07a817d7",
+      "size": 326,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/fff99b896572bfffe1143e52fa2205df07a817d7"
+    },
+    {
+      "path": "packages/lab/babel-plugin-add-extensions.cjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6139ec4a68a0bc2aa56f050ab94e30e732b7db6e",
+      "size": 3233,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/6139ec4a68a0bc2aa56f050ab94e30e732b7db6e"
+    },
+    {
+      "path": "packages/lab/babel.config.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83f8a6a536c0caa8d2a7cd8c98ad4ad14aeba6da",
+      "size": 664,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/83f8a6a536c0caa8d2a7cd8c98ad4ad14aeba6da"
+    },
+    {
+      "path": "packages/lab/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c75d2fa15f3f56d8c59fe15a72240bf00786b4f",
+      "size": 3044,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/4c75d2fa15f3f56d8c59fe15a72240bf00786b4f"
+    },
+    {
+      "path": "packages/lab/src/Chart/Chart.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bf559c2d89cd74e24e9dab1e01a7150fd000f11",
+      "size": 11032,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/7bf559c2d89cd74e24e9dab1e01a7150fd000f11"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartArea.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74cc8c1d01616744320eee613c0f0dc5c59057c6",
+      "size": 2383,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/74cc8c1d01616744320eee613c0f0dc5c59057c6"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartAxis.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "510e9daeac514ab4c35753ab85daefe3baef92e3",
+      "size": 5740,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/510e9daeac514ab4c35753ab85daefe3baef92e3"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartBar.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a764f3b76578964ce3615256d24d502f5a382fc6",
+      "size": 1719,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/a764f3b76578964ce3615256d24d502f5a382fc6"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartBrush.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66127d6d5fc83aea0c6dd2e27f026e13970a1d3b",
+      "size": 5796,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/66127d6d5fc83aea0c6dd2e27f026e13970a1d3b"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartCandlestick.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec0e09baf82150918cb8c0d92f3b3021bf8e21bd",
+      "size": 5198,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/ec0e09baf82150918cb8c0d92f3b3021bf8e21bd"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartContext.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa8e4cea476eab978f77c467c911bab01ebd5127",
+      "size": 701,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/aa8e4cea476eab978f77c467c911bab01ebd5127"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartDot.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0b7fdcb8aba8a0a8fc24074726bd4b3a4269a32",
+      "size": 1013,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c0b7fdcb8aba8a0a8fc24074726bd4b3a4269a32"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartDotGL.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a7d3354a4f8bb4144019483be7ca9bc62212bbb",
+      "size": 4175,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/0a7d3354a4f8bb4144019483be7ca9bc62212bbb"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartDotGLInteractive.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cc85d597a235404769b152154b8f79afa637a5a",
+      "size": 14652,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/8cc85d597a235404769b152154b8f79afa637a5a"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartErrorBar.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c693a7935e026935bb0cdd11dff8c4080ccb7b0",
+      "size": 2051,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/0c693a7935e026935bb0cdd11dff8c4080ccb7b0"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartGrid.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1dc2c1d00eff41c68375a72366dcf58848cacc63",
+      "size": 1933,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/1dc2c1d00eff41c68375a72366dcf58848cacc63"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartHeatmapGL.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "517eb21585d1d827fc9e33613652f3e924dcf721",
+      "size": 6198,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/517eb21585d1d827fc9e33613652f3e924dcf721"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartLegend.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9549438898e4c79501e823ea777f46886a7c5c2",
+      "size": 4508,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b9549438898e4c79501e823ea777f46886a7c5c2"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartLine.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e107bcd18bcde58250d8fe7a933741bf171dfefb",
+      "size": 1745,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e107bcd18bcde58250d8fe7a933741bf171dfefb"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartReferenceLine.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f4c32bb6d9d9381c4e95fe7cd77095fa4b014ff",
+      "size": 2588,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/3f4c32bb6d9d9381c4e95fe7cd77095fa4b014ff"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartSelect.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4962b55d0ba5b287d464f0e265b8583d244da017",
+      "size": 2878,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/4962b55d0ba5b287d464f0e265b8583d244da017"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartStreamGL.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c634422fe1eebd4c60d9bad107c8b1fd4dfef627",
+      "size": 5019,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c634422fe1eebd4c60d9bad107c8b1fd4dfef627"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartTooltip.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d05953b26fc3beb998c9b7d1d95fb91805a1832c",
+      "size": 12674,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/d05953b26fc3beb998c9b7d1d95fb91805a1832c"
+    },
+    {
+      "path": "packages/lab/src/Chart/ChartZoom.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3b7de99f59c23ec9bee79f2f710c320b9806b0e",
+      "size": 11464,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/d3b7de99f59c23ec9bee79f2f710c320b9806b0e"
+    },
+    {
+      "path": "packages/lab/src/Chart/formatters.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "826d182efd7a62cc39139fe9ade993dcd3f38748",
+      "size": 2802,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/826d182efd7a62cc39139fe9ade993dcd3f38748"
+    },
+    {
+      "path": "packages/lab/src/Chart/getChartColors.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2135a0e884332199cccd8056a3418e0699acc44e",
+      "size": 7109,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/2135a0e884332199cccd8056a3418e0699acc44e"
+    },
+    {
+      "path": "packages/lab/src/Chart/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c05ff1dd3e57bc66ed4ac73e0bd5f9b151e5d9a9",
+      "size": 2356,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c05ff1dd3e57bc66ed4ac73e0bd5f9b151e5d9a9"
+    },
+    {
+      "path": "packages/lab/src/Chart/m4.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e50e9f47d1ad068e34b0a197b695967aedb3ebfd",
+      "size": 3435,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e50e9f47d1ad068e34b0a197b695967aedb3ebfd"
+    },
+    {
+      "path": "packages/lab/src/Chart/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "547e81f6ee797f3e45259516b549a9c8bf078c76",
+      "size": 1905,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/547e81f6ee797f3e45259516b549a9c8bf078c76"
+    },
+    {
+      "path": "packages/lab/src/Chart/useChartColors.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12a00750b8f6e5e56b84e65464a4bed40b871ac3",
+      "size": 942,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/12a00750b8f6e5e56b84e65464a4bed40b871ac3"
+    },
+    {
+      "path": "packages/lab/src/Chart/useChartRange.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d7fe955c30934d48bf66bbf07cca891e047338e",
+      "size": 4116,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/1d7fe955c30934d48bf66bbf07cca891e047338e"
+    },
+    {
+      "path": "packages/lab/src/Chart/utils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ce2719746e1dc10a2272d45df2c44a1c057571b",
+      "size": 895,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/0ce2719746e1dc10a2272d45df2c44a1c057571b"
+    },
+    {
+      "path": "packages/lab/src/Chart/webgl.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3246555951b0a058e4f08c89342ca51d6fbc5bb4",
+      "size": 5535,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/3246555951b0a058e4f08c89342ca51d6fbc5bb4"
+    },
+    {
+      "path": "packages/lab/src/Chat/ChatEmojiPicker.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76b20e83e331f5ceabba94a44ee5f27716c09cee",
+      "size": 8536,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/76b20e83e331f5ceabba94a44ee5f27716c09cee"
+    },
+    {
+      "path": "packages/lab/src/Chat/ChatReactionBar.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97d7e3fe3b1d72b0b949a0cbfce5ee82fcd841e1",
+      "size": 8775,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/97d7e3fe3b1d72b0b949a0cbfce5ee82fcd841e1"
+    },
+    {
+      "path": "packages/lab/src/Chat/ChatTypingIndicator.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "437233d2cf6e018db704a144a27b6d10454cb330",
+      "size": 5790,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/437233d2cf6e018db704a144a27b6d10454cb330"
+    },
+    {
+      "path": "packages/lab/src/Chat/ChatUnreadDivider.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cde9ee66a211482adda0443590f1b3daf352b235",
+      "size": 3088,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/cde9ee66a211482adda0443590f1b3daf352b235"
+    },
+    {
+      "path": "packages/lab/src/Chat/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20673179287d5cb8cd0d8bf5e9f58ab562c5f13a",
+      "size": 829,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/20673179287d5cb8cd0d8bf5e9f58ab562c5f13a"
+    },
+    {
+      "path": "packages/lab/src/ChatReasoning/ChatReasoning.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24c975f57ad694a791f22a6217f4990516ef57db",
+      "size": 10179,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/24c975f57ad694a791f22a6217f4990516ef57db"
+    },
+    {
+      "path": "packages/lab/src/CircularProgress/CircularProgress.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6543a2bb50eab046827904fd8de33f77cb87b2bc",
+      "size": 13237,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/6543a2bb50eab046827904fd8de33f77cb87b2bc"
+    },
+    {
+      "path": "packages/lab/src/CircularProgress/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7066de5a30d1ada6e6827b18c54af34abc92e3f1",
+      "size": 331,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/7066de5a30d1ada6e6827b18c54af34abc92e3f1"
+    },
+    {
+      "path": "packages/lab/src/CodeEditor/CodeEditor.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02d1f8aebb5626a5580b7483150820937abce376",
+      "size": 18344,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/02d1f8aebb5626a5580b7483150820937abce376"
+    },
+    {
+      "path": "packages/lab/src/CodeEditor/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff735d173319aba1106050714a043032abc6842f",
+      "size": 200,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/ff735d173319aba1106050714a043032abc6842f"
+    },
+    {
+      "path": "packages/lab/src/Drawer/Drawer.spec.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "713741e351e23c8735959c57a98e012439be5fe2",
+      "size": 44363,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/713741e351e23c8735959c57a98e012439be5fe2"
+    },
+    {
+      "path": "packages/lab/src/Drawer/Drawer.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23954d8394f3396dd36420ee9725a1f633c9122c",
+      "size": 19396,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/23954d8394f3396dd36420ee9725a1f633c9122c"
+    },
+    {
+      "path": "packages/lab/src/Drawer/DrawerHeader.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f20624aed03ebf13b082624548805f4c397317a",
+      "size": 7679,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/1f20624aed03ebf13b082624548805f4c397317a"
+    },
+    {
+      "path": "packages/lab/src/Drawer/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b0eec2750e792e7c8d006d0eac30d49f052d462",
+      "size": 429,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/6b0eec2750e792e7c8d006d0eac30d49f052d462"
+    },
+    {
+      "path": "packages/lab/src/Drawer/useDrawerDialogPresence.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78be6d362771b8ac4be49b7b7cc9a331b416a10a",
+      "size": 9701,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/78be6d362771b8ac4be49b7b7cc9a331b416a10a"
+    },
+    {
+      "path": "packages/lab/src/InfoTip/InfoTip.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21163f609b42911d302b06c147afcc8d1cc5f400",
+      "size": 4157,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/21163f609b42911d302b06c147afcc8d1cc5f400"
+    },
+    {
+      "path": "packages/lab/src/InfoTip/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7aa409a085cfac76aa0ba03ad112e9ffea89ee94",
+      "size": 213,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/7aa409a085cfac76aa0ba03ad112e9ffea89ee94"
+    },
+    {
+      "path": "packages/lab/src/ListInput/ListInput.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72522245aafb21311317753ed1987d2b8325d1ca",
+      "size": 61270,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/72522245aafb21311317753ed1987d2b8325d1ca"
+    },
+    {
+      "path": "packages/lab/src/ListInput/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4fdbbab6e30ae9bf9affe90fb6bcde8173f0a04",
+      "size": 555,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c4fdbbab6e30ae9bf9affe90fb6bcde8173f0a04"
+    },
+    {
+      "path": "packages/lab/src/LogStream/LogStream.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c9e94bfd6fb68787d0c328b8e069f0ea5d23e9c5",
+      "size": 18405,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c9e94bfd6fb68787d0c328b8e069f0ea5d23e9c5"
+    },
+    {
+      "path": "packages/lab/src/LogStream/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11225721a815272660515a992b49848f176b27d8",
+      "size": 184,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/11225721a815272660515a992b49848f176b27d8"
+    },
+    {
+      "path": "packages/lab/src/MobileTokenizer/MobileTokenizer.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48285f57056f74f0d9161830dd1e5cb5acffb237",
+      "size": 18256,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/48285f57056f74f0d9161830dd1e5cb5acffb237"
+    },
+    {
+      "path": "packages/lab/src/MobileTokenizer/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fe4999040722e7c91384fbc2d4cc893c4d17c3c",
+      "size": 416,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5fe4999040722e7c91384fbc2d4cc893c4d17c3c"
+    },
+    {
+      "path": "packages/lab/src/Radial/RadialArea.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fff19ede0a48b9c2aae7e78efcd7a05638e08f7",
+      "size": 2640,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5fff19ede0a48b9c2aae7e78efcd7a05638e08f7"
+    },
+    {
+      "path": "packages/lab/src/Radial/RadialAxis.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3125f7c07609bdbf023a3ef543270da2be3a9ecf",
+      "size": 1408,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/3125f7c07609bdbf023a3ef543270da2be3a9ecf"
+    },
+    {
+      "path": "packages/lab/src/Radial/RadialChart.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2a027c975b00a24835f6c0d09a5de68797ee4c0",
+      "size": 9093,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/f2a027c975b00a24835f6c0d09a5de68797ee4c0"
+    },
+    {
+      "path": "packages/lab/src/Radial/RadialContext.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "246c85e347d7093e4c778a19543245384efb2950",
+      "size": 618,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/246c85e347d7093e4c778a19543245384efb2950"
+    },
+    {
+      "path": "packages/lab/src/Radial/RadialGrid.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b905dcd7d8e67ec4c8604eb1f83a03834f713b59",
+      "size": 2024,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b905dcd7d8e67ec4c8604eb1f83a03834f713b59"
+    },
+    {
+      "path": "packages/lab/src/Radial/RadialSlice.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80107f3a855a0e498c20f784e4fd381d34474735",
+      "size": 3379,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/80107f3a855a0e498c20f784e4fd381d34474735"
+    },
+    {
+      "path": "packages/lab/src/Radial/RadialTooltip.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de70180adddcab56be9c47b9ae51a8ddd0055075",
+      "size": 9264,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/de70180adddcab56be9c47b9ae51a8ddd0055075"
+    },
+    {
+      "path": "packages/lab/src/Radial/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13261b1e2ab3f531cbe628acf022313c736010ec",
+      "size": 581,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/13261b1e2ab3f531cbe628acf022313c736010ec"
+    },
+    {
+      "path": "packages/lab/src/Radial/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bb08e785ca1c20e7d9a2d57afca4fa696bbda27",
+      "size": 1251,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/8bb08e785ca1c20e7d9a2d57afca4fa696bbda27"
+    },
+    {
+      "path": "packages/lab/src/SVGIcon/SVGIcon.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0763b03abdd674d95aa30e20304617b2f1fc8f7f",
+      "size": 12842,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/0763b03abdd674d95aa30e20304617b2f1fc8f7f"
+    },
+    {
+      "path": "packages/lab/src/SVGIcon/icons.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35392c584cdf6d142ec522c1e84cf4e321462167",
+      "size": 7306,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/35392c584cdf6d142ec522c1e84cf4e321462167"
+    },
+    {
+      "path": "packages/lab/src/SVGIcon/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9c8036d9b3d9dd3f3cf262f4d62c73d4590a87b",
+      "size": 1213,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e9c8036d9b3d9dd3f3cf262f4d62c73d4590a87b"
+    },
+    {
+      "path": "packages/lab/src/SVGIcon/pathTransforms.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb7b33601f5cbfecab23d8b3f2f9abe41bd8536a",
+      "size": 17928,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/bb7b33601f5cbfecab23d8b3f2f9abe41bd8536a"
+    },
+    {
+      "path": "packages/lab/src/SVGIcon/tokens.stylex.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5326917bec2164cd3757cbc54d21c1561fd14ff",
+      "size": 1812,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e5326917bec2164cd3757cbc54d21c1561fd14ff"
+    },
+    {
+      "path": "packages/lab/src/SVGIcon/variations.stylex.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c2a0674b91d3cb96ab3567f7836f9bbee6d4b2e",
+      "size": 5580,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/8c2a0674b91d3cb96ab3567f7836f9bbee6d4b2e"
+    },
+    {
+      "path": "packages/lab/src/SVGIcon/xif-examples.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2bfbcba1239d6e2c15936306498ed19b99fb508",
+      "size": 5274,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c2bfbcba1239d6e2c15936306498ed19b99fb508"
+    },
+    {
+      "path": "packages/lab/src/SVGIcon/xif-types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a95de71d0e48594c457ace8e9effaef968ed854c",
+      "size": 5269,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/a95de71d0e48594c457ace8e9effaef968ed854c"
+    },
+    {
+      "path": "packages/lab/src/Sankey/SankeyChart.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "678090eaeda150b99dc2dfab6ca44e99197bb492",
+      "size": 7590,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/678090eaeda150b99dc2dfab6ca44e99197bb492"
+    },
+    {
+      "path": "packages/lab/src/Sankey/SankeyContext.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c41a2f9501cfe575429b71009de0e676610a530a",
+      "size": 716,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c41a2f9501cfe575429b71009de0e676610a530a"
+    },
+    {
+      "path": "packages/lab/src/Sankey/SankeyGrid.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0bf849051edb3c391ffbf5a41fbafe321e1d8783",
+      "size": 1821,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/0bf849051edb3c391ffbf5a41fbafe321e1d8783"
+    },
+    {
+      "path": "packages/lab/src/Sankey/SankeyLabel.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "952d5716e7750df9cd11cc93b13d8a566df90757",
+      "size": 6032,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/952d5716e7750df9cd11cc93b13d8a566df90757"
+    },
+    {
+      "path": "packages/lab/src/Sankey/SankeyLink.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5073a8793e272b55f09a682041d18c42c4373274",
+      "size": 4480,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5073a8793e272b55f09a682041d18c42c4373274"
+    },
+    {
+      "path": "packages/lab/src/Sankey/SankeyNode.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f591174c887eae8de49caa7d46420586bf116ff",
+      "size": 1744,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/8f591174c887eae8de49caa7d46420586bf116ff"
+    },
+    {
+      "path": "packages/lab/src/Sankey/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "683f92490b9249298083f4aa68860dd514d0febf",
+      "size": 634,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/683f92490b9249298083f4aa68860dd514d0febf"
+    },
+    {
+      "path": "packages/lab/src/Sankey/layout.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a036fb43bb5f326a87c0087460c29f52474eb55b",
+      "size": 5515,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/a036fb43bb5f326a87c0087460c29f52474eb55b"
+    },
+    {
+      "path": "packages/lab/src/Sankey/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "122b7e338f19439074ef882e1fc43e03f3426776",
+      "size": 2276,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/122b7e338f19439074ef882e1fc43e03f3426776"
+    },
+    {
+      "path": "packages/lab/src/Schedule/CalendarEvent.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d0ead7423ee5e21c475cc60c41ac832b33a562a",
+      "size": 1622,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/9d0ead7423ee5e21c475cc60c41ac832b33a562a"
+    },
+    {
+      "path": "packages/lab/src/Schedule/DayView.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "889c71587adfcfd322ae6fd72df06ef57d666df5",
+      "size": 3191,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/889c71587adfcfd322ae6fd72df06ef57d666df5"
+    },
+    {
+      "path": "packages/lab/src/Schedule/ListView.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1cce3a9ba075efbda5501732969ee160f87149d2",
+      "size": 6315,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/1cce3a9ba075efbda5501732969ee160f87149d2"
+    },
+    {
+      "path": "packages/lab/src/Schedule/MonthlyView.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b390d8631761a09384d119145bb6ab9956612b13",
+      "size": 12857,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b390d8631761a09384d119145bb6ab9956612b13"
+    },
+    {
+      "path": "packages/lab/src/Schedule/Schedule.spec.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3de895b32146be244dddec49715d25fcbc3d69f",
+      "size": 62336,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/d3de895b32146be244dddec49715d25fcbc3d69f"
+    },
+    {
+      "path": "packages/lab/src/Schedule/Schedule.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "074436bfcafa4aef67f790d18094cf0b907f9ee2",
+      "size": 9725,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/074436bfcafa4aef67f790d18094cf0b907f9ee2"
+    },
+    {
+      "path": "packages/lab/src/Schedule/TimeGridView.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cbf209085c6351822ef99b6cfd292f393efa035",
+      "size": 31765,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/2cbf209085c6351822ef99b6cfd292f393efa035"
+    },
+    {
+      "path": "packages/lab/src/Schedule/WeeklyView.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5b61ec66b4d53e23941a7d3f2ec72251c8b95bf",
+      "size": 3648,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/d5b61ec66b4d53e23941a7d3f2ec72251c8b95bf"
+    },
+    {
+      "path": "packages/lab/src/Schedule/context.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc6ce325f53d8812ea321f601426d4178a80a7c2",
+      "size": 1481,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/cc6ce325f53d8812ea321f601426d4178a80a7c2"
+    },
+    {
+      "path": "packages/lab/src/Schedule/dateMath.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac16b057845b227f06fe55b95ee2e23b3ab2a8ae",
+      "size": 3028,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/ac16b057845b227f06fe55b95ee2e23b3ab2a8ae"
+    },
+    {
+      "path": "packages/lab/src/Schedule/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13bfcc5636ab884483595a082ae6c4aa7a5e28dd",
+      "size": 1606,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/13bfcc5636ab884483595a082ae6c4aa7a5e28dd"
+    },
+    {
+      "path": "packages/lab/src/Schedule/plugins/PaginationPlugin.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59738356fdd8196a899f4dbb484bbcc0449572ac",
+      "size": 2820,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/59738356fdd8196a899f4dbb484bbcc0449572ac"
+    },
+    {
+      "path": "packages/lab/src/Schedule/plugins/ViewSelectorPlugin.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70831ef767f3f445e6e03bd349d986de6a66e14e",
+      "size": 3393,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/70831ef767f3f445e6e03bd349d986de6a66e14e"
+    },
+    {
+      "path": "packages/lab/src/Schedule/plugins/index.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2bc94d9631decb520d8485e3c4d95dea863bf4bd",
+      "size": 659,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/2bc94d9631decb520d8485e3c4d95dea863bf4bd"
+    },
+    {
+      "path": "packages/lab/src/Schedule/schedule.stylex.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a55dbe668ef4f4aaf44cc3cdae4ecf6226cf058",
+      "size": 517,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/6a55dbe668ef4f4aaf44cc3cdae4ecf6226cf058"
+    },
+    {
+      "path": "packages/lab/src/Schedule/shared.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd219549abff6d4ad60cf2856a461e3912026db7",
+      "size": 43778,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/cd219549abff6d4ad60cf2856a461e3912026db7"
+    },
+    {
+      "path": "packages/lab/src/Schedule/timeGridLayout.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f63835306ee78a4d894df615cda1a39da44190f4",
+      "size": 4162,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/f63835306ee78a4d894df615cda1a39da44190f4"
+    },
+    {
+      "path": "packages/lab/src/Schedule/timeGridScrollMemory.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "832b3c8a478a568be46a209a33e8cd69e91f8c95",
+      "size": 2949,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/832b3c8a478a568be46a209a33e8cd69e91f8c95"
+    },
+    {
+      "path": "packages/lab/src/Schedule/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4fcb3ec7e375212277350f93af55b73d5e3ba21a",
+      "size": 3449,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/4fcb3ec7e375212277350f93af55b73d5e3ba21a"
+    },
+    {
+      "path": "packages/lab/src/Schedule/useCurrentTime.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6b7d353b7f64ee44536449d8632d35ba562c2f1",
+      "size": 1477,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/f6b7d353b7f64ee44536449d8632d35ba562c2f1"
+    },
+    {
+      "path": "packages/lab/src/Schedule/zonedDateTime.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2aa6475292be877d09c0c0a662341f84ab2d188",
+      "size": 1865,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c2aa6475292be877d09c0c0a662341f84ab2d188"
+    },
+    {
+      "path": "packages/lab/src/Stat/Stat.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "242d60036b531ee8d38ec714f05b66221f1bd787",
+      "size": 8523,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/242d60036b531ee8d38ec714f05b66221f1bd787"
+    },
+    {
+      "path": "packages/lab/src/Stat/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c3075db56c5963bd369717bbc0fbc6f22003873",
+      "size": 406,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/7c3075db56c5963bd369717bbc0fbc6f22003873"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/ThreeDAxis.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f24f54a5a3f974eac4a358fe2d1a9e94f98432ba",
+      "size": 1980,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/f24f54a5a3f974eac4a358fe2d1a9e94f98432ba"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/ThreeDBar.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b0a74d8716d088a54a21d4d3944b7e9374eccc2a",
+      "size": 3099,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b0a74d8716d088a54a21d4d3944b7e9374eccc2a"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/ThreeDChart.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61ab906c2b279a3d4d1335eaca1bd9721c0d8c15",
+      "size": 9663,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/61ab906c2b279a3d4d1335eaca1bd9721c0d8c15"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/ThreeDContext.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b50f3d24358092455b05661bafede7c146c57b09",
+      "size": 602,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b50f3d24358092455b05661bafede7c146c57b09"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/ThreeDGrid.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bf75da097a0a6382c80158dc79bbd61161978e3",
+      "size": 1471,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/9bf75da097a0a6382c80158dc79bbd61161978e3"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/ThreeDScatter.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "263c63bfe3f924aee6c1a1901b30b29086ad1a89",
+      "size": 1445,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/263c63bfe3f924aee6c1a1901b30b29086ad1a89"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/ThreeDScatterGL.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be628907b64795ba26f5f096bc6b8d44a03ad462",
+      "size": 7868,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/be628907b64795ba26f5f096bc6b8d44a03ad462"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/ThreeDSurface.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3669c96caea2b5690a38365958a491262f6db334",
+      "size": 3584,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/3669c96caea2b5690a38365958a491262f6db334"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10747212f819c4e0eb2520751b08273b7299651e",
+      "size": 645,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/10747212f819c4e0eb2520751b08273b7299651e"
+    },
+    {
+      "path": "packages/lab/src/ThreeD/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "511a7dcf634ef12f64155c4a769ca518deeb4da4",
+      "size": 1789,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/511a7dcf634ef12f64155c4a769ca518deeb4da4"
+    },
+    {
+      "path": "packages/lab/src/Tour/Tour.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22d94fb37e6c00f97c73f692eecba3c85521c919",
+      "size": 5691,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/22d94fb37e6c00f97c73f692eecba3c85521c919"
+    },
+    {
+      "path": "packages/lab/src/Tour/TourContext.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a3d0ffae6d65c0d5b6d06a12d3cdf555343e09e1",
+      "size": 2241,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/a3d0ffae6d65c0d5b6d06a12d3cdf555343e09e1"
+    },
+    {
+      "path": "packages/lab/src/Tour/TourStep.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1b98f09f5a487a690dcc35315b25e55b82cd93e1",
+      "size": 13365,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/1b98f09f5a487a690dcc35315b25e55b82cd93e1"
+    },
+    {
+      "path": "packages/lab/src/Tour/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "232f6666fd3fc6af8399a70ace84fa88100100c3",
+      "size": 602,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/232f6666fd3fc6af8399a70ace84fa88100100c3"
+    },
+    {
+      "path": "packages/lab/src/Tour/useTour.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eff37c8d848b88a3b3882f2aa46667d45ba99020",
+      "size": 1777,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/eff37c8d848b88a3b3882f2aa46667d45ba99020"
+    },
+    {
+      "path": "packages/lab/src/TransferList/TransferList.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "802d8ee44190db669c165f2e5b49f5b59fd1e06c",
+      "size": 44548,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/802d8ee44190db669c165f2e5b49f5b59fd1e06c"
+    },
+    {
+      "path": "packages/lab/src/TransferList/TransferListSelector.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11af683401a3e7e3389d72f310364a59be5187d4",
+      "size": 10363,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/11af683401a3e7e3389d72f310364a59be5187d4"
+    },
+    {
+      "path": "packages/lab/src/TransferList/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c552c4914d27aee267a05108203ff5a89eb0eb63",
+      "size": 610,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c552c4914d27aee267a05108203ff5a89eb0eb63"
+    },
+    {
+      "path": "packages/lab/src/TransferList/tokens.stylex.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "97195430e3ed124ae70c891899a08c50c0a44316",
+      "size": 595,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/97195430e3ed124ae70c891899a08c50c0a44316"
+    },
+    {
+      "path": "packages/lab/src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d66e45e746aad62490d234d81704e2521939f22d",
+      "size": 6270,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/d66e45e746aad62490d234d81704e2521939f22d"
+    },
+    {
+      "path": "packages/lab/src/reorderStyles.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69da464dd35f7d56aed5afd2eaba3253a322882c",
+      "size": 2078,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/69da464dd35f7d56aed5afd2eaba3253a322882c"
+    },
+    {
+      "path": "packages/lab/tsconfig.build.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5966f8174f566aadbdd4cf75f3467f1465bc035b",
+      "size": 445,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5966f8174f566aadbdd4cf75f3467f1465bc035b"
+    },
+    {
+      "path": "packages/lab/tsconfig.docs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13f1e12f3faacc5f8dec726c6c26024dba841d40",
+      "size": 202,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/13f1e12f3faacc5f8dec726c6c26024dba841d40"
+    },
+    {
+      "path": "packages/lab/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49e05cea1eecaba17123efc7f56c8ae1ae8c1b68",
+      "size": 136,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/49e05cea1eecaba17123efc7f56c8ae1ae8c1b68"
+    },
+    {
+      "path": "packages/richtext/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9ffe1c635dbb7f54340bdae0eaf3568cd7e1499",
+      "size": 34,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/f9ffe1c635dbb7f54340bdae0eaf3568cd7e1499"
+    },
+    {
+      "path": "packages/richtext/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bde1f5cbd944a1f2812f8c4b733b6ca9bccb7814",
+      "size": 3587,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/bde1f5cbd944a1f2812f8c4b733b6ca9bccb7814"
+    },
+    {
+      "path": "packages/richtext/astryx.integration.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07076851f83b268c59572ae458c87225ee860082",
+      "size": 310,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/07076851f83b268c59572ae458c87225ee860082"
+    },
+    {
+      "path": "packages/richtext/babel-plugin-add-extensions.cjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6139ec4a68a0bc2aa56f050ab94e30e732b7db6e",
+      "size": 3233,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/6139ec4a68a0bc2aa56f050ab94e30e732b7db6e"
+    },
+    {
+      "path": "packages/richtext/babel.config.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83f8a6a536c0caa8d2a7cd8c98ad4ad14aeba6da",
+      "size": 664,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/83f8a6a536c0caa8d2a7cd8c98ad4ad14aeba6da"
+    },
+    {
+      "path": "packages/richtext/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8dd86b159d3d8875b62e40cb11f1a30a3626237",
+      "size": 4291,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/a8dd86b159d3d8875b62e40cb11f1a30a3626237"
+    },
+    {
+      "path": "packages/richtext/src/RichTextEditor.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bed8f0947bb7b88091599a1fae61fd8b0411a6a",
+      "size": 33531,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/9bed8f0947bb7b88091599a1fae61fd8b0411a6a"
+    },
+    {
+      "path": "packages/richtext/src/RichTextEditorAutoLinkPlugin.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa543b246ba732351e62650c373550928a371b92",
+      "size": 4562,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/aa543b246ba732351e62650c373550928a371b92"
+    },
+    {
+      "path": "packages/richtext/src/RichTextEditorToolbar.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cdc0911d74bc047085099184496c66a2ca0283d",
+      "size": 29066,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/9cdc0911d74bc047085099184496c66a2ca0283d"
+    },
+    {
+      "path": "packages/richtext/src/RichTextView.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "746ee1a4eb9660b6a2db52c3447574b1a825b6f2",
+      "size": 8182,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/746ee1a4eb9660b6a2db52c3447574b1a825b6f2"
+    },
+    {
+      "path": "packages/richtext/src/editorNodes.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a8a3256c0507287ddb286bd73d0e514c27eff7e",
+      "size": 1135,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/8a8a3256c0507287ddb286bd73d0e514c27eff7e"
+    },
+    {
+      "path": "packages/richtext/src/editorTheme.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "884188f2545723c8b5479db1ef72044bfc4ff3dc",
+      "size": 6602,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/884188f2545723c8b5479db1ef72044bfc4ff3dc"
+    },
+    {
+      "path": "packages/richtext/src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1be519089eb527bd49e93c3e315377295033879",
+      "size": 1574,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/c1be519089eb527bd49e93c3e315377295033879"
+    },
+    {
+      "path": "packages/richtext/src/linkUtils.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1eedfe6805c7d073565b0f6b1d3a0c3072317ea6",
+      "size": 3640,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/1eedfe6805c7d073565b0f6b1d3a0c3072317ea6"
+    },
+    {
+      "path": "packages/richtext/src/markdownSerializers.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d53eaa4a29d601045e0bad24773f3302515e73bd",
+      "size": 3688,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/d53eaa4a29d601045e0bad24773f3302515e73bd"
+    },
+    {
+      "path": "packages/richtext/tsconfig.build.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5966f8174f566aadbdd4cf75f3467f1465bc035b",
+      "size": 445,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5966f8174f566aadbdd4cf75f3467f1465bc035b"
+    },
+    {
+      "path": "packages/richtext/tsconfig.docs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13f1e12f3faacc5f8dec726c6c26024dba841d40",
+      "size": 202,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/13f1e12f3faacc5f8dec726c6c26024dba841d40"
+    },
+    {
+      "path": "packages/richtext/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49e05cea1eecaba17123efc7f56c8ae1ae8c1b68",
+      "size": 136,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/49e05cea1eecaba17123efc7f56c8ae1ae8c1b68"
+    },
+    {
+      "path": "packages/themes/gothic/CHANGELOG.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2af35957d7ad87a5d7147b510c1ba2b88311831",
+      "size": 2353,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e2af35957d7ad87a5d7147b510c1ba2b88311831"
+    },
+    {
+      "path": "packages/themes/gothic/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "681c9e81a11a0a7407f1e57bc9a303281b57bf97",
+      "size": 4086,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/681c9e81a11a0a7407f1e57bc9a303281b57bf97"
+    },
+    {
+      "path": "packages/themes/gothic/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27fe76fdf3bb1ea22e13d4010ecb43cc2c180bf1",
+      "size": 1673,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/27fe76fdf3bb1ea22e13d4010ecb43cc2c180bf1"
+    },
+    {
+      "path": "packages/themes/gothic/src/gothicTheme.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82b6c4af27cdcc9bb511d705d2b512285fd8fb16",
+      "size": 18840,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/82b6c4af27cdcc9bb511d705d2b512285fd8fb16"
+    },
+    {
+      "path": "packages/themes/gothic/src/icons.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b71af76ad6e7c0e0a591628571068adf7a72209a",
+      "size": 2145,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b71af76ad6e7c0e0a591628571068adf7a72209a"
+    },
+    {
+      "path": "packages/themes/gothic/src/source.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f3aeae4e3b5fa980e0b0a91bbf415eee9833585",
+      "size": 158,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/1f3aeae4e3b5fa980e0b0a91bbf415eee9833585"
+    },
+    {
+      "path": "packages/themes/gothic/theme.css.d.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e976d8c27c1b89a0f55f83d36ea54285e8150175",
+      "size": 66,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/e976d8c27c1b89a0f55f83d36ea54285e8150175"
+    },
+    {
+      "path": "packages/themes/gothic/tsconfig.build.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c9f13c70e92a2bfaa2ebbdc2f782f3515306038",
+      "size": 218,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/1c9f13c70e92a2bfaa2ebbdc2f782f3515306038"
+    },
+    {
+      "path": "packages/themes/gothic/tsup.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2766dd2ce3bbe05e7754fe706e1cd6b2f7c39768",
+      "size": 486,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/2766dd2ce3bbe05e7754fe706e1cd6b2f7c39768"
+    },
+    {
+      "path": "packages/vega/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ea5094fe68ddd4a02478c6e39516df786736190",
+      "size": 15442,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/5ea5094fe68ddd4a02478c6e39516df786736190"
+    },
+    {
+      "path": "packages/vega/astryx.integration.mjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "991807b759f2f21834434a86c9b082ece67cbf3e",
+      "size": 280,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/991807b759f2f21834434a86c9b082ece67cbf3e"
+    },
+    {
+      "path": "packages/vega/package.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "049cfa5c83188d4afa5c473823d56547800f879d",
+      "size": 2084,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/049cfa5c83188d4afa5c473823d56547800f879d"
+    },
+    {
+      "path": "packages/vega/src/VegaChart.tsx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5725695fda6cd217c7621859321a39ae9477b81",
+      "size": 7752,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/a5725695fda6cd217c7621859321a39ae9477b81"
+    },
+    {
+      "path": "packages/vega/src/index.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7a6f72351f524f45c35e5e870385187ccc7ff63",
+      "size": 1093,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/a7a6f72351f524f45c35e5e870385187ccc7ff63"
+    },
+    {
+      "path": "packages/vega/src/schema.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13c2b55b1c761cdc7b94ba4487b1b82ec1f8c0c8",
+      "size": 2015,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/13c2b55b1c761cdc7b94ba4487b1b82ec1f8c0c8"
+    },
+    {
+      "path": "packages/vega/src/types.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40023bc8796efed5114408426ac45fb761db2949",
+      "size": 7225,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/40023bc8796efed5114408426ac45fb761db2949"
+    },
+    {
+      "path": "packages/vega/src/vegaLiteConfig.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7222701f8e8525e89664f414e81db52d3f952ba3",
+      "size": 5670,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/7222701f8e8525e89664f414e81db52d3f952ba3"
+    },
+    {
+      "path": "packages/vega/src/viewInputs.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1dfe88ea08f85aee7a77918aa62afd9693ccf25",
+      "size": 6662,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b1dfe88ea08f85aee7a77918aa62afd9693ccf25"
+    },
+    {
+      "path": "packages/vega/tsconfig.docs.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f19aeb0097a7ac3d7313ec053ae93bc0bec08bc0",
+      "size": 187,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/f19aeb0097a7ac3d7313ec053ae93bc0bec08bc0"
+    },
+    {
+      "path": "packages/vega/tsconfig.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49e05cea1eecaba17123efc7f56c8ae1ae8c1b68",
+      "size": 136,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/49e05cea1eecaba17123efc7f56c8ae1ae8c1b68"
+    },
+    {
+      "path": "packages/vega/tsup.config.ts",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4447e9b13ef80f7c322d1475cba1996a39725f5",
+      "size": 582,
+      "url": "https://api.github.com/repos/nicgpk/vesper/git/blobs/b4447e9b13ef80f7c322d1475cba1996a39725f5"
+    }
+  ]
+}
