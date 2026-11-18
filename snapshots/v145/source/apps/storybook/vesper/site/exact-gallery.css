@@ -1,0 +1,132 @@
+/* SPDX-License-Identifier: MIT
+ * Shell adapter only. Native demo interiors and original preview.css are not
+ * overridden here. Wide/workspace examples retain room for their real controls.
+ */
+.exact-gallery-shell{min-height:100vh;background:var(--color-background-body);color:var(--color-text-primary);font-family:var(--font-family-body)}
+.exact-header,.exact-main{width:min(1320px,calc(100% - 64px));margin-inline:auto}
+.exact-header{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:88px;border-bottom:1px solid var(--color-border)}
+.exact-home{display:inline-flex;align-items:center;gap:12px;color:inherit;text-decoration:none;font-size:14px;font-weight:600}
+.exact-mark{display:grid;grid-template-columns:repeat(2,7px);gap:3px;transform:rotate(-12deg)}
+.exact-mark i{width:7px;height:7px;background:currentColor;border-radius:2px}
+.exact-appearance{display:flex;gap:4px;flex-wrap:wrap}
+.exact-appearance button,.exact-filters button,.exact-empty button{font:inherit;font-size:12px;border:1px solid transparent;border-radius:8px;padding:9px 12px;background:transparent;color:var(--color-text-secondary);cursor:pointer}
+.exact-appearance button[aria-pressed=true],.exact-filters button[aria-pressed=true]{background:var(--color-neutral);border-color:var(--color-border);color:var(--color-text-primary)}
+.exact-appearance button:hover,.exact-filters button:hover{background:var(--color-overlay-hover);color:var(--color-text-primary)}
+.exact-main{padding-block:44px 80px;outline:none}
+.exact-intro{margin-bottom:44px}
+.exact-intro h1{font-size:clamp(30px,3.2vw,44px);font-weight:600;line-height:1.1;letter-spacing:-.045em;margin:0 0 14px}
+.exact-intro p{font-size:14px;color:var(--color-text-secondary);margin:0;line-height:1.5}
+.exact-back{display:inline-block;color:var(--color-text-secondary);font-size:13px;text-decoration:none;margin-bottom:24px}
+.exact-collection-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}
+.exact-collection-bar h2{font-size:15px;font-weight:600;margin:0;display:flex;align-items:baseline;gap:12px}
+.exact-collection-bar h2 span{font-size:11px;font-weight:400;color:var(--color-text-secondary)}
+.exact-search{display:flex;align-items:center;gap:10px;border:1px solid var(--color-border);border-radius:9px;padding:0 10px;min-width:260px;min-height:40px}
+.exact-search input{font:inherit;font-size:13px;width:100%;min-width:0;background:transparent;border:0;color:inherit;outline:none;padding:10px 0}
+.exact-search:focus-within{outline:2px solid var(--focus-outline-color);outline-offset:3px}
+.exact-search kbd{font:inherit;font-size:11px;white-space:nowrap;color:var(--color-text-secondary)}
+.exact-filter-row{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.exact-filters{display:flex;flex-wrap:wrap;gap:4px;flex:1}
+.exact-count{font-size:11px;color:var(--color-text-secondary);white-space:nowrap}
+.exact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px;align-items:stretch}
+.exact-tile{min-width:0;margin:0}
+.exact-grid>.exact-tile[data-exact-layout=wide]{grid-column:span 2}
+.exact-grid>.exact-tile[data-exact-layout=workspace]{grid-column:1/-1}
+.exact-caption{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 2px 0}
+.exact-caption>a{display:flex;align-items:baseline;gap:8px;min-width:0;color:inherit;text-decoration:none;font-size:13px;font-weight:500;line-height:1.4}
+.exact-caption>a span{font-size:12px;color:var(--color-text-secondary)}
+.exact-caption>span{font-size:10px;color:var(--color-text-secondary);white-space:nowrap}
+.exact-caption>a:hover{text-decoration:underline;text-underline-offset:4px}
+.exact-detail{max-width:1000px;margin-inline:auto}
+.exact-empty{padding:64px 0;text-align:center}
+.exact-empty h2{font-size:20px}.exact-empty button{border-color:var(--color-border)}
+.exact-sr,.exact-skip:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.exact-skip:focus{position:fixed;top:12px;left:12px;z-index:10000;background:var(--color-background-surface);color:var(--color-text-primary);padding:12px}
+.exact-header a:focus-visible,.exact-header button:focus-visible,.exact-caption a:focus-visible,.exact-filters button:focus-visible,.exact-back:focus-visible,.exact-empty button:focus-visible{outline:2px solid var(--focus-outline-color);outline-offset:3px}
+@media(max-width:1040px){.exact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.exact-header,.exact-main{width:calc(100% - 32px)}.exact-header{min-height:76px;gap:12px}.exact-main{padding-top:32px}.exact-intro{margin-bottom:32px}.exact-grid{grid-template-columns:minmax(0,1fr);gap:28px}.exact-grid>.exact-tile[data-exact-layout=wide]{grid-column:auto}.exact-collection-bar{align-items:stretch;flex-direction:column;gap:16px}.exact-search{min-width:0}.exact-filter-row{align-items:flex-start}.exact-count{padding-top:10px}.exact-appearance button{padding:8px;font-size:11px}.exact-caption>span{white-space:normal;text-align:right}}
+
+/* v80: image-led discovery, shell-only. No native control selectors. */
+.exact-header{min-height:80px}
+.exact-main{padding-top:36px}
+.exact-intro{margin-bottom:28px}
+.exact-intro h1{font-size:clamp(32px,3.5vw,48px);line-height:1.08;letter-spacing:-.045em}
+.exact-intro p{font-size:14px;line-height:1.6}
+.exact-feature-strip{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:16px;margin-bottom:44px}
+.exact-feature{position:relative;isolation:isolate;display:flex;align-items:flex-end;min-height:208px;padding:24px;overflow:hidden;border-radius:18px;color:#fff;text-decoration:none;background:#182028;border:1px solid #ffffff1a}
+.exact-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .5s ease}
+.exact-feature::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#080e1400 10%,#080e1433 36%,#080e14e0 100%);pointer-events:none}
+.exact-feature-copy{display:flex;flex-direction:column;gap:9px;min-width:0;padding-right:24px}
+.exact-feature-label{font-size:10px;font-weight:500;line-height:1.4;letter-spacing:.07em;text-transform:uppercase;color:#ffffffcf}
+.exact-feature strong{font-size:clamp(19px,1.9vw,25px);line-height:1.12;font-weight:550;letter-spacing:-.035em;max-width:13ch}
+.exact-feature-arrow{position:absolute;right:20px;bottom:22px;font-size:20px;line-height:1}
+.exact-feature:focus-visible{outline:3px solid var(--focus-outline-color);outline-offset:4px}
+.exact-feature:hover img{transform:scale(1.035)}
+.exact-collection-bar{flex-wrap:wrap;gap:16px;margin-bottom:18px}
+.exact-collection-bar h2{margin-right:auto;font-size:16px}
+.exact-discovery-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}
+.exact-scopes{display:flex;gap:3px;border-bottom:1px solid var(--color-border)}
+.exact-scopes button{appearance:none;background:transparent;border:0;border-bottom:2px solid transparent;color:var(--color-text-secondary);font:inherit;font-size:13px;font-weight:500;padding:10px 14px;cursor:pointer}
+.exact-scopes button[aria-pressed=true]{color:var(--color-text-primary);border-bottom-color:var(--color-text-primary)}
+.exact-scopes button:hover{color:var(--color-text-primary);background:var(--color-overlay-hover)}
+.exact-scopes button:focus-visible{outline:2px solid var(--focus-outline-color);outline-offset:3px}
+.exact-filter-row{margin-bottom:28px}
+.exact-filters{gap:4px}
+.exact-filters button{padding:7px 10px;font-size:11px;line-height:1.45}
+.exact-caption{padding-top:13px}
+.exact-caption>a{font-size:13px;line-height:1.5}
+.exact-grid{gap:32px 20px}
+@media(min-width:1041px){.exact-feature:first-child strong{max-width:16ch}}
+@media(max-width:1040px){.exact-feature-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.exact-feature{padding:18px;min-height:184px}.exact-feature-arrow{right:14px;bottom:18px}.exact-feature-copy{padding-right:14px}.exact-search{min-width:240px}}
+@media(max-width:680px){.exact-main{padding-top:28px}.exact-intro{margin-bottom:24px}.exact-feature-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:32px}.exact-feature:first-child{grid-column:1/-1;min-height:192px}.exact-feature{min-height:160px;padding:16px;border-radius:14px}.exact-feature strong{font-size:20px;max-width:12ch}.exact-feature:first-child strong{max-width:20ch;font-size:26px}.exact-feature-label{font-size:9px;letter-spacing:.04em}.exact-feature-copy{gap:7px;padding-right:12px}.exact-feature-arrow{right:12px;bottom:16px;font-size:17px}.exact-collection-bar{flex-direction:row;gap:14px}.exact-collection-bar h2{width:100%;margin:0}.exact-search{width:100%;min-width:0;order:3}.exact-discovery-row{gap:8px}.exact-scopes button{font-size:12px;padding:10px}.exact-filters button{min-height:40px}.exact-scopes button{min-height:44px}.exact-filter-row{margin-bottom:20px}}
+@media(prefers-reduced-motion:reduce){.exact-feature img{transition:none}.exact-feature:hover img{transform:none}}
+@media(forced-colors:active){.exact-feature{border:1px solid CanvasText;color:CanvasText;background:Canvas}.exact-feature img,.exact-feature::before{display:none}.exact-feature-label{color:CanvasText}.exact-scopes button[aria-pressed=true]{border-bottom-color:Highlight}}
+
+/* Category discovery uses the original native Selector, not custom menu rows. */
+.exact-discovery-row{flex-wrap:wrap;margin-bottom:24px;align-items:flex-end}
+.exact-category-picker{width:220px;max-width:100%;margin-left:auto;min-width:0}
+.exact-discovery-row>.exact-count{padding-bottom:11px;margin-left:auto}
+.exact-category-picker+.exact-count{margin-left:0}
+@media(max-width:680px){.exact-discovery-row{gap:16px 12px}.exact-scopes{flex:1;min-width:0}.exact-category-picker{order:3;width:220px;margin-left:0}.exact-category-picker+.exact-count{margin-left:auto}.exact-discovery-row>.exact-count{padding-bottom:12px}.exact-discovery-row:has(.exact-category-picker)>.exact-scopes{flex-basis:calc(100% - 80px)}}
+/* Loading joins discovery without forcing a horizontal mobile overflow. */
+.exact-discovery-row{flex-wrap:wrap}
+.exact-scopes{flex-wrap:wrap;max-width:100%}
+
+/* Field visibility is a result, not just a count. */
+.collection-field-details { margin: 0; display: grid; gap: 8px; }
+.collection-field-details > div { display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: space-between; }
+.collection-field-details dt { color: var(--color-text-secondary, #a8adb7); }
+.collection-field-details dd { margin: 0; overflow-wrap: anywhere; }
+
+@media (prefers-reduced-motion: reduce) {
+  .preparation-feedback .progress-sync-icon *,
+  .preparation-feedback .progress-loading * { animation: none !important; transition: none !important; }
+}
+
+.workspace-view-rows { list-style: none; padding: 0; margin: 0; display: grid; }
+.workspace-view-rows li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; padding: 12px 0; border-bottom: 1px solid rgba(128,128,128,.2); }
+.workspace-view-rows[data-density="compact"] li { padding-block: 6px; }
+.workspace-view-rows li strong { font-size: inherit; font-weight: 500; }
+.workspace-view-rows li span { font-size: .875em; opacity: .8; }
+
+/* Ordered bento: expand row endings instead of dense-packing later controls
+   ahead of earlier keyboard/screen-reader content. One column on phones. */
+.exact-grid>.exact-tile[data-span-large="1"]{grid-column:span 1}
+.exact-grid>.exact-tile[data-span-large="2"]{grid-column:span 2}
+.exact-grid>.exact-tile[data-span-large="3"]{grid-column:span 3}
+@media(max-width:1040px){
+ .exact-grid>.exact-tile[data-span-medium="1"]{grid-column:span 1}
+ .exact-grid>.exact-tile[data-span-medium="2"]{grid-column:span 2}
+}
+@media(max-width:680px){.exact-grid>.exact-tile[data-span-large]{grid-column:1/-1}}
+
+/* Broad desktops: two wide studies share a row instead of each receiving
+   three tracks around a 620px composition. DOM/tab order stays unchanged.
+   Below this threshold the original three/two/one-track layouts remain. */
+@media(min-width:1360px){
+ .exact-gallery-shell .exact-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+ .exact-gallery-shell .exact-grid>.exact-tile[data-span-desktop="2"]{grid-column:span 2}
+ .exact-gallery-shell .exact-grid>.exact-tile[data-span-desktop="3"]{grid-column:span 3}
+ .exact-gallery-shell .exact-grid>.exact-tile[data-span-desktop="4"]{grid-column:span 4}
+ .exact-gallery-shell .exact-grid>.exact-tile[data-span-desktop="5"]{grid-column:span 5}
+ .exact-gallery-shell .exact-grid>.exact-tile[data-span-desktop="6"]{grid-column:span 6}
+}

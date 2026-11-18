@@ -1,0 +1,20 @@
+/* SPDX-License-Identifier: MIT
+ * Shared readable foreground sheen, not the action accent. Contrast is source-
+ * assessed against nominal surfaces only; composited artwork needs render QA.
+ */
+.ls-study,.cr-composition,.cv-study,.ap-study{
+ --study-shimmer-base:var(--color-text-primary);
+ --study-shimmer-crest:#fff;
+ --study-shimmer-gradient:linear-gradient(105deg,
+   var(--study-shimmer-base) 0%,var(--study-shimmer-base) 20%,
+   color-mix(in srgb,var(--study-shimmer-base) 75%,var(--study-shimmer-crest)) 30%,
+   color-mix(in srgb,var(--study-shimmer-base) 35%,var(--study-shimmer-crest)) 40%,
+   var(--study-shimmer-crest) 48%,var(--study-shimmer-crest) 56%,
+   color-mix(in srgb,var(--study-shimmer-base) 35%,var(--study-shimmer-crest)) 66%,
+   color-mix(in srgb,var(--study-shimmer-base) 75%,var(--study-shimmer-crest)) 76%,
+   var(--study-shimmer-base) 86%,var(--study-shimmer-base) 100%);
+}
+:root[data-theme=light] :is(.ls-study,.cr-composition,.cv-study,.ap-study){--study-shimmer-crest:#41414a}
+@supports not (color:color-mix(in srgb,black,white)){
+ .ls-study,.cr-composition,.cv-study,.ap-study{--study-shimmer-gradient:linear-gradient(105deg,var(--study-shimmer-base) 15%,var(--study-shimmer-crest) 45%,var(--study-shimmer-crest) 60%,var(--study-shimmer-base) 90%)}
+}
