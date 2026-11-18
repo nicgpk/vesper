@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+const css=fs.readFileSync('apps/storybook/vesper/site/gallery-spacing.css','utf8');
+const shell=fs.readFileSync('apps/storybook/vesper/site/ExactGallery.tsx','utf8');
+const layouts=fs.readFileSync('apps/storybook/vesper/site/preview-layout.ts','utf8');
+assert(shell.includes('data-study={demo.id}'));
+assert(css.includes('--gallery-wide-content:620px'));
+assert(css.includes('.exact-tile[data-exact-layout=wide] .demo-content{max-width:var(--gallery-wide-content)}'));
+const rule=css.match(/\.exact-gallery-shell \.demo-stage\[data-study="chat-layout"\] \.demo-content\{([^}]+)\}/)?.[1];assert(rule);for(const x of ['width:100%','max-width:var(--gallery-wide-content)','margin-inline:auto'])assert(rule.includes(x));
+assert(layouts.includes("'chat-layout': 'workspace'"));assert(layouts.includes("'chat-conversation': 'wide'"));
+for(const available of [240,320,600,1000,1320])assert.equal(Math.min(available,620),available<620?available:620);
+console.log('Conversation/workspace shared width cap, responsive bound and panoramic stage contracts passed. Source/math, not rendered pixels.');

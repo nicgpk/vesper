@@ -1,0 +1,6 @@
+.sf-study{display:flex;flex-direction:column;gap:20px;width:100%;min-width:0}
+.sf-variants{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.sf-preview{min-width:0;width:100%}
+@media(max-width:480px){.sf-study{gap:16px}}
+
+.sf-note{font-size:10px;line-height:1.4;color:var(--color-text-secondary);margin:-10px 0 -8px}

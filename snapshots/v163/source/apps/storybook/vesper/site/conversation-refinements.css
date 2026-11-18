@@ -1,0 +1,14 @@
+/* SPDX-License-Identifier: MIT — composition spacing only, native paint intact. */
+.cv-study{display:flex;flex-direction:column;gap:var(--study-section-gap,16px);min-width:0;width:100%;font-family:var(--font-family-body);color:var(--color-text-primary)}
+.cv-heading{display:flex;align-items:baseline;justify-content:space-between;gap:var(--study-group-gap,12px);font-size:14px;line-height:1.4}
+.cv-heading strong{font-weight:600;letter-spacing:-.02em}
+.cv-heading>span,.cv-note{font-size:10px;line-height:1.5;color:var(--color-text-secondary)}
+.cv-heading>span{white-space:nowrap}
+.cv-note{margin:0}
+.cv-status{margin:0;font-size:12px;font-weight:500;line-height:1.5;min-height:18px}
+.cv-actions{display:flex;gap:var(--study-control-gap,8px);align-items:center;flex-wrap:wrap}
+.cv-shimmer{background-image:var(--study-shimmer-gradient);background-size:220% 100%;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:cv-band 2.4s cubic-bezier(.4,0,.2,1) 3}
+@keyframes cv-band{from{background-position:130% 0}to{background-position:-100% 0}}
+@media(prefers-reduced-motion:reduce){.cv-shimmer{animation:none;background:none;-webkit-text-fill-color:currentColor}.cv-typing{display:none}}
+@media(forced-colors:active){.cv-shimmer{animation:none;background:none;-webkit-text-fill-color:CanvasText;color:CanvasText}.cv-typing{display:none}}
+@supports not (background-clip:text){.cv-shimmer{animation:none;background:none;-webkit-text-fill-color:currentColor}}

@@ -1,0 +1,92 @@
+// SPDX-License-Identifier: MIT
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export {classifyLocalPrompt,generatedReducer,initialGeneratedState,GeneratedResult,GeneratedResponse,ResponseSkeleton,buildTimings,GenerativeChatStudy} from './vesper/site/GenerativeChatStudy';export {createElement} from 'react';export {renderToStaticMarkup} from 'react-dom/server';");
+const {generatedReducer:r,initialGeneratedState:initial}=m;
+assert.equal(m.classifyLocalPrompt('A launch checklist'),'checklist');
+assert.equal(m.classifyLocalPrompt('COMPARE concepts'),'directions');
+assert.equal(m.classifyLocalPrompt('Tell me the weather'),'unsupported');
+assert.equal(r(initial,{type:'submit',prompt:'  '}),initial);
+let s=r(initial,{type:'check',index:1,value:true});assert.equal(s.checked[1],true);assert.equal(initial.checked[1],false);
+for(const index of [-1,4,1.2,NaN])assert.equal(r(s,{type:'check',index,value:true}),s);
+s=r(s,{type:'submit',prompt:'  Compare directions  '});assert.equal(s.prompt,'Compare directions');assert.equal(s.kind,'directions');assert.equal(s.phase,'building');assert.deepEqual(s.checked,[false,false,false,false]);
+assert.equal(r(s,{type:'submit',prompt:'Make tasks'}),s);
+assert.equal(r(s,{type:'choose',choice:'focus'}),s);
+assert.equal(r(s,{type:'finish',run:s.run-1}),s);
+const old=s.run;s=r(s,{type:'stop'});assert.equal(s.phase,'stopped');assert.equal(r(s,{type:'finish',run:old}),s);
+s=r(s,{type:'submit',prompt:'Compare options'});s=r(s,{type:'finish',run:s.run});
+assert.equal(r(s,{type:'choose',choice:'not-a-choice'}),s);
+s=r(s,{type:'choose',choice:'canvas'});assert.equal(s.choice,'canvas');assert.equal(r(s,{type:'check',index:0,value:true}),s);
+const render=state=>m.renderToStaticMarkup(m.createElement(m.GeneratedResult,{state,send:()=>{}}));
+let html=render(s);assert.match(html,/Open canvas selected here/);assert.match(html,/aria-pressed="true"/);assert.match(html,/nature-ocean.webp/);
+s=r(s,{type:'submit',prompt:'launch checklist'});s=r(s,{type:'finish',run:s.run});for(let i=0;i<4;i++)s=r(s,{type:'check',index:i,value:true});html=render(s);assert.match(html,/aria-valuenow="4"/);assert.match(html,/Nothing has been published/);assert.equal((html.match(/type="checkbox"/g)||[]).length,4);
+html=render({...initial,kind:'unsupported'});assert.match(html,/supports a checklist, visual directions, a data summary or an editable review brief/);
+html=m.renderToStaticMarkup(m.createElement(m.GenerativeChatStudy));assert.match(html,/four authored responses, no live AI/);
+const src=fs.readFileSync('apps/storybook/vesper/site/GenerativeChatStudy.tsx','utf8');assert.match(src,/return\(\)=>timers\.forEach\(timer=>clearTimeout\(timer\)\)/);assert.match(src,/isDisabled=\{busy\}/,'Composer must not discard drafts submitted during build');
+const css=fs.readFileSync('apps/storybook/vesper/site/generative-chat-study.css','utf8');assert.match(css,/prefers-reduced-motion/);assert.match(css,/forced-colors/);
+// v158: all four authored outputs and the finite staged/error lifecycle.
+assert.equal(m.classifyLocalPrompt('Show the review funnel'),'metrics');
+assert.equal(m.classifyLocalPrompt('Draft a review brief'),'brief');
+assert.deepEqual(m.buildTimings,[850,1700,2800]);
+let run=r(initial,{type:'submit',prompt:'Show metrics',simulateFailure:true});
+assert.equal(run.simulateFailure,true);
+assert.equal(r(run,{type:'advance',run:run.run,step:2}),run,'cannot skip stage');
+assert.equal(r(run,{type:'advance',run:run.run-1,step:1}),run,'stale stage ignored');
+run=r(run,{type:'advance',run:run.run,step:1});assert.equal(run.step,1);
+assert.equal(r(run,{type:'advance',run:run.run,step:1}),run,'repeated stage ignored');
+run=r(run,{type:'advance',run:run.run,step:2});assert.equal(run.step,2);
+assert.equal(r(run,{type:'advance',run:run.run,step:3}),run);
+const response=state=>m.renderToStaticMarkup(m.createElement(m.GeneratedResponse,{state,send:()=>{}}));
+html=response(run);assert.match(html,/gc-sized-skeleton/);assert.match(html,/gc-metric-total/);assert.match(html,/Preparing controls/);
+run=r(run,{type:'finish',run:run.run});assert.equal(run.phase,'error');
+html=response(run);assert.match(html,/Simulated unavailable response/);assert.match(html,/Retry response/);
+const failedRun=run.run;run=r(run,{type:'retry'});assert.equal(run.prompt,'Show metrics');assert.equal(run.phase,'building');assert.equal(run.simulateFailure,false);assert.equal(run.step,0);
+assert.equal(r(run,{type:'finish',run:failedRun}),run);
+run=r(run,{type:'finish',run:run.run});assert.equal(run.phase,'ready');
+assert.equal(r(run,{type:'retry'}),run);
+html=response(run);assert.match(html,/Illustrative review funnel/);assert.match(html,/36 of 120 starts/);assert.match(html,/not live analytics/);assert.match(html,/60<span>%/);
+run=r(run,{type:'submit',prompt:'Draft a brief'});run=r(run,{type:'finish',run:run.run});
+run=r(run,{type:'title',value:'   '});assert.equal(r(run,{type:'keep'}),run,'empty brief cannot be kept');
+run=r(run,{type:'title',value:'  Review interactions  '});assert.equal(run.kept,false);
+assert.equal(r(run,{type:'priority',value:'invalid'}),run);
+run=r(run,{type:'priority',value:'high'});run=r(run,{type:'keep'});assert.equal(run.kept,true);
+html=response(run);assert.match(html,/Review interactions · High priority/);assert.match(html,/Kept in this response only/);
+run=r(run,{type:'title',value:'New review'});assert.equal(run.kept,false);
+run=r(run,{type:'keep'});run=r(run,{type:'priority',value:'normal'});assert.equal(run.kept,false);
+assert.equal(r(initial,{type:'title',value:'No mutation'}),initial);
+for(const kind of ['checklist','directions','metrics','brief','unsupported'])for(const phase of ['building','error','stopped','ready'])assert(response({...initial,kind,phase}).length>0);
+assert.match(src,/role="status" aria-live="polite" aria-atomic="true"/);
+// v159: stable stage rail and shape-only sheen, rather than growing tool rows.
+for(let step=0;step<3;step++){
+ const loading=response({...initial,phase:'building',step});
+ assert.match(loading,/aria-busy="true"/);
+ assert.match(loading,/gc-stage-track/);
+ assert.equal((loading.match(/data-state="active"/g)||[]).length,1);
+ assert.equal((loading.match(/data-state="done"/g)||[]).length,step);
+ assert.match(loading,new RegExp(`${step+1} of 3`));
+ assert.match(loading,/gc-sized-skeleton/);assert.match(loading,/gc-tasks/);
+ assert.equal((loading.match(/class="gc-skeleton-check"/g)||[]).length,4,'four skeleton rows match checklist');
+ assert(!loading.includes('Source activity'));
+}
+const shared=fs.readFileSync('apps/storybook/vesper/site/study-shimmer.css','utf8');
+assert.match(shared,/\.gc-study\{/,'generative UI receives shared shimmer variables');
+assert(!src.includes('className={`gc-loading-preview'),'obsolete fixed-size skeleton unused');
+assert.match(css,/\.gc-bone:after\{content:/,'sheen clipped to skeleton shapes');
+assert.match(css,/\.gc-bone\{display:block;position:relative;overflow:hidden/);
+assert.match(css,/@media\(prefers-reduced-motion:reduce\)\{\.gc-loading \.gc-building\{animation:none/);
+// v160: skeleton reuses bounded result classes and corresponding structure.
+const skeleton=kind=>m.renderToStaticMarkup(m.createElement(m.ResponseSkeleton,{kind}));
+for(const kind of ['checklist','directions','metrics','brief']){
+ const markup=skeleton(kind);assert.match(markup,/class="gc-result gc-sized-skeleton" aria-hidden="true"/);
+ assert(!markup.includes('<button'));assert(!markup.includes('<input'));
+ assert(!markup.includes('gc-loading-preview'));
+}
+assert.equal((skeleton('checklist').match(/gc-skeleton-check/g)||[]).length,4);
+assert.equal((skeleton('directions').match(/class="gc-direction"/g)||[]).length,2);
+assert.equal((skeleton('brief').match(/class="gc-skeleton-field"/g)||[]).length,2);
+assert.match(skeleton('metrics'),/gc-bars/);
+assert.match(css,/\.gc-sized-skeleton\{min-height:0\}/);
+assert.match(css,/@media\(prefers-reduced-motion:reduce\)\{\.gc-bone:after\{animation:none;display:none/);
+assert.match(css,/@media\(forced-colors:active\)\{\.gc-bone,\.gc-sized-skeleton \.gc-bars i\{background:GrayText/);
+console.log('Independent generated UI: lifecycle, stale/stop, immutable checks, choices, unsupported, result SSR and busy boundary pass.');
