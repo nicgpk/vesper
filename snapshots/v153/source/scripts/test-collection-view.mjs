@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export * from './vesper/site/CollectionViewRefinement';export {createElement} from 'react';export {renderToString} from 'react-dom/server';");
+let n=0;const check=x=>{assert(x);n++};const eq=(a,b)=>{assert.deepEqual(a,b);n++};
+for(const value of ['grid','list','table'])eq(m.collectionView(value),value);
+for(const value of [null,undefined,'unknown',42])eq(m.collectionView(value),'grid');
+eq(new Set(m.reviewDocuments.map(x=>x.id)).size,3);
+const render=view=>m.renderToString(m.createElement(m.CollectionDocuments,{view}));
+const grid=render('grid'),list=render('list'),table=render('table');
+for(const html of [grid,list,table])for(const item of m.reviewDocuments)for(const text of [item.title,item.type,item.status])check(html.includes(text));
+eq((grid.match(/<article/g)||[]).length,3);check(!grid.includes('<table'));eq((list.match(/<li[ >]/g)||[]).length,3);check(!list.includes('<article'));check(table.includes('<table'));eq((table.match(/scope="row"/g)||[]).length,3);eq((table.match(/scope="col"/g)||[]).length,3);check(table.includes('tabindex="0"'));
+const html=m.renderToString(m.createElement(m.CollectionViewRefinement));for(const text of ['Collection view','Grid','List','Table','role="status"'])check(html.includes(text));
+const css=readFileSync('apps/storybook/vesper/site/collection-view-refinement.css','utf8');for(const text of ['min-width:0','overflow-x:auto','overflow-wrap:anywhere','table-layout:fixed','focus-visible'])check(css.includes(text));
+console.log(n+' collection mode, shared data, distinct native-control/HTML structure, narrow-layout source and SSR checks passed. No browser verification.');

@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import{transformSync}from'esbuild';
+const src=fs.readFileSync('packages/core/src/Chat/triggerSearch.ts','utf8');
+const code=transformSync(src,{loader:'ts',format:'esm'}).code;
+const {createTriggerSearch}=await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+let commits=[],calls=[],timers=new Map(),next=0;
+const oldSet=globalThis.setTimeout,oldClear=globalThis.clearTimeout;
+globalThis.setTimeout=(fn,ms)=>{const id=++next;timers.set(id,fn);return id;};globalThis.clearTimeout=id=>timers.delete(id);
+const flush=async()=>{await Promise.resolve();await Promise.resolve();};
+const tick=()=>{const tasks=[...timers.values()];timers.clear();tasks.forEach(f=>f());};
+const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b});return{promise,resolve,reject};};
+const items=x=>[{id:x,label:x}];
+try{
+ const ctl=createTriggerSearch((items,loading)=>commits.push({items,loading}));
+ const sync={search:q=>{calls.push(q);return items(q);}};
+ ctl.search(sync,'real',150);assert.deepEqual(calls,['real']);assert.equal(commits.at(-1).items[0].id,'real');assert.equal(timers.size,0);
+ const pending=[];const async={search:q=>{calls.push(q);const d=deferred();pending.push({q,...d});return d.promise;}};
+ ctl.search(async,'alpha',0);ctl.search(async,'beta',0);
+ pending[1].resolve(items('beta'));await flush();pending[0].resolve(items('alpha'));await flush();assert.equal(commits.at(-1).items[0].id,'beta');
+ ctl.search(async,'older',0);ctl.search(async,'newer',0);pending[3].resolve(items('newer'));await flush();pending[2].reject(Error('old'));await flush();assert.equal(commits.at(-1).items[0].id,'newer');
+ ctl.search(async,'closed',0);ctl.cancel();const atClose=commits.length;pending[4].resolve(items('closed'));await flush();assert.equal(commits.length,atClose);
+ const before=calls.length;ctl.search(async,'r',150);ctl.search(async,'ri',150);assert.equal(calls.length,before);assert.equal(timers.size,1);assert.deepEqual(commits.at(-1),{items:[],loading:true});tick();assert.equal(calls.at(-1),'ri');pending.at(-1).resolve(items('ri'));await flush();assert.equal(commits.at(-1).loading,false);
+ ctl.search(async,'never',150);ctl.cancel();tick();assert(!calls.includes('never'));
+ ctl.search({search:()=>{throw Error('sync');}},'x',0);assert.deepEqual(commits.at(-1),{items:[],loading:false});
+ ctl.search(undefined,'x',0);assert.deepEqual(commits.at(-1),{items:[],loading:false});
+ const badCancel=deferred();const flaky={search:()=>badCancel.promise,cancel:()=>{throw Error('cancel');}};
+ ctl.search(flaky,'old',0);ctl.search(sync,'current',0);badCancel.resolve(items('old'));await flush();assert.equal(commits.at(-1).items[0].id,'current');
+ const rejection={search:()=>Promise.reject(Error('current failure'))};ctl.search(rejection,'x',0);await flush();assert.deepEqual(commits.at(-1),{items:[],loading:false});
+ assert(!calls.includes(''));
+ const hook=fs.readFileSync('packages/core/src/Chat/useTriggerMenu.tsx','utf8');assert(!hook.includes("search('')"));assert((hook.match(/searchRef.current\?\.cancel\(\)/g)||[]).length>=3);
+ console.log('Async-trigger lifecycle: real-query-only, sync, stale success/rejection, close, debounce coalescing/cancel, sync throw, missing source, integration invalidations pass. Fake timers/local promises only; no browser or requests.');
+}finally{globalThis.setTimeout=oldSet;globalThis.clearTimeout=oldClear;}

@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const css=readFileSync('apps/storybook/vesper/site/loading-studies.css','utf8');
+const rule=css.match(/\.ls-text \.ls-status\{([^}]+)\}/)?.[1];
+assert(rule);assert(rule.includes('font-size:14px'));assert(rule.includes('line-height:1.5'));assert(rule.includes('min-height:21px'));assert(rule.includes('letter-spacing:0'));
+assert(css.includes('animation:ls-reading-band 2.4s cubic-bezier(.4,0,.2,1) 3'));
+assert(css.includes('background-size:220% 100%'));assert(css.includes('--study-shimmer-base:#a4aab6;--study-shimmer-crest:#fff'));
+assert(css.includes('@media(prefers-reduced-motion:reduce){.ls-text-shimmer{animation:none'));
+assert(css.includes('.ls-cube-grid{display:grid;grid-template-columns:repeat(3,5px)'));
+console.log('10 Reading scale/source guards pass; no rendered geometry verification.');

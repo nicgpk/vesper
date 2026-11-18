@@ -1,3 +1,37 @@
+# Vesper interaction library
+
+[Open the live demo](https://nicgpk.github.io/vesper/)
+
+A React interaction gallery with glass-like surfaces, photographic Dunes, Ocean and Forest themes, chat and tool interfaces, and motion studies.
+
+## Latest version: v153
+
+- [Native source, themes and tests](snapshots/v153/source/)
+- [Compiled demo](snapshots/v153/hosted/)
+- [File integrity inventory](snapshots/v153/SHA256SUMS.json)
+
+The current gallery contains 106 studies and 228 components. Versioned snapshots preserve earlier work; the latest source is in `snapshots/v153/source`, not the repository-root packages. The root monorepo and its original upstream documentation remain below for provenance.
+
+### Preview locally
+
+Serve `snapshots/v153/hosted/` using any static HTTP server. For example, from the repository root:
+
+```sh
+python -m http.server 8000 --directory snapshots/v153/hosted
+```
+
+Open http://localhost:8000. The hosted files are the exact checked-in build. The standalone source includes its dependency locks, local packages and build scripts; it is not an independently published npm package.
+
+### Validation and deployment
+
+The source checks, layout/scenery contracts, 15 avatar/progress checks, 54 segmented-control geometry checks, seven catalog/native tests and gallery rebuild passed. The rebuild matches the hosted files byte-for-byte. Browser rendering, composited glass, GPU behavior, focus and native wrapping remain unverified; build warnings include React key-spread and StyleX side-effect notices.
+
+GitHub Pages publishes only `snapshots/v153/hosted/` through `.github/workflows/pages-deploy.yml` on `vesper/baseline`. Source and historical snapshots remain in Git, not in the Pages artifact.
+
+---
+
+## Upstream Astryx documentation
+
 <!-- SYNC CONTRACT: Architecture changes require documentation updates. -->
 
 <div align="center">

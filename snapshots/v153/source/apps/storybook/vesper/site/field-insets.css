@@ -1,0 +1,9 @@
+/* SPDX-License-Identifier: MIT
+ * Match the composer's 12px inset without padding the textarea wrapper twice.
+ * Preserve native icon/status reservation and the resize handle at the edge.
+ */
+.exact-gallery-shell .astryx-text-input{padding-inline:12px}
+.exact-gallery-shell .astryx-text-area{--_textarea-inline-padding:12px}
+.exact-gallery-shell .astryx-text-area-control{padding-block:12px}
+/* The counter has a dedicated bottom lane, independent of the text inset. */
+.exact-gallery-shell .astryx-text-area:has(.astryx-text-area-counter) .astryx-text-area-control{padding-bottom:28px}

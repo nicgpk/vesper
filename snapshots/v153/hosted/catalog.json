@@ -1,0 +1,1286 @@
+[
+  {
+    "id": "chart-area",
+    "name": "2D chart marks",
+    "category": "Data visualization",
+    "covers": [
+      "ChartArea",
+      "ChartBar",
+      "ChartCandlestick",
+      "ChartDot",
+      "ChartLine"
+    ],
+    "description": "A real range band, bars, plan line and dots; switch to OHLC candlesticks.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "<LabChart data={weekly} xKey=\"day\" yKeys={['value', 'trend', 'lower', 'upper']}>\n  <ChartArea yUpper=\"upper\" yLower=\"lower\" color={colors[0]} />\n  <ChartBar dataKey=\"value\" color={colors[0]} />\n  <ChartLine dataKey=\"trend\" color={colors[1]} />\n  <ChartDot dataKey=\"value\" color={colors[2]} />\n</LabChart>\n// Alternate: <ChartCandlestick high=\"upper\" low=\"lower\" open=\"open\" close=\"close\" />"
+  },
+  {
+    "id": "three-d-chart",
+    "name": "3D chart family",
+    "category": "Data visualization",
+    "heavy": true,
+    "covers": [
+      "ThreeDChart",
+      "ThreeDBar",
+      "ThreeDScatter",
+      "ThreeDScatterGL",
+      "ThreeDSurface"
+    ],
+    "description": "Switch native 3D bars, SVG scatter, surface and WebGL scatter; rotate with pointer or keyboard.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "<ThreeDChart data={spatial} xKey=\"x\" yKey=\"y\" zKey=\"z\"\n  height={narrow ? 260 : 460} azimuth={30} elevation={30}\n  xDomain={[-0.25, 2.25]} yDomain={[0, 8]} zDomain={[-0.25, 2.25]}\n  interactive autoRotate={0}>\n  <ThreeDAxis labels={false} />\n  {mode === 'bars' && <ThreeDBar color={color} />}\n  {mode === 'scatter' && <ThreeDScatter color={color} />}\n  {mode === 'surface' && <ThreeDSurface colorRange={ramp} />}\n  {mode === 'webgl' && <ThreeDScatterGL color={color} />}\n</ThreeDChart>\n// Keep axis meanings and display domains in a caption outside the rotating plot."
+  },
+  {
+    "id": "alert-dialog",
+    "name": "Alert dialog",
+    "category": "Overlays",
+    "description": "Confirm an archive action without leaving the workspace.",
+    "material": "A neutral dialog surface separates the decision; the destructive action remains solid.",
+    "code": "<AlertDialog isOpen={open} onOpenChange={setOpen} title=\"Archive this collection?\" description=\"Local action only. No files will be changed.\" actionLabel=\"Archive collection\" onAction={() => { setArchived(true); setOpen(false); }} />",
+    "covers": [
+      "AlertDialog"
+    ]
+  },
+  {
+    "id": "app-shell",
+    "name": "AppShell",
+    "category": "Layout",
+    "covers": [
+      "AppShell"
+    ],
+    "description": "An application frame with working section navigation, header, and content landmarks.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "// Preview host: .preview-app-shell { height: 360px; min-height: 0; }\n<AppShell className=\"preview-app-shell\" height=\"fill\" contentPadding={4} mobileNav={{breakpoint: 'md'}}\n  topNav={<TopNav label=\"Collection studio\" heading={<TopNavHeading heading=\"Collection studio\" />} />}\n  sideNav={<SideNav aria-label=\"Workspace sections\">\n    {['Overview', 'Library'].map(label => <SideNavItem key={label} label={label}\n      isSelected={page === label} onClick={() => setPage(label)} />)}\n  </SideNav>}>\n  <h1>{page}</h1>\n</AppShell>"
+  },
+  {
+    "id": "aspect-ratio",
+    "name": "AspectRatio & Center",
+    "category": "Layout",
+    "covers": [
+      "AspectRatio",
+      "Center"
+    ],
+    "description": "A bounded collection cover switches between square and widescreen while its title and chapter summary stay centered.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<Button label=\"Change ratio\" onClick={() => setSquare(!square)} />\n<AspectRatio ratio={square ? 1 : 16 / 9} fit=\"center\">\n  <Section width=\"100%\" height=\"100%\" padding={0} variant=\"muted\"\n    dividers={['top', 'bottom', 'start', 'end']}>\n    <Center width=\"100%\" height=\"100%\" padding={4}>\n      <div className=\"demo-stack\">\n        <strong>Evening collection</strong>\n        <p>6 chapters · A study of light after sunset</p>\n      </div>\n    </Center>\n  </Section>\n</AspectRatio>\n<p>{square ? 'Square · 1:1' : 'Widescreen · 16:9'} · Centered collection cover</p>"
+  },
+  {
+    "id": "avatar",
+    "name": "Avatar",
+    "category": "Display",
+    "description": "Switch teammates to explore name-based avatars.",
+    "material": "Identity content stays legible within the rounded avatar boundary.",
+    "code": "<Avatar name={name} shape=\"rounded\" size=\"lg\" />",
+    "covers": [
+      "Avatar"
+    ]
+  },
+  {
+    "id": "avatar-group",
+    "name": "AvatarGroup & presence",
+    "category": "Data display",
+    "covers": [
+      "AvatarGroup",
+      "AvatarGroupOverflow",
+      "AvatarStatusDot",
+      "Badge"
+    ],
+    "description": "An overlapping team, clickable overflow, and a live availability badge.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<AvatarGroup size=\"lg\">\n  <Avatar name=\"Riley Morgan\" status={<AvatarStatusDot\n    variant={online ? 'success' : 'neutral'} label={online ? 'Online' : 'Away'} />} />\n  <Avatar name=\"Kai Ortiz\" />\n  {expanded ? <><Avatar name=\"Alex Chen\" /><Avatar name=\"Jordan Lee\" /></>\n    : <AvatarGroupOverflow count={2} onClick={() => setExpanded(true)} />}\n</AvatarGroup>\n<Badge variant={online ? 'success' : 'neutral'} label={online ? 'Available' : 'Away'} />\n<Button label=\"Toggle availability\" onClick={() => setOnline(!online)} />"
+  },
+  {
+    "id": "banner",
+    "name": "Banner",
+    "category": "Feedback",
+    "covers": [
+      "Banner"
+    ],
+    "description": "A dismissible announcement with a local restore control.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "{visible && <Banner status=\"info\" title=\"Collection sharing is ready\"\n  description=\"Invite teammates when you are ready to review.\"\n  isDismissable onDismiss={() => setVisible(false)} />}\n<Button label=\"Restore announcement\" onClick={() => setVisible(true)} />"
+  },
+  {
+    "id": "base-typeahead",
+    "name": "BaseTypeahead",
+    "category": "Inputs",
+    "covers": [
+      "BaseTypeahead"
+    ],
+    "description": "The low-level typeahead inside a labelled field, with real local search and selection feedback.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "const peopleSource = createStaticSource([\n  {id: 'riley', label: 'Riley Morgan'}, {id: 'kai', label: 'Kai Ortiz'}, {id: 'alex', label: 'Alex Chen'},\n]);\n<Field label=\"Find a teammate\" inputID={id}>\n  <BaseTypeahead inputId={id} searchSource={peopleSource} value={person}\n    onChange={setPerson} hasEntriesOnFocus debounceMs={0} />\n</Field>"
+  },
+  {
+    "id": "bottom-sheet",
+    "name": "Bottom sheet",
+    "category": "Overlays",
+    "description": "Open a real sheet and apply a workspace filter.",
+    "material": "The sheet is a single neutral surface above a scrim, not a lens on each row.",
+    "code": "// Included local composition, not a package export.\nimport {BottomSheetPreview} from './demos';\n<BottomSheetPreview />",
+    "covers": [
+      "BottomSheet"
+    ]
+  },
+  {
+    "id": "bottom-sheet-switcher",
+    "name": "BottomSheetSwitcher",
+    "category": "Overlays",
+    "covers": [
+      "BottomSheetSwitcher"
+    ],
+    "description": "A two-step collection setup flow sharing one bottom-sheet host, with back and finish actions.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "// Included local composition, not a package export.\nimport {SheetSwitcherPreview} from './coreBasicDemos';\n<SheetSwitcherPreview />"
+  },
+  {
+    "id": "breadcrumbs",
+    "name": "Breadcrumbs",
+    "category": "Navigation",
+    "description": "Explore a nested workspace through a breadcrumb menu.",
+    "material": "Text and separators stay lightweight; the menu owns its floating surface.",
+    "code": "<Breadcrumbs label=\"Collection location\"><BreadcrumbItem menu={[{label: \"Workspace\", onClick: () => setLocation(\"Workspace\")} ]}>Workspace</BreadcrumbItem><BreadcrumbItem isCurrent>{location}</BreadcrumbItem></Breadcrumbs>",
+    "covers": [
+      "Breadcrumbs",
+      "BreadcrumbItem"
+    ]
+  },
+  {
+    "id": "button",
+    "name": "Button",
+    "category": "Actions",
+    "description": "Save and reset a local collection state.",
+    "material": "Secondary actions use a neutral lens; the primary action uses a solid accent.",
+    "code": "<Button label={saved ? \"Saved\" : \"Save changes\"} variant=\"primary\" onClick={() => setSaved(true)} />",
+    "covers": [
+      "Button"
+    ]
+  },
+  {
+    "id": "button-group",
+    "name": "ButtonGroup",
+    "category": "Actions",
+    "covers": [
+      "ButtonGroup"
+    ],
+    "description": "Vertically connected review actions keep complete labels at narrow widths, with shared keyboard navigation and live feedback.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<ButtonGroup className=\"preview-review-actions\" label=\"Review actions\" orientation=\"vertical\">\n  {['Approve', 'Request changes', 'Save draft'].map(label =>\n    <Button key={label} label={label} onClick={() => setAction(label)} />)}\n</ButtonGroup>\n<p role=\"status\">{action}</p>"
+  },
+  {
+    "id": "calendar",
+    "name": "Calendar",
+    "category": "Inputs",
+    "description": "Pick a review date and navigate between months.",
+    "material": "The calendar keeps one surface with a solid selected-day signal.",
+    "code": "<Calendar mode=\"single\" value={date} onChange={setDate} weekStartsOn=\"mon\" />",
+    "covers": [
+      "Calendar"
+    ]
+  },
+  {
+    "id": "card",
+    "name": "Card",
+    "category": "Layout",
+    "description": "A collection summary with a working workspace action.",
+    "material": "One neutral lens groups the content; nested text does not add more glass.",
+    "code": "// Included local composition, not a package export.\nimport {CardPreview} from './demos';\n<CardPreview />",
+    "covers": [
+      "Card"
+    ]
+  },
+  {
+    "id": "carousel",
+    "name": "Carousel",
+    "category": "Layout",
+    "covers": [
+      "Carousel"
+    ],
+    "description": "Six compact chapter cards with distinct scene summaries, native scrolling, snap points, and navigation arrows.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "// Each chapter has a title and its own scene summary.\n<Carousel aria-label=\"Collection chapters\" hasButtons hasSnap hasEdgeFade gap={3}>\n  {chapters.map(({title, description}, index) =>\n    <Card key={title} width={220} padding={4}>\n      <div className=\"demo-stack\">\n        <Badge label={'Chapter ' + (index + 1)} />\n        <h3>{title}</h3><p>{description}</p>\n      </div>\n    </Card>)}\n</Carousel>\n<p>Scroll or use the arrows to explore all six chapters.</p>"
+  },
+  {
+    "id": "chart",
+    "name": "Chart composition",
+    "category": "Data visualization",
+    "covers": [
+      "Chart",
+      "ChartAxis",
+      "ChartGrid",
+      "ChartLegend",
+      "ChartSwatch",
+      "ChartTooltip"
+    ],
+    "description": "Config-model bars and plan line with shared axes, grid, legend, swatch and pointer tooltip.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "const series = [bar('value', {label: 'Completed'}), line('trend', {label: 'Plan'})];\n<Chart data={weekly} xKey=\"day\" series={series} grid={<ChartGrid />} axes={<><ChartAxis position=\"bottom\" /><ChartAxis position=\"left\" /></>}>\n  <ChartTooltip series={series} />\n</Chart>\n<ChartLegend items={items} />\n<ChartSwatch color={color} variant=\"square\" />"
+  },
+  {
+    "id": "chat-composer",
+    "name": "Chat composer",
+    "category": "Chat",
+    "description": "Context-aware drafting with native mention insertion and a local message receipt.",
+    "material": "Conversation content sits on the parent readable card; semantic sender, error, reaction, and focus states stay distinct.",
+    "covers": [
+      "ChatComposer",
+      "ChatComposerDrawer",
+      "ChatComposerInput",
+      "ChatComposerTokenElement",
+      "ChatSendButton"
+    ],
+    "code": "// Included local composition, not a package export.\nimport {ComposerRefinement} from './ChatRefinements';\n<ComposerRefinement />"
+  },
+  {
+    "id": "chat-conversation",
+    "name": "Conversation",
+    "category": "Chat",
+    "description": "A finite local response with typing, shimmer, cancellation and a readable review transcript.",
+    "material": "Conversation content sits on the parent readable card; semantic sender, error, reaction, and focus states stay distinct.",
+    "covers": [
+      "ChatMessage",
+      "ChatMessageBubble",
+      "ChatMessageList",
+      "ChatMessageMetadata",
+      "ChatSystemMessage",
+      "ChatTokenizedText",
+      "ChatTypingIndicator",
+      "ChatUnreadDivider"
+    ],
+    "code": "// Included local composition, not a package export.\nimport {ConversationRefinement} from './ConversationRefinements';\n<ConversationRefinement />"
+  },
+  {
+    "id": "chat-reactions",
+    "name": "Message reactions",
+    "category": "Chat",
+    "description": "One local reaction flow with reversible selection and a clean empty state.",
+    "material": "Conversation content sits on the parent readable card; semantic sender, error, reaction, and focus states stay distinct.",
+    "covers": [
+      "ChatEmojiPicker",
+      "ChatReactionBar"
+    ],
+    "code": "// Included local composition, not a package export.\nimport {ReactionsRefinement} from './ChatFeedbackRefinements';\n<ReactionsRefinement />"
+  },
+  {
+    "id": "chat-layout",
+    "name": "Conversation workspace",
+    "category": "Chat",
+    "description": "A docked local composer with meaningful message history and real scroll navigation.",
+    "material": "Conversation content sits on the parent readable card; semantic sender, error, reaction, and focus states stay distinct.",
+    "covers": [
+      "ChatLayout",
+      "ChatLayoutScrollButton"
+    ],
+    "code": "// Included local composition, not a package export.\nimport {LayoutRefinement} from './ConversationRefinements';\n<LayoutRefinement />"
+  },
+  {
+    "id": "chat-dictation",
+    "name": "On-device dictation",
+    "category": "Chat",
+    "description": "Explicit on-device microphone activation with checking, cancellation and truthful end states; typed fallback.",
+    "material": "Conversation content sits on the parent readable card; semantic sender, error, reaction, and focus states stay distinct.",
+    "covers": [
+      "ChatDictationButton"
+    ],
+    "code": "// Included local composition, not a package export.\nimport {DictationRefinement} from './ChatFeedbackRefinements';\n<DictationRefinement />"
+  },
+  {
+    "id": "chat-reasoning",
+    "name": "Tool run",
+    "category": "Chat",
+    "description": "Finite local tool steps with cancellation, failure recovery and inspectable results.",
+    "material": "Native tool-call rows and source disclosure, with explicit local execution states.",
+    "covers": [
+      "ChatReasoning",
+      "ChatToolCalls"
+    ],
+    "code": "// Included local composition, not a package export.\nimport {ReasoningRefinement} from './ChatRefinements';\n<ReasoningRefinement />"
+  },
+  {
+    "id": "checkbox",
+    "name": "Checkbox",
+    "category": "Inputs",
+    "description": "Try checked, unchecked, mixed, and disabled choices.",
+    "material": "Checked and mixed marks use solid selection colors instead of transparent signals.",
+    "code": "<CheckboxInput label=\"Snap to grid\" value={snap} onChange={setSnap} />\n<CheckboxInput label=\"Shared folders\" value={mixed} onChange={setMixed} />",
+    "covers": [
+      "CheckboxInput"
+    ]
+  },
+  {
+    "id": "checkbox-list",
+    "name": "CheckboxList",
+    "category": "Inputs",
+    "covers": [
+      "CheckboxList",
+      "CheckboxListItem"
+    ],
+    "description": "A labelled multi-selection list with descriptions and a live selection summary.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<CheckboxList label=\"Review disciplines\" value={selected} onChange={setSelected} hasDividers>\n  <CheckboxListItem value=\"design\" label=\"Design\" description=\"Visual direction and interaction\" />\n  <CheckboxListItem value=\"research\" label=\"Research\" description=\"Evidence and participant feedback\" />\n  <CheckboxListItem value=\"engineering\" label=\"Engineering\" description=\"Implementation and delivery\" />\n</CheckboxList>"
+  },
+  {
+    "id": "circular-progress",
+    "name": "CircularProgress",
+    "covers": [
+      "CircularProgress"
+    ],
+    "category": "Feedback",
+    "description": "Adjust a labeled progress ring alongside an indeterminate state.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<CircularProgress label=\"Collection indexing\" value={value} hasValueLabel />"
+  },
+  {
+    "id": "code-editor",
+    "name": "CodeEditor",
+    "covers": [
+      "CodeEditor"
+    ],
+    "category": "Forms",
+    "description": "Edit highlighted local source, toggle read-only mode, and reset the fixture.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "heavy": true,
+    "code": "<CodeEditor label=\"Collection configuration\" language=\"javascript\" value={code} onChange={setCode} hasLineNumbers />"
+  },
+  {
+    "id": "collapsible",
+    "name": "Collapsible",
+    "category": "Layout",
+    "description": "Expand and collapse collection guidance.",
+    "material": "A shared disclosure surface keeps expanded content visually connected.",
+    "code": "<Collapsible trigger=\"What is in this collection?\" isOpen={open} onOpenChange={setOpen}><p>Notes and material studies ready for review.</p></Collapsible>",
+    "covers": [
+      "Collapsible"
+    ]
+  },
+  {
+    "id": "collapsible-group",
+    "name": "CollapsibleGroup",
+    "category": "Disclosure",
+    "covers": [
+      "CollapsibleGroup"
+    ],
+    "description": "A real single-open accordion linking three collection-help disclosures.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<CollapsibleGroup type=\"single\" defaultValue=\"sharing\" hasDividers>\n  <Collapsible value=\"sharing\" trigger=\"Who can view this collection?\">Only invited teammates.</Collapsible>\n  <Collapsible value=\"exports\" trigger=\"Can I export my notes?\">Export a snapshot whenever needed.</Collapsible>\n  <Collapsible value=\"retention\" trigger=\"Where are changes saved?\">Local component state only.</Collapsible>\n</CollapsibleGroup>"
+  },
+  {
+    "id": "command-palette",
+    "name": "CommandPalette family",
+    "category": "Navigation",
+    "covers": [
+      "CommandPalette",
+      "CommandPaletteInput",
+      "CommandPaletteList",
+      "CommandPaletteGroup",
+      "CommandPaletteItem",
+      "CommandPaletteEmpty",
+      "CommandPaletteFooter"
+    ],
+    "description": "An inline command picker: the root renders its actual List, Group, and Item components from grouped search data. Search an unmatched term for Empty.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "const commands = createStaticSource([\n  {id: 'collections', label: 'Open collections', auxiliaryData: {group: 'Navigation'}},\n  {id: 'settings', label: 'Open settings', auxiliaryData: {group: 'Navigation'}},\n  {id: 'create', label: 'Create collection', auxiliaryData: {group: 'Actions'}},\n]);\n// CommandPalette renders CommandPaletteList, CommandPaletteGroup, and\n// CommandPaletteItem from this source, preserving shared keyboard behavior.\n<CommandPalette isOpen isInline onOpenChange={() => {}} searchSource={commands}\n  width=\"100%\" value={selected} onValueChange={setSelected}\n  input={<CommandPaletteInput label=\"Search collection commands\" hasAutoFocus={false} />}\n  footer={<CommandPaletteFooter>Arrow keys to navigate · Enter to select</CommandPaletteFooter>}\n  emptySearchText={<CommandPaletteEmpty>No matching command.</CommandPaletteEmpty>} />"
+  },
+  {
+    "id": "complex-selector",
+    "name": "ComplexSelector",
+    "category": "Inputs",
+    "covers": [
+      "ComplexSelector"
+    ],
+    "description": "A rich access picker using the public render function to commit a value and close the popover.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<ComplexSelector label=\"Collection access\" value={choice} onChange={setChoice} triggerLabel={choice}>\n  {(value, onChange, close) => <div className=\"demo-stack\">\n    {['Private', 'Team', 'Public'].map(label => <Button key={label}\n      label={label + (value === label ? ' (current)' : '')}\n      onClick={() => {onChange(label); close();}} />)}\n  </div>}\n</ComplexSelector>"
+  },
+  {
+    "id": "context-menu",
+    "name": "Collection actions",
+    "category": "Navigation",
+    "covers": [
+      "ContextMenu",
+      "ContextMenuItem"
+    ],
+    "description": "Open review notes or create a visible local duplicate.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "// Included local composition, not a package export.\nimport {ContextCollectionRefinement} from './LocalCollectionsRefinement';\n<ContextCollectionRefinement />"
+  },
+  {
+    "id": "date-input",
+    "name": "Date input",
+    "category": "Inputs",
+    "description": "Edit a release date or choose it from the calendar.",
+    "material": "Neutral surfaces keep selection and semantic states clear.",
+    "code": "<DateInput label=\"Release date\" value={date} onChange={setDate} />",
+    "covers": [
+      "DateInput"
+    ]
+  },
+  {
+    "id": "date-range-and-time",
+    "name": "DateRangeInput & DateTimeInput",
+    "category": "Inputs",
+    "covers": [
+      "DateRangeInput",
+      "DateTimeInput"
+    ],
+    "description": "A review date window and meeting date/time, with controlled values and clear actions.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<DateRangeInput label=\"Review window\" value={range} onChange={setRange} numberOfMonths={1} hasClear />\n<DateTimeInput label=\"Review meeting\" value={dateTime} onChange={setDateTime} hourFormat=\"24h\" hasClear />"
+  },
+  {
+    "id": "dialog",
+    "name": "Dialog",
+    "category": "Overlays",
+    "description": "Edit a collection name in a focused modal.",
+    "material": "A single dialog lens floats above a scrim; fields retain their own control boundaries.",
+    "code": "<Dialog isOpen={open} onOpenChange={setOpen} width={420}><DialogHeader title=\"Edit collection\" onOpenChange={setOpen} /><TextInput label=\"Collection name\" value={name} onChange={setName} /><Button label=\"Done\" onClick={() => setOpen(false)} /></Dialog>",
+    "covers": [
+      "Dialog",
+      "DialogHeader"
+    ]
+  },
+  {
+    "id": "divider",
+    "name": "Divider",
+    "category": "Layout",
+    "description": "Compare subtle and strong labelled separators.",
+    "material": "A separator is a line, not a translucent surface.",
+    "code": "<Divider label=\"Today\" variant={strong ? \"strong\" : \"subtle\"} />",
+    "covers": [
+      "Divider"
+    ]
+  },
+  {
+    "id": "drawer",
+    "name": "Drawer",
+    "covers": [
+      "Drawer",
+      "DrawerHeader"
+    ],
+    "category": "Overlays",
+    "description": "Inspect and edit collection details in a dismissible side panel.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<Drawer label=\"Collection inspector\" isOpen={open} onOpenChange={setOpen}><DrawerHeader title=\"Collection inspector\" onOpenChange={setOpen} /><Section padding={4}>Inspector content</Section></Drawer>"
+  },
+  {
+    "id": "dropdown-menu",
+    "name": "Dropdown menu",
+    "category": "Overlays",
+    "description": "Choose a collection action and see its local result.",
+    "material": "The popup owns one neutral lens; individual rows remain part of that surface.",
+    "code": "<DropdownMenu button={{label: \"Collection actions\"}} items={[{label: \"Save collection\", onClick: () => setAction(\"Collection saved locally\")}]} />",
+    "covers": [
+      "DropdownMenu"
+    ]
+  },
+  {
+    "id": "dropdown-menu-family",
+    "name": "Collection menu",
+    "category": "Navigation",
+    "covers": [
+      "DropdownMenuItem",
+      "DropdownMenuCheckboxItem",
+      "DropdownMenuDivider",
+      "DropdownMenuRadioGroup",
+      "DropdownMenuRadioItem",
+      "DropdownMenuSubMenu"
+    ],
+    "description": "Sort documents, show dates and organize one local collection.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "// Included local composition, not a package export.\nimport {CollectionMenuRefinement} from './CollectionMenuRefinement';\n<CollectionMenuRefinement />"
+  },
+  {
+    "id": "editorial-content",
+    "name": "Editorial & code",
+    "category": "Typography",
+    "covers": [
+      "Blockquote",
+      "Citation",
+      "Code",
+      "CodeBlock"
+    ],
+    "description": "A quotation, cited reference, inline code, and copyable numbered source block in one reading context.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<Blockquote cite=\"Collection studio notes\">Make the next step clear before adding another layer.</Blockquote>\n<p>Use <Code>contentPadding</Code> for reading space.\n  <Citation number={1} source={{title: 'Astryx public repository', url: 'https://github.com/facebook/astryx'}} />\n</p>\n<CodeBlock title=\"A readable surface\" language=\"tsx\"\n  code={'<Card padding={4}>\\n  <p>Review notes</p>\\n</Card>'}\n  hasLineNumbers hasCopyButton onCopy={() => setCopied(true)} />"
+  },
+  {
+    "id": "empty-collection",
+    "name": "Create a collection",
+    "category": "Data display",
+    "covers": [
+      "EmptyState",
+      "ClickableCard"
+    ],
+    "description": "Create a local collection and open its review notes.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "// Included local composition, not a package export.\nimport {EmptyCollectionRefinement} from './LocalCollectionsRefinement';\n<EmptyCollectionRefinement />"
+  },
+  {
+    "id": "form-field-family",
+    "name": "Prepare a review",
+    "category": "Inputs",
+    "covers": [
+      "Field",
+      "FieldLabel",
+      "FieldStatus",
+      "FileInput",
+      "FormLayout"
+    ],
+    "description": "Name the review, ask a clear question and optionally select a supporting document. Preview the local brief before starting over.",
+    "material": "Native form controls with a clear outcome. Selected files stay on this page and are not read or uploaded.",
+    "code": "// Included local composition, not a package export.\nimport {FieldsRefinement} from './FieldsRefinement';\n<FieldsRefinement />"
+  },
+  {
+    "id": "grid",
+    "name": "Grid & GridSpan",
+    "category": "Layout",
+    "covers": [
+      "Grid",
+      "GridSpan"
+    ],
+    "description": "A two-column card grid with a featured card that can span the entire row.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<Button label=\"Change span\" onClick={() => setFull(!full)} />\n<Grid columns={2} gap={3}>\n  <GridSpan columns={full ? 'full' : 1}><Card padding={4}>Featured collection</Card></GridSpan>\n  <Card padding={4}>Review notes</Card><Card padding={4}>References</Card>\n</Grid>"
+  },
+  {
+    "id": "hover-card",
+    "name": "Hover card",
+    "category": "Overlays",
+    "description": "Preview a teammate by hovering or focusing their name.",
+    "material": "A neutral floating lens holds supplementary profile content.",
+    "code": "<HoverCard label=\"Riley Morgan profile\" touchTrigger=\"tap\" onOpenChange={setOpen} content={<p>Design partner · Evening collection</p>}><Button label=\"Riley Morgan\" variant=\"ghost\" /></HoverCard>",
+    "covers": [
+      "HoverCard"
+    ]
+  },
+  {
+    "id": "icon-button",
+    "name": "Icon button",
+    "category": "Actions",
+    "description": "Copy the collection link.",
+    "material": "A compact neutral control keeps its icon and focus signal legible.",
+    "code": "// Included local composition, not a package export.\nimport {IconButtonPreview} from './demos';\n<IconButtonPreview />",
+    "covers": [
+      "IconButton"
+    ]
+  },
+  {
+    "id": "info-tip",
+    "name": "InfoTip",
+    "covers": [
+      "InfoTip"
+    ],
+    "category": "Feedback",
+    "description": "Focus or hover the information button for concise contextual help.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<InfoTip label=\"About collection visibility\" content=\"Private collections are only visible to you.\" />"
+  },
+  {
+    "id": "native-input-group-time",
+    "name": "Input addons, time & rich options",
+    "category": "Inputs",
+    "description": "Editable URL prefix group, controlled publication time, and composed selector options.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "<InputGroup label=\"Collection address\" description=\"Private collection URL\"><InputGroupText>https://</InputGroupText><TextInput label=\"Address path\" value={slug} onChange={setSlug} /></InputGroup>\n<TimeInput label=\"Publication time\" description=\"24-hour local time\" value={time} onChange={setTime} hourFormat=\"24h\" presentation=\"adaptive-bottom-sheet\" width=\"100%\" hasClear />",
+    "covers": [
+      "InputGroup",
+      "InputGroupText",
+      "TimeInput",
+      "SelectorOption"
+    ]
+  },
+  {
+    "id": "native-layout",
+    "name": "Layout regions & stacks",
+    "category": "Layout",
+    "description": "Bounded workspace with a functional resizable inspector and named regions.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "<Layout header={<LayoutHeader />} start={<LayoutPanel resizable={panel.props} />} content={<LayoutContent />} footer={<LayoutFooter />} />\n<ResizeHandle resizable={panel.props} />",
+    "covers": [
+      "HStack",
+      "VStack",
+      "Stack",
+      "StackItem",
+      "Layout",
+      "LayoutContent",
+      "LayoutHeader",
+      "LayoutFooter",
+      "LayoutPanel",
+      "ResizeHandle",
+      "Section"
+    ]
+  },
+  {
+    "id": "list-input",
+    "name": "ListInput",
+    "covers": [
+      "ListInput"
+    ],
+    "category": "Forms",
+    "description": "A controlled checklist with editable cells, add/remove actions, and reordering.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<ListInput label=\"Release checklist\" value={items} onChange={setItems} getItemKey={item => item.id} createItem={createItem} columns={columns} isReorderable />"
+  },
+  {
+    "id": "log-stream",
+    "name": "LogStream",
+    "covers": [
+      "LogStream"
+    ],
+    "category": "Feedback",
+    "description": "Append and clear local events, inspect warning details, and control tail following.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<LogStream label=\"Local collection activity\" entries={entries} hasTimestamps={false} isFollowing={following} onFollowChange={setFollowing} maxHeight={240} />"
+  },
+  {
+    "id": "native-media-viewer",
+    "name": "Media overlay & lightbox",
+    "category": "Content",
+    "description": "Coastal and forest scenery with readable overlay actions, thumbnails and a zoomable gallery.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "import {MediaPreview} from \"./coreContentDemos\";\n<MediaPreview />",
+    "covers": [
+      "Overlay",
+      "MediaTheme",
+      "Thumbnail",
+      "Lightbox"
+    ]
+  },
+  {
+    "id": "mobile-navigation",
+    "name": "MobileNav & MobileNavToggle",
+    "category": "Navigation",
+    "description": "An AppShell-aware hamburger opens the native mobile drawer with local destinations. Visible below the theme’s 2xl viewport breakpoint.",
+    "material": "The drawer is a native overlay panel with its own backdrop. The responsive toggle disappears above the configured viewport breakpoint; narrow card width alone is not mobile mode.",
+    "covers": [
+      "MobileNav",
+      "MobileNavToggle"
+    ],
+    "code": "// Preview host: .preview-app-shell { height: 360px; min-height: 0; }\n<AppShell className=\"preview-app-shell\" height=\"fill\" topNav={<MobileNavToggle />} mobileNav={{hasToggle: false, breakpoint: '2xl', content: <MobileNav header=\"Explore workspace\">{destinations}</MobileNav>}}>{content}</AppShell>"
+  },
+  {
+    "id": "mobile-tokenizer",
+    "name": "MobileTokenizer",
+    "covers": [
+      "MobileTokenizer"
+    ],
+    "category": "Forms",
+    "description": "Choose reviewers using a searchable touch-oriented sheet and removable tokens.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<MobileTokenizer label=\"Collection reviewers\" searchSource={teammateSource} value={value} onChange={setValue} />"
+  },
+  {
+    "id": "more-actions",
+    "name": "MoreMenu",
+    "category": "Navigation",
+    "description": "Duplicate, pin, archive and restore a local collection with visible state.",
+    "material": "The MoreMenu public target is on its DropdownMenu surface, while the three-dot trigger uses the native Button treatment.",
+    "covers": [
+      "MoreMenu"
+    ],
+    "code": "// Included local composition, not a package export.\nimport {MoreActionsPreview} from './navigationDemos';\n<MoreActionsPreview />"
+  },
+  {
+    "id": "multi-selector",
+    "name": "Multi-selector",
+    "category": "Inputs",
+    "description": "Choose several teams for the next review.",
+    "material": "A neutral field and popup frame solid selected-state signals.",
+    "code": "<MultiSelector label=\"Review teams\" value={audience} onChange={setAudience} options={options} />",
+    "covers": [
+      "MultiSelector"
+    ]
+  },
+  {
+    "id": "number-input",
+    "name": "Number input",
+    "category": "Inputs",
+    "description": "Adjust an edition size within a bounded range.",
+    "material": "Neutral surfaces keep selection and semantic states clear.",
+    "code": "<NumberInput label=\"Edition size\" value={quantity} onChange={setQuantity} min={1} max={100} />",
+    "covers": [
+      "NumberInput"
+    ]
+  },
+  {
+    "id": "document-outline",
+    "name": "Outline",
+    "category": "Navigation",
+    "description": "A controlled same-page outline with real heading targets and nested levels; click to move the active indicator without scrolling the catalog.",
+    "material": "An active rail marks the selected section. Selection does not scroll the page.",
+    "covers": [
+      "Outline"
+    ],
+    "code": "<Outline items={headings} activeId={active} onActiveIdChange={setActive} hasScrollOnClick={false} label=\"Document contents\" />"
+  },
+  {
+    "id": "overflow-navigation",
+    "name": "OverflowList",
+    "category": "Navigation",
+    "description": "A responsive destination row caps visible items and exposes every hidden destination through a working MoreMenu.",
+    "material": "OverflowList owns layout rather than a painted panel. Its children and overflow menu retain native component styling; the two/five-item control makes overflow observable.",
+    "covers": [
+      "OverflowList"
+    ],
+    "code": "<OverflowList minVisibleItems={1} maxVisibleItems={2} overflowRenderer={hidden => <MoreMenu label={hidden.length + ' more destinations'} items={hidden.map(item => ({label: labels[item.index], onClick: () => select(labels[item.index])}))} />}>{buttons}</OverflowList>"
+  },
+  {
+    "id": "collection-pagination",
+    "name": "Pagination",
+    "category": "Navigation",
+    "description": "Three real pages of local collection entries with working numbered and previous/next controls.",
+    "material": "Paging controls keep native selection, focus, and disabled states; the list changes with the current page.",
+    "covers": [
+      "Pagination"
+    ],
+    "code": "<Pagination page={page} onChange={setPage} totalItems={9} pageSize={3} size=\"sm\" />"
+  },
+  {
+    "id": "popover",
+    "name": "Popover",
+    "category": "Overlays",
+    "description": "Read workspace activity and mark it as read.",
+    "material": "One floating neutral lens groups supporting copy and actions.",
+    "code": "<Popover label=\"Workspace activity\" width={260} content={<Button label=\"Mark as read\" onClick={() => setRead(true)} />}><Button label=\"Workspace activity\" /></Popover>",
+    "covers": [
+      "Popover"
+    ]
+  },
+  {
+    "id": "native-power-search",
+    "name": "PowerSearch",
+    "category": "Inputs",
+    "description": "Structured status filters backed by local configuration and result feedback.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "const results = getPowerSearchResults(filters);\n<PowerSearch config={filterConfig} filters={filters} onChange={setFilters} resultCount={results.length} />",
+    "covers": [
+      "PowerSearch"
+    ]
+  },
+  {
+    "id": "native-progress-feedback",
+    "name": "Progress & loading feedback",
+    "category": "Feedback",
+    "description": "Prepare a local draft, cancel safely, review its details and mark it ready.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "import {ProgressPreview} from \"./coreContentDemos\";\n<ProgressPreview />",
+    "covers": [
+      "Stepper",
+      "Step",
+      "StatusDot",
+      "Spinner",
+      "Skeleton",
+      "Timer"
+    ]
+  },
+  {
+    "id": "progress-bar",
+    "name": "Progress bar",
+    "category": "Feedback",
+    "description": "Advance and reset a simulated local upload.",
+    "material": "The progress fill is a solid signal rather than a transparent lens.",
+    "code": "<ProgressBar label=\"Collection upload\" value={progress} />\n<Button label=\"Advance upload\" onClick={() => setProgress(value => Math.min(100, value + 20))} />",
+    "covers": [
+      "ProgressBar"
+    ]
+  },
+  {
+    "id": "radial-chart",
+    "name": "Radial chart",
+    "category": "Data visualization",
+    "covers": [
+      "RadialChart"
+    ],
+    "description": "A real radial container with native slice marks, percentage labels and a pie/donut switch.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "<RadialChart data={slices} valueKey=\"value\" labelKey=\"label\" innerRadius={donut ? 0.6 : 0}>\n  <RadialSlice colors={colors} labels />\n</RadialChart>"
+  },
+  {
+    "id": "radio-list",
+    "name": "Radio list",
+    "category": "Inputs",
+    "description": "Select one access policy for a collection.",
+    "material": "The selected radio stays solid so the choice is distinct from the backdrop.",
+    "code": "<RadioList label=\"Collection access\" value={access} onChange={setAccess}><RadioListItem value=\"invited\" label=\"Invited people\" /><RadioListItem value=\"workspace\" label=\"Workspace\" /></RadioList>",
+    "covers": [
+      "RadioList",
+      "RadioListItem"
+    ]
+  },
+  {
+    "id": "rich-text-editor",
+    "name": "RichTextEditor",
+    "covers": [
+      "RichTextEditor",
+      "RichTextEditorAutoLinkPlugin",
+      "RichTextEditorToolbar",
+      "RichTextView"
+    ],
+    "category": "Forms",
+    "description": "Author formatted notes with a real toolbar, automatic links, and a synchronized read-only view.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "heavy": true,
+    "code": "<RichTextEditor label=\"Collection notes\" defaultValue={initialRichText} onChange={state => setValue(JSON.stringify(state.toJSON()))} toolbar={<RichTextEditorToolbar />} plugins={<RichTextEditorAutoLinkPlugin />} /><RichTextView value={value} />"
+  },
+  {
+    "id": "sankey-chart",
+    "name": "Sankey flow",
+    "category": "Data visualization",
+    "covers": [
+      "SankeyChart"
+    ],
+    "description": "Balanced local workflow data rendered with actual native ribbons, nodes and labels.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "<SankeyChart nodes={nodes} links={links} height={285}>\n  <SankeyLink /><SankeyNode /><SankeyLabel />\n</SankeyChart>"
+  },
+  {
+    "id": "schedule",
+    "name": "Schedule",
+    "covers": [
+      "Schedule"
+    ],
+    "category": "Data",
+    "description": "Navigate a three-day agenda of authored local events in an explicit UTC timezone.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "heavy": true,
+    "code": "<Schedule view={scheduleView} events={scheduleEvents} date={date} onChangeDate={setDate} timezoneID=\"UTC\" />"
+  },
+  {
+    "id": "native-scrollable-area",
+    "name": "ScrollableArea",
+    "category": "Layout",
+    "description": "Named bounded activity viewport with contained overscroll and real list content.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "<ScrollableArea label=\"Document activity\" height={160} overscroll=\"contain\" padding={3}>{activity}</ScrollableArea>",
+    "covers": [
+      "ScrollableArea"
+    ]
+  },
+  {
+    "id": "segmented-control",
+    "name": "Collection views",
+    "category": "Inputs",
+    "description": "Switch the same documents between grid, list and table.",
+    "material": "One collection, three useful presentations.",
+    "code": "// Included local composition, not a package export.\nimport {CollectionViewRefinement} from './CollectionViewRefinement';\n<CollectionViewRefinement />",
+    "covers": [
+      "SegmentedControl",
+      "SegmentedControlItem"
+    ]
+  },
+  {
+    "id": "selection-indicators",
+    "name": "Selection indicators",
+    "category": "Inputs",
+    "covers": [
+      "CheckIndicator",
+      "CheckboxIndicator"
+    ],
+    "description": "Decorative selected, unselected, and mixed visuals driven by a real state-changing button.",
+    "material": "Translucent surfaces with clear selected and semantic states.",
+    "code": "<Button label=\"Toggle selection\" onClick={() => setSelected(!selected)} />\n<CheckIndicator state={selected ? 'checked' : 'unchecked'} />\n<CheckboxIndicator state={selected ? 'checked' : 'unchecked'} />\n<CheckboxIndicator state=\"indeterminate\" />"
+  },
+  {
+    "id": "native-selection-tools",
+    "name": "Selection, tokens & toolbar",
+    "category": "Inputs",
+    "description": "Toggle review inclusion, change density, and remove labels.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "<SelectableCard label=\"Include editorial review\" isSelected={selected} onChange={setSelected} padding={density === \"compact\" ? 2 : 4}>\n  <VStack gap={density === \"compact\" ? 1 : 3}>\n    <Text>Editorial review</Text>\n    <Text>Keep the next step clear. Show the draft before approval.</Text>\n  </VStack>\n</SelectableCard>\n<ToggleButtonGroup type=\"single\" label=\"Density\" value={density} onChange={value => {if (value) setDensity(value);}}>\n  <ToggleButton value=\"compact\" label=\"Compact\" />\n  <ToggleButton value=\"comfortable\" label=\"Comfortable\" />\n</ToggleButtonGroup>",
+    "covers": [
+      "SelectableCard",
+      "RadioIndicator",
+      "ToggleButtonGroup",
+      "Toolbar",
+      "Token"
+    ]
+  },
+  {
+    "id": "selector",
+    "name": "Selector",
+    "category": "Inputs",
+    "description": "Choose the team responsible for a collection.",
+    "material": "Neutral surfaces keep selection and semantic states clear.",
+    "code": "<Selector label=\"Owning team\" value={team} onChange={setTeam} options={options} />",
+    "covers": [
+      "Selector"
+    ]
+  },
+  {
+    "id": "side-navigation",
+    "name": "SideNav family",
+    "category": "Navigation",
+    "description": "A workspace sidebar with a workspace-switching heading menu, nested sections, selection, disabled items, and a working collapsed rail.",
+    "material": "Open the workspace heading to switch teams; expand sections to explore.",
+    "covers": [
+      "SideNav",
+      "SideNavCollapseButton",
+      "SideNavHeading",
+      "SideNavItem",
+      "SideNavSection",
+      "NavHeadingMenu"
+    ],
+    "code": "<SideNav collapsible={{isCollapsed, onCollapsedChange, hasButton: false}} header={<SideNavHeading heading=\"Studio\" menu={<NavHeadingMenu><NavHeadingMenuItem label=\"Design studio\" onClick={selectWorkspace} /></NavHeadingMenu>} />} footerIcons={<SideNavCollapseButton />}><SideNavSection title=\"Workspace\"><SideNavItem label=\"Collections\" collapsible><SideNavItem label=\"Materials\" onClick={selectMaterials} /></SideNavItem></SideNavSection></SideNav>"
+  },
+  {
+    "id": "slider",
+    "name": "Artwork comparison",
+    "category": "Inputs",
+    "description": "Compare the original artwork with a brightness adjustment.",
+    "material": "A native slider with a direct visual result.",
+    "code": "// Included local composition, not a package export.\nimport {ArtBrightnessRefinement} from './ArtBrightnessRefinement';\n<ArtBrightnessRefinement />",
+    "covers": [
+      "Slider"
+    ]
+  },
+  {
+    "id": "stat",
+    "name": "Stat",
+    "covers": [
+      "Stat"
+    ],
+    "category": "Data",
+    "description": "Illustrative metrics with direction and sentiment-aware change indicators.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<Stat label=\"Open issues\" value=\"4\" delta={{value: \"−3\", direction: \"down\", sentiment: \"positive\"}} />"
+  },
+  {
+    "id": "svg-icon",
+    "name": "SVGIcon",
+    "covers": [
+      "SVGIcon"
+    ],
+    "category": "Content",
+    "description": "Switch a public heart icon definition between five native visual variations.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<SVGIcon icon={heartIcon} variation={variation} size=\"lg\" color=\"accent\" aria-hidden=\"true\" />"
+  },
+  {
+    "id": "switch",
+    "name": "Switch",
+    "category": "Inputs",
+    "description": "Toggle immediate workspace preferences.",
+    "material": "The enabled track and thumb remain solid rather than blurring the selected state.",
+    "code": "<Switch label=\"Sync collections\" value={sync} onChange={setSync} labelPosition=\"start\" labelSpacing=\"spread\" />",
+    "covers": [
+      "Switch"
+    ]
+  },
+  {
+    "id": "native-table-composition",
+    "name": "Document review",
+    "category": "Data",
+    "description": "Select documents, update their review status and undo local changes.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "// Included local composition, not a package export.\nimport {TableReviewRefinement} from './TableReviewRefinement';\n<TableReviewRefinement />",
+    "covers": [
+      "Table",
+      "TableHeader",
+      "TableHeaderCell",
+      "TableBody",
+      "TableRow",
+      "TableCell",
+      "TableFooter",
+      "TableSelectionToolbar"
+    ]
+  },
+  {
+    "id": "tab-overflow-menu",
+    "name": "TabMenu",
+    "category": "Navigation",
+    "description": "Switch between review documents, activity and reviewers; adjust content spacing across views.",
+    "material": "The tab indicator and overflow panel are native; the selected tab changes local content rather than navigating away.",
+    "covers": [
+      "TabMenu"
+    ],
+    "code": "<TabList value={tab} onChange={setTab} aria-label=\"Collection views\"><Tab value=\"overview\" label=\"Overview\" /><TabMenu label=\"More views\" options={[{value: 'activity', label: 'Activity'}, {value: 'members', label: 'Members'}]} /></TabList>"
+  },
+  {
+    "id": "tabs",
+    "name": "Tabs",
+    "category": "Navigation",
+    "description": "Move between notes and activity with linked tab panels.",
+    "material": "The tab rail groups navigation; selection stays distinct from the neutral surface.",
+    "code": "<TabList role=\"tablist\" aria-label=\"Collection details\" value={tab} onChange={setTab} hasDivider={false}><Tab id={`${id}-notes`} panelId={`${id}-panel`} value=\"notes\" label=\"Notes\" /><Tab id={`${id}-activity`} panelId={`${id}-panel`} value=\"activity\" label=\"Activity\" /></TabList>\n<div role=\"tabpanel\" id={`${id}-panel`} aria-labelledby={`${id}-${tab}`} tabIndex={0}>{tab === \"notes\" ? \"Collection notes\" : \"Recent activity\"}</div>",
+    "covers": [
+      "TabList",
+      "Tab"
+    ]
+  },
+  {
+    "id": "text-area",
+    "name": "Text area",
+    "category": "Inputs",
+    "description": "Write a longer collection note with a live character count.",
+    "material": "Neutral surfaces keep selection and semantic states clear.",
+    "code": "<TextArea label=\"Collection notes\" value={notes} onChange={setNotes} />",
+    "covers": [
+      "TextArea"
+    ]
+  },
+  {
+    "id": "text-input",
+    "name": "Text input",
+    "category": "Inputs",
+    "description": "Rename a collection or clear the field.",
+    "material": "Neutral surfaces keep selection and semantic states clear.",
+    "code": "<TextInput label=\"Collection name\" value={name} onChange={setName} hasClear placeholder=\"Name your collection\" />",
+    "covers": [
+      "TextInput"
+    ]
+  },
+  {
+    "id": "native-markdown",
+    "name": "Text, Markdown & metadata",
+    "category": "Content",
+    "description": "Semantic prose, syntax-highlighted code, checklist rows, and record metadata.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "<SyntaxTheme theme={githubDark}><Markdown headingLevelStart={5}>{source}</Markdown></SyntaxTheme>\n<MetadataList><MetadataListItem label=\"Updated\"><Timestamp value=\"2026-10-01\" /></MetadataListItem></MetadataList>",
+    "covers": [
+      "Heading",
+      "Text",
+      "Link",
+      "Kbd",
+      "Markdown",
+      "SyntaxTheme",
+      "List",
+      "ListItem",
+      "Item",
+      "Icon",
+      "MetadataList",
+      "MetadataListItem",
+      "Timestamp"
+    ]
+  },
+  {
+    "id": "native-content-providers",
+    "name": "Theme, locale & link providers",
+    "category": "System",
+    "description": "Scoped theme switching, localized selector copy, native link adapter, and screen-reader context.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "<Theme theme={theme} mode={mode}><InternationalizationProvider locale=\"en\" overrides={overrides}><LinkProvider component=\"a\">{content}</LinkProvider></InternationalizationProvider></Theme>",
+    "covers": [
+      "Theme",
+      "InternationalizationProvider",
+      "LinkProvider",
+      "VisuallyHidden"
+    ]
+  },
+  {
+    "id": "native-toast-content",
+    "name": "Toast & layer context",
+    "category": "Feedback",
+    "description": "A saved notification you can dismiss and show again.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "<LayerProvider><Toast type=\"info\" autoHideDuration={5000} body=\"Collection saved\" isAutoHide={false} onDismiss={() => setVisible(false)} /></LayerProvider>",
+    "covers": [
+      "Toast",
+      "LayerProvider"
+    ]
+  },
+  {
+    "id": "toggle-button",
+    "name": "Toggle button",
+    "category": "Actions",
+    "description": "Pin and unpin a collection with a persistent pressed state.",
+    "material": "An unpressed neutral control becomes a clear selected signal when pressed.",
+    "code": "<ToggleButton label=\"Pin collection\" isPressed={pinned} onPressedChange={setPinned} />",
+    "covers": [
+      "ToggleButton"
+    ]
+  },
+  {
+    "id": "tokenizer",
+    "name": "Tokenizer",
+    "category": "Inputs",
+    "description": "Search local teammates and add or remove reviewer tokens.",
+    "material": "A shared input lens contains removable selections and a neutral search popup.",
+    "code": "<Tokenizer label=\"Reviewers\" value={reviewers} onChange={setReviewers} searchSource={peopleSource} hasEntriesOnFocus hasClear debounceMs={0} placeholder=\"Search teammates\" />",
+    "covers": [
+      "Tokenizer"
+    ]
+  },
+  {
+    "id": "tooltip",
+    "name": "Tooltip",
+    "category": "Overlays",
+    "description": "Reveal a short access explanation on hover or focus.",
+    "material": "A compact neutral overlay keeps supplementary text separate from the backdrop.",
+    "code": "<Tooltip content=\"Only invited people can view this collection.\" isOpen={open} onOpenChange={setOpen} focusTrigger=\"always\" touchTrigger=\"tap\"><Button label=\"About collection access\" variant=\"ghost\" /></Tooltip>",
+    "covers": [
+      "Tooltip"
+    ]
+  },
+  {
+    "id": "top-navigation",
+    "name": "TopNav & Resources menu",
+    "category": "Navigation",
+    "description": "Product identity, a circular NavIcon, selectable local destinations, and a native rich Resources dropdown.",
+    "material": "TopNav, heading, and item targets retain native theme styling. TopNavMenu targets its trigger, not the painted popover panel. Open Resources to inspect the panel.",
+    "covers": [
+      "TopNav",
+      "TopNavHeading",
+      "TopNavItem",
+      "TopNavMenu",
+      "NavIcon"
+    ],
+    "code": "<TopNav heading={<TopNavHeading heading=\"Studio\" logo={<NavIcon icon={<Icon icon=\"viewColumns\" />} />} />} endContent={<TopNavMenu label=\"Resources\" items={[{title: 'Documentation', description: 'Guides and component APIs', icon: <DocumentationIllustration />, onClick: selectDocs}, {title: 'Changelog', description: 'Recent product updates', icon: <UpdatesIllustration />, onClick: selectChangelog}]} />} />\n<nav aria-label=\"Workspace destinations\"><OverflowList minVisibleItems={0} overflowRenderer={hidden => <MoreMenu label=\"More workspace destinations\" alignment=\"end\" items={hidden.map(item => ({label: labels[item.index], onClick: () => selectPage(labels[item.index])}))} />}>{labels.map(label => <TopNavItem key={label} label={label} href=\"#\" isSelected={page === label} onClick={event => {event.preventDefault(); selectPage(label);}} />)}</OverflowList></nav>\n// labels = ['Overview', 'Library']; illustrations are caller-authored SVGs using currentColor."
+  },
+  {
+    "id": "mega-navigation",
+    "name": "TopNavMegaMenu family",
+    "category": "Navigation",
+    "description": "Open Products for a native mega-menu composition with rich destination items and a featured card with a local action.",
+    "material": "The mega-menu public target belongs to the trigger, not the painted panel. Rich items and the featured card are only visible after opening Products.",
+    "covers": [
+      "TopNavMegaMenu",
+      "TopNavMegaMenuItem",
+      "TopNavMegaMenuFeaturedCard"
+    ],
+    "code": "<TopNav startContent={<TopNavMegaMenu label=\"Products\" items={<TopNavMegaMenuItem title=\"Materials\" description=\"Surface foundations\" onClick={selectMaterials} />} featured={<TopNavMegaMenuFeaturedCard title=\"Build your workspace\"><Button label=\"Explore starter\" onClick={selectStarter} /></TopNavMegaMenuFeaturedCard>} />} />"
+  },
+  {
+    "id": "tour",
+    "name": "Tour",
+    "covers": [
+      "Tour",
+      "TourStep"
+    ],
+    "category": "Overlays",
+    "description": "Start, advance, dismiss, and restart a two-step tour anchored to real controls.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "// Included local composition, not a package export.\nimport {TourPreview} from './extensionDemos';\n<TourPreview />"
+  },
+  {
+    "id": "transfer-list",
+    "name": "TransferList",
+    "covers": [
+      "TransferList",
+      "TransferListSelector"
+    ],
+    "category": "Forms",
+    "description": "Choose collection details and compare Apply-first with immediate changes.",
+    "material": "Public extension components inherit the surrounding Vesper tokens; semantic colors remain distinct.",
+    "code": "<TransferListSelector label=\"Visible collection fields\" width=\"min(41rem, 100cqi)\" options={fieldOptions} value={fields} onChange={setFields} commitBehavior=\"staged\" /><ComplexSelector label=\"Custom field picker\" value={customFields} onChange={setCustomFields}>{(_value, commit) => <TransferList label=\"Custom visible fields\" options={fieldOptions} value={customFields} onChange={commit} />}</ComplexSelector> // Immediate wrapper: container: vesper-transfer-list / inline-size"
+  },
+  {
+    "id": "library-tree",
+    "name": "TreeList",
+    "category": "Navigation",
+    "description": "Expandable library branches with native connector guides, current selection, and local leaf actions.",
+    "material": "Expanded branches reveal the library hierarchy.",
+    "covers": [
+      "TreeList"
+    ],
+    "code": "<TreeList header=\"Library\" items={[{id: 'foundations', label: 'Foundations', isExpanded: true, children: [{id: 'surfaces', label: 'Surfaces', isSelected, onClick: selectSurfaces}]}]} />"
+  },
+  {
+    "id": "native-typeahead",
+    "name": "Reviewer lookup",
+    "category": "Inputs",
+    "description": "Search a delayed local directory, handle unavailable results and retry without losing the chosen reviewer.",
+    "material": "Readable surfaces preserve selected and semantic states.",
+    "code": "// Included local composition, not a package export.\nimport {ReviewerLookupRefinement} from './ReviewerLookupRefinement';\n<ReviewerLookupRefinement />",
+    "covers": [
+      "Typeahead",
+      "TypeaheadItem"
+    ]
+  },
+  {
+    "id": "vega-chart",
+    "name": "Vega chart",
+    "category": "Data visualization",
+    "heavy": true,
+    "covers": [
+      "VegaChart"
+    ],
+    "description": "A local Vega-Lite bar specification compiled and rendered by the real Vega runtime.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "<VegaChart spec={{$schema: 'https://vega.github.io/schema/vega-lite/v6.json',\n  data: {values: weekly}, mark: 'bar',\n  encoding: {x: {field: 'day', type: 'ordinal'}, y: {field: 'value', type: 'quantitative'}}\n}} viewOptions={{renderer: 'svg'}} onError={reportError} />"
+  },
+  {
+    "id": "chart-heatmap-gl",
+    "name": "WebGL heatmap",
+    "category": "Data visualization",
+    "heavy": true,
+    "covers": [
+      "ChartHeatmapGL"
+    ],
+    "description": "Twelve actual GPU cells with an explicit 0–10 color domain and readable row data.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "<LabChart data={heatCells} xKey=\"day\" yKeys={['value']}>\n  <ChartHeatmapGL xKey=\"day\" yKey=\"row\" valueKey=\"value\" colorRange={palette.sequential.blue(5)} domain={[0, 10]} />\n</LabChart>"
+  },
+  {
+    "id": "chart-stream-gl",
+    "name": "WebGL ring buffer",
+    "category": "Data visualization",
+    "heavy": true,
+    "covers": [
+      "ChartStreamGL"
+    ],
+    "description": "Replay a static sequence through the actual imperative GPU ring buffer; no simulated live feed.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "<ChartStreamGL handleRef={handle} color={color} bufferSize={32} />\n// After mount:\nhandle.current.clear();\nsamples.forEach(d => handle.current.push(d.x, d.value));"
+  },
+  {
+    "id": "chart-dot-gl",
+    "name": "WebGL scatter & picking",
+    "category": "Data visualization",
+    "heavy": true,
+    "covers": [
+      "ChartDotGL",
+      "ChartDotGLInteractive"
+    ],
+    "description": "GPU scatter and GPU color-picking on the same nine fixed points.",
+    "material": "Data marks remain sharp on a readable chart surface; no blur is applied to chart data.",
+    "code": "<LabChart data={samples} xKey=\"x\" yKeys={['value']} xDomain={[-0.5, 8.5]}>\n  {picking ? <ChartDotGLInteractive dataKey=\"value\" color={color} size={14} />\n    : <ChartDotGL dataKey=\"value\" color={color} size={14} />}\n</LabChart>"
+  },
+  {
+    "id": "loading-text",
+    "name": "Reading shimmer",
+    "category": "Loading",
+    "description": "Text carries the progress while notes become a concise summary.",
+    "material": "A moving highlight within text; readable without motion.",
+    "code": "// Included local composition, not a package export.\nimport {TextLoadingPreview} from './LoadingStudies';\n<TextLoadingPreview />"
+  },
+  {
+    "id": "loading-tool",
+    "name": "Document shimmer",
+    "category": "Loading",
+    "description": "A filled document icon signals a finite read with recovery.",
+    "material": "The highlight belongs to the icon, not an extra panel.",
+    "code": "// Included local composition, not a package export.\nimport {ToolLoadingPreview} from './LoadingStudies';\n<ToolLoadingPreview />"
+  },
+  {
+    "id": "loading-cube",
+    "name": "Composing grid",
+    "category": "Loading",
+    "description": "A small sequential grid accompanies a local reply draft.",
+    "material": "A compact 3 × 3 indicator leaves the content in focus.",
+    "code": "// Included local composition, not a package export.\nimport {CubeLoadingPreview} from './LoadingStudies';\n<CubeLoadingPreview />"
+  },
+  {
+    "id": "chat-approval",
+    "name": "Review before action",
+    "category": "Chat",
+    "description": "Inspect a draft revision, accept or keep the original, undo, then approve locally.",
+    "material": "Native controls with a finite, text-carried approval state.",
+    "code": "// Included local composition, not a package export.\nimport {ApprovalStudy} from './ApprovalStudy';\n<ApprovalStudy />"
+  },
+  {
+    "id": "chat-parallel-tools",
+    "name": "Parallel tool recovery",
+    "category": "Chat",
+    "description": "Gather two sources, inspect results, recover a failed step without rerunning completed work, or stop safely.",
+    "material": "Native tool-call rows with partial completion and targeted retry.",
+    "code": "import {ParallelToolsStudy} from './ToolFeedbackStudies';\n<ParallelToolsStudy />"
+  },
+  {
+    "id": "chat-response-feedback",
+    "name": "Response feedback",
+    "category": "Chat",
+    "description": "Rate a response, explain what should improve, then edit or remove the local feedback.",
+    "material": "A reversible feedback loop with a reason and optional note.",
+    "code": "import {ResponseFeedbackStudy} from './ToolFeedbackStudies';\n<ResponseFeedbackStudy />"
+  }
+]
