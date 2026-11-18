@@ -1,0 +1,19 @@
+import fs from 'node:fs';
+import ts from 'typescript';
+import assert from 'node:assert/strict';
+const compile=p=>ts.transpileModule(fs.readFileSync(p,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+let ro; globalThis.ResizeObserver=class {constructor(cb){this.cb=cb;ro=this} observe(){} unobserve(){} disconnect(){} };
+const ob={};new Function('exports',compile('packages/core/src/utils/sharedResizeObserver.ts'))(ob);
+let state=false,refs=[],cursor=0,effect,resize=0;
+const react={useState:()=>[state,v=>state=v],useRef:v=>refs[cursor++]??(refs[cursor-1]={current:v}),useCallback:f=>f,useEffect:f=>effect=f};
+const ex={};new Function('exports','require',compile('packages/core/src/Chat/useChatNewMessages.ts'))(ex,id=>id==='react'?react:ob);
+const render=()=>{cursor=0;return ex.useChatNewMessages({isLocked:false,onResize:()=>resize++})};
+let h=render();const elem=()=>({messages:[{}],getElementsByClassName(){return this.messages}});const a=elem(),b=elem();const fire=e=>ro.cb([{target:e}]);let n=0;const check=(v,w,msg)=>{assert.equal(v,w,msg);n++};
+h.contentRef(a);check(state,false,'baseline before synchronous callback');check(resize,1,'initial callback retained');
+a.messages.push({});fire(a);check(state,true,'append');h.contentRef(b);check(state,false,'new element resets');
+a.messages.push({});fire(a);check(state,false,'old observer removed');b.messages.push({});fire(b);check(state,true,'new observer works');
+h.contentRef(b);check(state,true,'same-element ref preserves unread');h.contentRef(null);fire(b);check(state,true,'detach prevents stale callback');h.contentRef(b);check(state,false,'reattach rebaselines');b.messages.push({});fire(b);check(state,true,'reattach keeps append detection');h.dismiss();check(state,false,'dismiss');
+const cleanup=effect();cleanup();b.messages.push({});fire(b);check(state,false,'cleanup unsubscribes');
+// Synthetic effect replay check; not mounted React StrictMode verification.
+effect();b.messages.push({});fire(b);check(state,true,'effect replay restores observer');
+console.log(`${n} independent shared-observer lifecycle checks passed; synthetic React/ResizeObserver, no browser`);

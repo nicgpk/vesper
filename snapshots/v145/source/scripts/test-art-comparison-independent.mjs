@@ -1,0 +1,8 @@
+import assert from 'node:assert/strict';import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export * from './vesper/site/ArtBrightnessRefinement'; export {createElement} from 'react';export {renderToString} from 'react-dom/server';");
+for(const [input,expected] of [[-2,0],[0,0],[50,50],[100,100],[102,100],[NaN,50],[Infinity,50]])assert.equal(m.boundedReveal(input),expected);
+for(const split of [0,50,100])for(const value of [40,100,140]){
+ const h=m.renderToString(m.createElement(m.ArtworkComparison,{value,reveal:split}));assert(h.includes(`clip-path:inset(0 ${100-split}% 0 0)`));assert.equal(h.includes('class="ab-divider"'),split>0&&split<100);if(split>0&&split<100)assert(h.includes(`left:${split}%`));assert.equal(h.includes('>Original</span>'),split>0);assert.equal(h.includes('>Adjusted</span>'),split<100);assert(h.includes(`filter:brightness(${value/100})`));assert.equal((h.match(/<img /g)||[]).length,2);assert.equal((h.match(/alt="Abstract pigment composition"/g)||[]).length,1);assert(h.includes('aria-hidden="true"'));if(split>0&&split<100)assert(h.includes(`Original occupies ${split} percent`));else assert(h.toLowerCase().includes(split===0?'adjusted artwork only':'original artwork only'));
+}
+const html=m.renderToString(m.createElement(m.ArtBrightnessRefinement)).replace(/<!--.*?-->/g,'');assert(html.includes('Comparison split'));assert(html.includes('Artwork brightness'));assert(html.includes('Reset brightness'));assert(html.includes('75% brightness'));
+console.log('Independent comparison clamp/9 endpoint-brightness SSR combinations/native accessible control labels pass. Source and SSR only; no rendered clipping or gesture verification.');

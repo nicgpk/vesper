@@ -1,0 +1,5 @@
+.cf-feedback{display:flex;flex-direction:column;gap:var(--study-section-gap,16px);width:100%;min-width:0}
+.cf-feedback .cf-reactions{display:flex;align-items:center;flex-wrap:wrap;gap:var(--study-control-gap,8px)}
+.cf-feedback .cf-status{margin:0;font-size:13px;line-height:1.55;overflow-wrap:anywhere}
+.cf-feedback .cf-note{font-size:11px;line-height:1.5;opacity:.75}
+@media(forced-colors:active){.cf-feedback .cf-note{opacity:1;color:CanvasText}}
