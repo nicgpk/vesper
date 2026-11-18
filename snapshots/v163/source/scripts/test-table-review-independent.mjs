@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export * from './vesper/site/TableReviewRefinement';export {libraryDemos} from './vesper/site/library-demos';export {createElement} from 'react';export {renderToString} from 'react-dom/server';");
+const r=m.tableReviewReducer,s=m.initialTableReview;const baseline=JSON.stringify(s);
+assert.equal(r(s,{type:'select',id:'missing',checked:true}),s);assert.equal(r(s,{type:'undo'}),s);
+let both=r(s,{type:'select',id:'guide',checked:true});both=r(both,{type:'select',id:'guide',checked:true});assert.equal(both.selected.length,2);assert.equal(m.pendingReviewCount(both),2);
+const reviewed=r(both,{type:'review'});assert(reviewed.rows.every(x=>x.status==='Reviewed'));assert.deepEqual(reviewed.selected,[]);assert.equal(reviewed.history.length,1);assert.equal(r(reviewed,{type:'review'}),reviewed);
+const allSelected=r(r(reviewed,{type:'select',id:'release',checked:true}),{type:'select',id:'guide',checked:true});assert.equal(m.pendingReviewCount(allSelected),0);assert.equal(r(allSelected,{type:'review'}),allSelected);
+const undo=r(allSelected,{type:'undo'});assert.deepEqual(undo.rows,s.rows);assert.deepEqual(undo.selected,both.selected);assert.equal(undo.history.length,0);
+const first=r(s,{type:'review'});const second=r(r(first,{type:'select',id:'guide',checked:true}),{type:'review'});assert.equal(second.history.length,2);const back=r(second,{type:'undo'});assert.deepEqual(back.rows,first.rows);assert.deepEqual(back.selected,['guide']);const original=r(back,{type:'undo'});assert.deepEqual(original.rows,s.rows);assert.deepEqual(original.selected,s.selected);assert.equal(JSON.stringify(s),baseline);
+const html=m.renderToString(m.createElement(m.TableReviewRefinement));for(const text of ['Collection documents','Select Release notes','Select Usage guide','Mark reviewed','Changes stay on this page.','role="status"','<tfoot'])assert(html.includes(text));
+const entry=m.libraryDemos.find(x=>x.id==='native-table-composition');assert.equal(entry.Preview,m.TableReviewRefinement);for(const name of ['Table','TableBody','TableCell','TableFooter','TableHeader','TableHeaderCell','TableRow','TableSelectionToolbar'])assert(entry.covers.includes(name));
+console.log('Independent table-review reducer/SSR/coverage checks pass: invalid selection, deduplication, real status updates, no-op review, multi-level undo restoring selection, baseline immutability. No browser.');

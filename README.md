@@ -4,29 +4,31 @@
 
 A React interaction gallery with glass-like surfaces, photographic Dunes, Ocean and Forest themes, chat and tool interfaces, and motion studies.
 
-## Latest version: v153
+## Latest version: v163
 
-- [Native source, themes and tests](snapshots/v153/source/)
-- [Compiled demo](snapshots/v153/hosted/)
-- [File integrity inventory](snapshots/v153/SHA256SUMS.json)
+- [Native source, themes and tests](snapshots/v163/source/)
+- [Compiled demo](snapshots/v163/hosted/)
+- [File integrity inventory](snapshots/v163/SHA256SUMS.json)
 
-The current gallery contains 106 studies and 228 components. Versioned snapshots preserve earlier work; the latest source is in `snapshots/v153/source`, not the repository-root packages. The root monorepo and its original upstream documentation remain below for provenance.
+The gallery has 100 visible studies, 107 preserved component routes and 228 native components. Related controls are grouped into interactive study families. Earlier snapshots and the root monorepo remain unchanged; current gallery source is in `snapshots/v163/source`.
 
 ### Preview locally
 
-Serve `snapshots/v153/hosted/` using any static HTTP server. For example, from the repository root:
-
 ```sh
-python -m http.server 8000 --directory snapshots/v153/hosted
+python -m http.server 8000 --directory snapshots/v163/hosted
 ```
 
-Open http://localhost:8000. The hosted files are the exact checked-in build. The standalone source includes its dependency locks, local packages and build scripts; it is not an independently published npm package.
+Open http://localhost:8000. The hosted files are the exact checked-in build. The standalone source contains dependency locks, local packages and build scripts; it is not a published npm package.
 
-### Validation and deployment
+### Changes and validation
 
-The source checks, layout/scenery contracts, 15 avatar/progress checks, 54 segmented-control geometry checks, seven catalog/native tests and gallery rebuild passed. The rebuild matches the hosted files byte-for-byte. Browser rendering, composited glass, GPU behavior, focus and native wrapping remain unverified; build warnings include React key-spread and StyleX side-effect notices.
+v163 includes consistent composer corners, balanced featured collections, consolidated study families, result-shaped simulated loading, responsive scene images and removal of duplicate image outputs. The three 768px scene derivatives total 256,006 bytes versus 1,125,204 bytes for the originals; actual network selection depends on viewport and pixel density. Originals are retained.
 
-GitHub Pages publishes only `snapshots/v153/hosted/` through `.github/workflows/pages-deploy.yml` on `vesper/baseline`. Source and historical snapshots remain in Git, not in the Pages artifact.
+Build, source/SSR, state/recovery, search/coverage and asset integrity checks passed. Browser rendering, composited glass, motion, native wrapping and actual loading speed are not verified. Existing React key-spread and StyleX side-effect warnings remain.
+
+The generative UI gallery example is explicitly simulated with four authored response types, not live AI. Unregistered integration candidates are not enabled and contain no provider credentials.
+
+GitHub Pages publishes only `snapshots/v163/hosted/` through `.github/workflows/pages-deploy.yml` on `vesper/baseline`. Source and historical snapshots remain in Git, not in the Pages artifact.
 
 ---
 

@@ -1,0 +1,7 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export {providerRegionTheme,ProviderPreview} from './vesper/site/coreContentDemos';export {dunesPalettes} from './themes/dunes-palettes';export {createElement} from 'react';export {renderToString} from 'react-dom/server';export {Theme} from '@astryxdesign/core/theme';");
+for(const scene of ['sand','ocean','forest'])for(const mode of ['light','dark'])for(const override of [null,true,false]){const ambient=m.dunesPalettes[scene][mode];const target=m.providerRegionTheme(ambient.name,mode,override);assert.equal(target,m.dunesPalettes[scene][override===null?mode:override?'dark':'light']);}
+assert.equal(m.providerRegionTheme('vesper-contrast','dark',null),m.dunesPalettes.sand.contrast);
+const html=m.renderToString(m.createElement(m.Theme,{theme:m.dunesPalettes.ocean.dark,mode:'dark'},m.createElement(m.ProviderPreview)));assert(html.includes('provider-region'));assert(html.includes('Use light region'));assert(html.includes('Localized selector'));assert(html.includes('Explore the layout composition'));
+const css=fs.readFileSync('apps/storybook/vesper/site/provider-region.css','utf8');assert(css.includes('var(--vesper-glass-panel)'));assert(css.includes('prefers-reduced-transparency'));assert(css.includes('forced-colors'));
+console.log('18 palette/mode/override checks, contrast following and Ocean provider SSR pass; no rendered contrast or geometry verification.');
