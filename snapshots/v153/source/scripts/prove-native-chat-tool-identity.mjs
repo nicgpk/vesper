@@ -1,0 +1,41 @@
+// SPDX-License-Identifier: MIT
+// Actual native helper + source-structure regression checks only.
+// Does not mount React, simulate DOM focus, or inspect rendered appearance.
+import assert from 'node:assert/strict';
+import {readFileSync, realpathSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {transformSync} from 'esbuild';
+const file='packages/core/src/Chat/ChatToolCalls.tsx';
+const source=readFileSync(file,'utf8');
+const start=source.indexOf('function getToolCallKeys('),end=source.indexOf('\n}',start)+2;
+assert(start>=0&&end>start);
+const code=transformSync(`${source.slice(start,end)}\nexport {getToolCallKeys};`,{loader:'ts',format:'esm'}).code;
+const {getToolCallKeys:keys}=await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+const running={name:'read_file',target:'brief.md',status:'running'};
+const complete={...running,status:'complete',duration:'1.4s'};
+for(const [field,value] of Object.entries({status:'error',duration:'1.4s',errorMessage:'Unavailable',additions:1,deletions:2,stats:'output'}))assert.deepEqual(keys([running]),keys([{...running,[field]:value}]),field);
+assert.deepEqual(keys([running]),keys([complete]));
+assert.equal(keys([running])[0],keys([running,{name:'compare'}])[0]);
+assert.equal(new Set(keys([running,{...running}])).size,2);
+assert.equal(keys([running,running])[0],keys([complete,complete])[0]);
+assert.equal(keys([running,running])[1],keys([complete,complete])[1]);
+const a={...running,key:'a'},b={name:'compare',key:'b'};
+assert.equal(keys([a,b])[0],keys([b,{...a,status:'complete'}])[1]);
+assert.notEqual(keys([{...running,key:'derived'}])[0],keys([running])[0]);
+assert.notEqual(keys([{name:'a\u001fb',target:'c'}])[0],keys([{name:'a',target:'b\u001fc'}])[0]);
+assert(!source.includes('if (calls.length === 1)'));
+assert.equal((source.match(/<CallRow\s/g)||[]).length,1);
+assert(source.includes('key="tool-call-content"'));
+assert(source.includes('key={callKeys[index]}'));
+assert(source.includes('const showContent = !isGroup || isExpanded'));
+assert(source.includes('inert={showContent ? undefined : true}'));
+assert(source.includes('isGroup && styles.groupContent'));
+assert(source.includes('hasClippedFocusRing={isGroup}'));
+assert(source.includes("export type ChatToolCallStatus = 'pending' | 'running' | 'complete' | 'error'"));
+const resolved=realpathSync(fileURLToPath(import.meta.resolve('@astryxdesign/core/Chat')));
+assert(resolved.startsWith(realpathSync('packages/core/dist')+'/'),resolved);
+const compiled=readFileSync('packages/core/dist/Chat/ChatToolCalls.js','utf8');
+assert(compiled.includes('function getToolCallKeys('));assert(compiled.includes('tool-call-content'));
+assert.equal(readFileSync(file,'utf8'),source);
+console.log(JSON.stringify({result:'native identity helper/source checks passed',sourceSha256:createHash('sha256').update(source).digest('hex'),resolvedNativeEntry:resolved,mutableFieldsStable:6,duplicateKeysDistinct:true,singleAndGroupShareKeyedRows:true,scope:'No mounted React/focus/render proof. Controlled or default-collapsed group transitions may still hide row content.'},null,2));

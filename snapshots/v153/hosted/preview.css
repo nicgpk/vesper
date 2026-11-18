@@ -1,0 +1,219 @@
+/* SPDX-License-Identifier: MIT
+ * @input Live preview geometry, the local photo, and active Vesper mode.
+ * @output Glass canvases with aligned time controls, readable icons and bounded workspaces.
+ * @position Showcase stages only; no private component paint overrides.
+ */
+.component-tile {
+  display: flex;
+  flex-direction: column;
+}
+.component-tile .demo-stage {
+  flex: 1;
+  height: auto;
+  min-height: 244px;
+}
+.detail-preview .demo-stage {
+  height: auto;
+  min-height: 350px;
+}
+.detail-preview .demo-stage[data-layout='control'] {
+  min-height: 260px;
+}
+.demo-stage,
+[data-theme='dark'] .demo-stage {
+  position: relative;
+  background-image: none;
+  border-radius: var(--radius-page);
+}
+.demo-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-image: linear-gradient(#ffffff38, #ffffff38), url('dunes.jpg');
+  background-position: center 52%;
+  background-size: cover;
+  filter: saturate(0.28) brightness(1.02);
+}
+[data-theme='dark'] .demo-stage::before {
+  background-image: linear-gradient(#07111a88, #07111a88), url('dunes.jpg');
+}
+[data-theme='contrast'] .demo-stage::before {
+  display: none;
+}
+.preview-backing {
+  min-width: 0;
+  overflow: visible;
+}
+:root[data-theme='contrast'] .preview-backing {
+  --vesper-glass-panel: var(--color-background-card);
+}
+:root:not([data-theme='contrast']) .preview-backing {
+  position: relative;
+  isolation: isolate;
+  contain: layout;
+  background-color: transparent;
+  background-image: none;
+  backdrop-filter: none;
+}
+:root:not([data-theme='contrast']) .preview-backing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: rgb(from var(--color-background-card) r g b / 60%);
+  background-image: var(--vesper-glass-gradient);
+  backdrop-filter: blur(8px) saturate(1.2);
+}
+:root[data-theme='dark'] .preview-backing::before {
+  background-color: rgb(from var(--color-background-card) r g b / 50%);
+}
+.preview-scroll {
+  min-width: 0;
+  max-width: 100%;
+  padding: 24px;
+  border-radius: inherit;
+  overflow-x: auto;
+}
+.demo-content {
+  max-width: 364px;
+}
+.is-detail .demo-content {
+  max-width: 424px;
+}
+.is-detail[data-layout='wide'] .demo-content {
+  max-width: 620px;
+}
+.demo-stage[data-layout='workspace'] .demo-content {
+  max-width: 100%;
+}
+.component-tile:has([data-layout='workspace']) {
+  grid-column: 1 / -1;
+}
+.preview-app-shell {
+  height: 360px;
+  min-height: 0;
+  border-radius: var(--radius-element);
+  contain: layout;
+  overflow: clip;
+}
+.demo-shell-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.publication-fields {
+  gap: 16px;
+}
+.progress-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+}
+.progress-service,
+.progress-activity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.progress-service {
+  min-width: 0;
+}
+.progress-elapsed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-element);
+  background: var(--vesper-glass-fill);
+}
+.progress-clock {
+  display: inline-block;
+  min-inline-size: 4.5ch;
+}
+.progress-activity {
+  flex-wrap: wrap;
+}
+.progress-sync-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.progress-restart {
+  margin-inline-start: auto;
+}
+.progress-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.media-preview {
+  width: 320px;
+  max-width: 100%;
+  align-self: center;
+}
+.media-artwork {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.demo-content:has(.schedule-preview) {
+  max-width: 600px;
+}
+.schedule-preview {
+  min-width: 480px;
+}
+.schedule-preview-scroll,
+.table-preview-scroll {
+  overflow-x: auto;
+  margin-inline: -16px;
+  padding: 16px;
+  border-radius: var(--radius-element);
+}
+.transfer-list-preview {
+  container-type: inline-size;
+  /* Dense options must stay readable over page text, not just photography. */
+  --vesper-glass-panel: rgb(from var(--color-background-card) r g b / 1);
+}
+.vesper-code-editor {
+  background-color: rgb(from var(--color-background-card) r g b / 1);
+  border-radius: var(--radius-element);
+}
+.table-preview-canvas {
+  min-width: 480px;
+}
+.component-tile .demo-stage {
+  padding: 14px;
+}
+.component-members {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.component-members a {
+  padding: 3px 7px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-inner);
+  font-size: 10px;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+/* Caller-owned layout body fills the inspector row, not the separate footer. */
+.layout-regions-content { display: flex; flex-direction: column; }
+.layout-regions-surface { flex: 1; min-height: 100%; }
+.scenery-preview { width: 480px; }
+.scenery-preview .media-artwork { aspect-ratio: 3 / 2; object-fit: cover; }
+.scenery-thumbnails { display: flex; gap: 12px; align-items: center; }

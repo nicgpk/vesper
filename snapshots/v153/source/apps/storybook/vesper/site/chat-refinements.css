@@ -1,0 +1,19 @@
+/* SPDX-License-Identifier: MIT — layout only; native Chat paint and behavior stay native. */
+.cr-composition{display:flex;flex-direction:column;gap:var(--study-section-gap,16px);min-width:0;width:100%;color:var(--color-text-primary);font-family:var(--font-family-body)}
+.cr-heading{display:flex;justify-content:space-between;align-items:baseline;gap:var(--study-group-gap,12px);font-size:14px;line-height:1.4}
+.cr-heading strong{font-weight:600;letter-spacing:-.02em}
+.cr-heading>span{font-size:10px;color:var(--color-text-secondary);white-space:nowrap}
+.cr-context{display:flex;align-items:center;justify-content:space-between;gap:var(--study-group-gap,12px);font-size:12px}
+.cr-context>span{color:var(--color-text-secondary)}
+.cr-hint{font-size:12px;line-height:1.6;margin:0;color:var(--color-text-secondary)}
+.cr-receipt{min-width:0;overflow-wrap:anywhere}
+.cr-actions{display:flex;align-items:center;gap:var(--study-control-gap,8px);flex-wrap:wrap}
+.cr-work-status{font-size:13px;font-weight:500;line-height:1.5;margin:0;min-height:20px}
+.cr-footnote{font-size:10px;line-height:1.5;color:var(--color-text-secondary);margin:0}
+.cr-status-shimmer{background-image:var(--study-shimmer-gradient);background-size:220% 100%;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:cr-status-band 2.4s cubic-bezier(.4,0,.2,1) 3}
+@keyframes cr-status-band{from{background-position:130% 0}to{background-position:-100% 0}}
+@media(prefers-reduced-motion:reduce){.cr-status-shimmer{animation:none;background:none;-webkit-text-fill-color:currentColor}}
+@media(forced-colors:active){.cr-status-shimmer{animation:none;background:none;-webkit-text-fill-color:CanvasText;color:CanvasText}}
+@supports not (background-clip:text){.cr-status-shimmer{background:none;-webkit-text-fill-color:currentColor;animation:none}}
+
+.cr-sources{display:grid;gap:var(--study-group-gap,12px)}.cr-sources p{margin:0;font-size:12px;line-height:1.6}.cr-sources strong{display:block;font-weight:600;margin-bottom:4px}
