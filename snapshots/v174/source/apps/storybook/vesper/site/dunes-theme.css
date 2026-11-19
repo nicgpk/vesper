@@ -1,0 +1,37 @@
+/* Dunes is the default nature canvas. Component artwork remains content.
+   The unchanged Dunes asset is bundled from the original image source. */
+.exact-gallery-shell[data-art] .demo-stage::before{filter:saturate(.72) brightness(1.02);background-image:linear-gradient(var(--dunes-scrim,#f3eee54d),var(--dunes-scrim,#f3eee54d)),var(--nature-image,url('../assets/dunes.jpg'))}
+[data-theme=dark] .exact-gallery-shell[data-art] .demo-stage::before{filter:saturate(.72) brightness(.96);background-image:linear-gradient(var(--dunes-scrim,#1b191766),var(--dunes-scrim,#1b191766)),var(--nature-image,url('../assets/dunes.jpg'))}
+/* Scenic Contrast overrides the old flat preview only in the gallery. Keep
+   imagery outside panels and a denser frosted backing behind the controls. */
+:root .exact-gallery-shell[data-appearance=contrast][data-art] .demo-stage::before{display:block;background-image:linear-gradient(var(--dunes-scrim),var(--dunes-scrim)),var(--nature-image,url('../assets/dunes.jpg'));filter:saturate(.8)}
+:root .exact-gallery-shell[data-appearance=contrast] .preview-backing{--vesper-glass-panel:var(--vesper-glass-fill);background:var(--vesper-glass-panel);backdrop-filter:blur(14px);border:1px solid var(--vesper-glass-rim)}
+:root .exact-gallery-shell[data-appearance=contrast] .preview-backing::before{display:none}
+.exact-gallery-shell[data-appearance=contrast] :is(.dunes-palettes,.exact-appearance) button:focus-visible{outline-width:var(--focus-outline-width,3px)}
+@media(prefers-reduced-transparency:reduce),(forced-colors:active){:root .exact-gallery-shell[data-appearance=contrast][data-art] .demo-stage::before{background-image:none;filter:none}:root .exact-gallery-shell[data-appearance=contrast] .preview-backing{--vesper-glass-panel:var(--color-background-card);backdrop-filter:none}}
+
+@media(prefers-reduced-transparency:reduce){:root .exact-gallery-shell[data-art] .demo-stage::before{background-image:none;filter:none;background-color:var(--color-background-body)}}
+@media(forced-colors:active){:root .exact-gallery-shell[data-art] .demo-stage::before{background-image:none;filter:none;background-color:Canvas}}
+/* UI palettes and matched natural backgrounds; semantic action colors unchanged. */
+.exact-gallery-shell[data-art=ocean]{--nature-image:url('./assets/nature-ocean.webp')}
+.exact-gallery-shell[data-art=forest]{--nature-image:url('./assets/nature-forest.webp')}
+.dunes-palettes{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.dunes-palettes button{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--color-text-secondary);font:500 12px/1.3 var(--font-family-body);cursor:pointer}
+.dunes-palettes button[aria-pressed=true]{border-color:var(--color-border-emphasized);background:var(--color-background-card);color:var(--color-text-primary)}
+.dunes-palettes button:focus-visible{outline:2px solid var(--focus-outline-color);outline-offset:3px}
+.dunes-palettes button:disabled{cursor:default;opacity:.55}
+.dunes-swatch{width:12px;height:12px;flex:none;border-radius:50%;border:1px solid currentColor}
+.dunes-swatch-sand{background:#C7BDB0}.dunes-swatch-ocean{background:#567E93}.dunes-swatch-forest{background:#627D5B}
+@media(max-width:680px){.dunes-palettes button{min-height:44px}}
+@media(forced-colors:active){.dunes-palettes button[aria-pressed=true]{outline:2px solid Highlight}.dunes-swatch{background:Canvas}}
+
+.exact-gallery-shell[data-art=alpine]{--nature-image:url('./assets/nature-alpine.webp')}
+@media(max-width:680px){.exact-gallery-shell[data-art=alpine]{--nature-image:url('./assets/nature-alpine-768.webp')}}
+.dunes-swatch-alpine{background:#8D8EC6}
+.exact-gallery-shell[data-art=basalt]{--nature-image:url('./assets/nature-basalt.webp')}
+@media(max-width:680px){.exact-gallery-shell[data-art=basalt]{--nature-image:url('./assets/nature-basalt-768.webp')}}
+.dunes-swatch-basalt{background:#858585}
+.exact-gallery-shell[data-art=salt-flats]{--nature-image:url('./assets/nature-salt-flats.webp')}
+@media(max-width:680px){.exact-gallery-shell[data-art=salt-flats]{--nature-image:url('./assets/nature-salt-flats-768.webp')}}
+.dunes-swatch-salt-flats{background:#BA789B}
+@media(max-width:680px){.dunes-palettes{width:100%}.dunes-palettes button{padding-inline:9px}}
