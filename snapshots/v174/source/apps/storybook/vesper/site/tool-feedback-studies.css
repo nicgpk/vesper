@@ -1,0 +1,37 @@
+.tf-study{display:flex;flex-direction:column;gap:16px;min-width:0;width:100%;font:inherit;color:var(--color-text-primary)}
+.tf-study header{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.tf-study header span,.tf-disclosure,.tf-source-grid span,.tf-result>span{color:var(--color-text-secondary);font-size:12px}
+.tf-source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tf-source-grid>div{display:flex;flex-direction:column;gap:8px;padding:12px;border:1px solid var(--color-border-emphasized);border-radius:12px;overflow-wrap:anywhere}.tf-source-grid small,.tf-result>small{font-size:10px;letter-spacing:.08em;color:var(--color-text-secondary)}
+.tf-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.tf-status{margin:0;font-size:13px;line-height:1.5}.tf-study blockquote{margin:0;border-inline-start:2px solid var(--color-text-secondary);padding:4px 0 4px 12px;line-height:1.6}
+.tf-result{border:1px solid var(--color-border-emphasized);border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;overflow-wrap:anywhere}.tf-result p{margin:0;line-height:1.6}.tf-feedback-form{display:flex;flex-direction:column;gap:16px}.tf-feedback-form fieldset{border:0;padding:0;margin:0;min-width:0}.tf-feedback-form legend{font-size:13px;margin-bottom:8px}.tf-reasons{display:flex;flex-wrap:wrap;gap:8px 12px}.tf-reasons label{display:flex;align-items:center;gap:6px;font-size:12px}.tf-reasons input{accent-color:var(--color-accent);width:16px;height:16px}.tf-disclosure{line-height:1.5}
+
+/* Source cards share a state frame; evidence visuals are defined below. */
+.tf-source-grid > .tf-source {position:relative;isolation:isolate;gap:7px;padding:16px;overflow:hidden;background:color-mix(in srgb,var(--color-background-surface) 42%,transparent);transition:border-color 240ms ease,background-color 240ms ease;}
+.tf-source-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:20px;}
+.tf-source-heading small{text-transform:uppercase;letter-spacing:.1em;}
+.tf-source-grid .tf-source-indicator{display:grid;place-items:center;width:18px;height:18px;flex:none;border:1px solid var(--color-border-emphasized);border-radius:50%;font-size:11px;color:var(--color-text-primary);}
+.tf-source-grid .tf-source > strong{font-size:14px;line-height:1.35;}
+.tf-source-grid .tf-source-state{font-size:11px;color:var(--color-text-secondary);}
+.tf-source[data-state=ready]{border-color:var(--color-accent);background:color-mix(in srgb,var(--color-accent) 7%,transparent);}
+.tf-source[data-state=ready] .tf-source-indicator{border-color:var(--color-accent);}
+.tf-source[data-state=ready] .tf-source-state,.tf-source[data-state=unavailable] .tf-source-state{color:var(--color-text-primary);font-weight:600;}
+.tf-source[data-state=unavailable] .tf-source-indicator{border-style:dashed;}
+.tf-completion{font-variant-numeric:tabular-nums;}
+@keyframes tf-source-sheen{to{transform:translateX(110%);}}
+@media(prefers-reduced-motion:reduce){.tf-source-grid > .tf-source{transition:none}}
+@media(forced-colors:active){.tf-source-grid > .tf-source{background:Canvas;border-color:CanvasText}.tf-source[data-state=ready] .tf-source-indicator{border-color:Highlight}}
+
+/* v165: source-specific evidence replaces identical decorative signals. */
+.tf-evidence-preview{display:flex;flex-direction:column;justify-content:center;gap:8px;min-height:116px;width:100%;min-width:0;margin:6px 0 2px}
+.tf-note-excerpts p{margin:0;padding-left:8px;border-left:2px solid var(--color-border-emphasized);font-size:12px;line-height:1.5;color:var(--color-text-primary)}
+.tf-evidence-preview small{font-size:9px!important;line-height:1.5;letter-spacing:0!important;color:var(--color-text-secondary)}
+.tf-mini-funnel>div{display:grid;gap:4px;min-width:0}.tf-mini-funnel>div>span{display:flex;justify-content:space-between;gap:8px;font-size:10px;line-height:1.4}.tf-mini-funnel strong{font-size:10px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-text-primary)}
+.tf-mini-funnel>div>i{display:block;height:5px;border-radius:2px;background:var(--color-accent)}
+.tf-note-placeholders{display:grid;gap:14px}.tf-note-placeholders>div{display:grid;gap:6px;border-left:2px solid var(--color-border);padding-left:8px}.tf-note-placeholders i{height:7px;width:94%;border-radius:2px}.tf-note-placeholders i:last-child{width:64%}
+.tf-funnel-placeholders{display:grid;gap:10px}.tf-funnel-placeholders>div{display:grid;gap:5px}.tf-funnel-placeholders i{height:6px;width:35%;border-radius:2px}.tf-funnel-placeholders b{height:5px;border-radius:2px}
+.tf-evidence-placeholder :is(i,b){display:block;position:relative;overflow:hidden;background:color-mix(in srgb,var(--color-text-primary) 14%,transparent)}
+.tf-evidence-placeholder[data-reading=true] :is(i,b):after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 5%,#ffffff10 22%,#ffffff99 48%,#ffffff55 62%,transparent 94%);transform:translateX(-110%);animation:tf-source-sheen 2.4s ease-in-out infinite}
+.tf-evidence-empty{align-items:flex-start}.tf-evidence-empty>span{font-size:12px;color:var(--color-text-primary);font-weight:600}.tf-evidence-empty p{margin:0;font-size:11px;line-height:1.5;color:var(--color-text-secondary)}
+/* Keep the white motion on the content shapes, not across the whole source. */
+@media(max-width:480px){.tf-source-grid{grid-template-columns:minmax(0,1fr)}.tf-evidence-preview{min-height:104px}}
+@media(prefers-reduced-motion:reduce){.tf-evidence-placeholder[data-reading=true] :is(i,b):after{display:none;animation:none}}
+@media(forced-colors:active){.tf-mini-funnel>div>i{background:Highlight}.tf-evidence-placeholder :is(i,b){background:GrayText}.tf-evidence-placeholder[data-reading=true] :is(i,b):after{display:none;animation:none}.tf-note-excerpts p{border-color:CanvasText}}

@@ -1,0 +1,24 @@
+.ap-study{display:flex;flex-direction:column;gap:var(--study-section-gap,16px);width:100%;min-width:0;color:var(--color-text-primary);font-family:var(--font-family-body)}
+.ap-study .ap-heading{display:flex;justify-content:space-between;align-items:baseline;gap:var(--study-group-gap,12px);flex-wrap:wrap}
+.ap-study .ap-heading strong{font-size:14px;font-weight:600}
+.ap-study .ap-heading span,.ap-study .ap-disclosure{font-size:11px;line-height:1.5;color:var(--color-text-secondary)}
+.ap-study .ap-destination{margin:0;display:flex;align-items:baseline;gap:var(--study-group-gap,12px);flex-wrap:wrap;font-size:13px;line-height:1.5}
+.ap-study .ap-destination dt{color:var(--color-text-secondary)}
+.ap-study .ap-destination dd{margin:0;display:flex;gap:var(--study-group-gap,12px);flex-wrap:wrap}
+.ap-study .ap-destination dd span{color:var(--color-text-secondary)}
+.ap-study .ap-status{margin:0;font-size:13px;line-height:1.6}
+.ap-study .ap-actions{display:flex;align-items:center;flex-wrap:wrap;gap:var(--study-control-gap,8px)}
+.ap-study .ap-shimmer{background-image:var(--study-shimmer-gradient);background-size:220% 100%;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:ap-approval-band 2.4s cubic-bezier(.4,0,.2,1) 1}
+@keyframes ap-approval-band{from{background-position:140% 0}to{background-position:-140% 0}}
+@media(prefers-reduced-motion:reduce){.ap-study .ap-shimmer{animation:none;background:none;-webkit-text-fill-color:currentColor}}
+@media(forced-colors:active){.ap-study .ap-shimmer{animation:none;background:none;-webkit-text-fill-color:CanvasText;color:CanvasText}.ap-study .ap-disclosure,.ap-study .ap-heading span,.ap-study .ap-destination dt,.ap-study .ap-destination dd span{color:CanvasText}}
+@supports not (background-clip:text){.ap-study .ap-shimmer{background:none;-webkit-text-fill-color:currentColor;animation:none}}
+
+.ap-revision{display:flex;flex-direction:column;gap:var(--study-group-gap,12px);padding:var(--study-panel-inset,12px);border:1px solid var(--color-border-default,currentColor);border-radius:12px;min-width:0;font-size:13px;line-height:1.6}
+.ap-revision strong{font-size:12px}.ap-change{margin:0;overflow-wrap:anywhere;display:flex;flex-direction:column;gap:4px}
+.ap-change ins{text-decoration:none;border-left:2px solid currentColor;padding-left:var(--study-control-gap,8px)}
+
+/* Related information stays together; independent sections retain breathing room. */
+.ap-intro,.ap-footer{display:flex;flex-direction:column;gap:var(--study-control-gap,8px);min-width:0}
+.ap-destination dd{min-width:0;overflow-wrap:anywhere}
+.ap-footer .ap-disclosure{margin:0}

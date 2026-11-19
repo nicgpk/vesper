@@ -1,0 +1,6 @@
+/* The provider study follows the selected nature palette even when it locally
+   changes mode. Native Section stays transparent; this bounded glass surface
+   gives the explicit light-region toggle its own readable backing. */
+.provider-region{background:var(--vesper-glass-panel);border:1px solid var(--vesper-glass-rim);border-radius:var(--radius-element,12px);box-shadow:var(--vesper-glass-inset);backdrop-filter:blur(12px) saturate(1.1);color:var(--color-text-primary);color-scheme:inherit}
+@media(prefers-reduced-transparency:reduce){.provider-region{background:var(--color-background-card);backdrop-filter:none}}
+@media(forced-colors:active){.provider-region{background:Canvas;color:CanvasText;border-color:CanvasText;box-shadow:none;backdrop-filter:none}}

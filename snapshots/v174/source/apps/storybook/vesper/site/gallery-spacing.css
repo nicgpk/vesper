@@ -1,0 +1,55 @@
+/* SPDX-License-Identifier: MIT
+ * Host geometry only. Native component padding, hit areas and paint are not
+ * overridden. Shared values describe space around native compositions.
+ */
+.exact-gallery-shell{
+ --gallery-stage-inset:12px;
+ --gallery-card-inset:16px;
+ --gallery-wide-content:620px;
+ --study-section-gap:16px;
+ --study-group-gap:12px;
+ --study-panel-inset:12px;
+ --study-control-gap:8px;
+}
+.exact-gallery-shell .exact-tile .demo-stage{padding:var(--gallery-stage-inset)}
+.exact-gallery-shell .preview-scroll{padding:var(--gallery-card-inset)}
+.exact-gallery-shell .exact-tile[data-exact-layout=wide] .demo-content{max-width:var(--gallery-wide-content)}
+.exact-gallery-shell .exact-detail .demo-stage{padding:24px}
+.exact-gallery-shell .exact-caption{align-items:flex-start;gap:4px 12px;padding-top:12px}
+.exact-gallery-shell .exact-caption>a{overflow-wrap:anywhere}
+.exact-gallery-shell .exact-caption>a>span{flex:none}
+.exact-gallery-shell :is(.cr-composition,.cv-study,.ls-study,.ap-study,.cf-feedback){gap:var(--study-section-gap)}
+.exact-gallery-shell :is(.cr-heading,.cv-heading,.ls-heading,.ap-heading){flex-wrap:wrap;gap:8px 12px}
+.exact-gallery-shell :is(.cr-actions,.cv-actions,.ls-actions,.ap-actions){gap:var(--study-control-gap)}
+.exact-gallery-shell .ls-notes{gap:8px;padding-left:12px}
+.exact-gallery-shell .ls-compose-status{gap:12px}
+.exact-gallery-shell .cr-context{flex-wrap:wrap;gap:8px 12px}
+.exact-gallery-shell :is(.cr-heading,.cv-heading,.ls-heading,.ap-heading)>*{min-width:0}
+.exact-gallery-shell .material-choices button{gap:8px}
+@media(max-width:680px){
+ .exact-gallery-shell{--gallery-card-inset:16px}
+ .exact-gallery-shell .exact-detail .demo-stage{padding:var(--gallery-stage-inset)}
+ .exact-gallery-shell .exact-grid{gap:28px 16px}
+}
+@media(max-width:480px){
+ .exact-gallery-shell .exact-feature-strip{grid-template-columns:minmax(0,1fr)}
+ .exact-gallery-shell .exact-feature{min-height:160px}
+ .exact-gallery-shell .exact-header{flex-wrap:wrap;gap:12px;padding-block:16px}
+ .exact-gallery-shell .exact-appearance{flex:1 1 100%;gap:4px}
+ .exact-gallery-shell .exact-appearance button{flex:1;min-height:44px;padding:8px}
+ .exact-gallery-shell .exact-collection-bar h2{flex-wrap:wrap;gap:4px 12px}
+ .exact-gallery-shell .exact-caption{flex-wrap:wrap}
+ .exact-gallery-shell .exact-caption>span{text-align:left}
+}
+
+/* Authored host wrappers: let their gap own spacing, never label margins.
+   Native Field/FormLayout/Chat padding and typography remain untouched. */
+.exact-gallery-shell :is(.demo-row,.demo-controls){gap:var(--study-control-gap)}
+.exact-gallery-shell .demo-stack{gap:var(--study-group-gap)}
+.exact-gallery-shell :is(.demo-stack,.demo-row,.demo-controls)>.demo-label{margin:0}
+
+/* v156: stage span and reading width are separate. Keep the workspace's
+   panoramic canvas, but share Conversation's bounded inner glass column. */
+.exact-gallery-shell .demo-stage[data-study="chat-layout"] .demo-content{
+ width:100%;max-width:var(--gallery-wide-content);margin-inline:auto;
+}
