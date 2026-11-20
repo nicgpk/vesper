@@ -1,0 +1,13 @@
+import fs from 'node:fs';import ts from 'typescript';import assert from 'node:assert/strict';
+const js=ts.transpileModule(fs.readFileSync('packages/core/src/Chat/useChatStreamScroll.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;
+const frames=new Map();let id=0;globalThis.requestAnimationFrame=f=>{frames.set(++id,f);return id};globalThis.cancelAnimationFrame=id=>frames.delete(id);
+const element=()=>({scrollTop:0,scrollHeight:800,clientHeight:200,offsetHeight:200,listeners:new Map(),attrs:new Set(),toggleAttribute(a,v){v?this.attrs.add(a):this.attrs.delete(a)},removeAttribute(a){this.attrs.delete(a)},addEventListener(k,v){this.listeners.set(k,v)},removeEventListener(k){this.listeners.delete(k)}});
+const a=element(),b=element(),scrollRef={current:a};let refs=[],cursor=0,effect,reduced=false;
+const react={useRef:v=>refs[cursor++]??(refs[cursor-1]={current:v}),useState:v=>[v,()=>{}],useCallback:f=>f,useEffect:f=>effect=f};
+const ex={};new Function('exports','require',js)(ex,id=>id==='react'?react:{useMediaQuery:()=>reduced});
+const render=enabled=>{cursor=0;return ex.useChatStreamScroll({scrollRef,enabled})};
+const flush=()=>{const batch=[...frames.values()];frames.clear();batch.forEach(f=>f())};let n=0;const check=(a,b,s)=>{assert.equal(a,b,s);n++};
+let h=render(true),cleanup=effect();flush();a.scrollHeight=1100;h.scrollIfLocked();check(frames.size,1,'spring scheduled');cleanup();h=render(false);check(effect(),undefined,'disabled setup has no cleanup');check(frames.size,0,'disable has no old queued frame');const top=a.scrollTop;h.scrollIfLocked();flush();check(a.scrollTop,top,'disabled resize call does not move');
+h=render(true);cleanup=effect();flush();a.scrollHeight=1400;h.scrollIfLocked();check(frames.size,1,'reenable spring starts');cleanup();scrollRef.current=b;h=render(true);cleanup=effect();flush();check(a.scrollTop,900,'old element remains still');check(b.scrollTop,600,'new element positioned');check(a.listeners.size,0,'old listeners gone');b.scrollHeight=1100;h.scrollIfLocked();flush();check(b.scrollTop>600,true,'new element spring moves');cleanup();check(frames.size,0,'new chain cancelled');
+reduced=true;h=render(true);cleanup=effect();flush();b.scrollHeight=1400;h.scrollIfLocked();check(b.scrollTop,1200,'reduced motion immediate jump preserved');check(frames.size,0,'reduced motion no spring frame');cleanup();check(b.attrs.size,0,'final following attribute cleared');
+console.log(`${n} independent cleanup cases pass; synthetic lifecycle/RAF, no mounted React/browser`);

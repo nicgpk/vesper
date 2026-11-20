@@ -1,0 +1,26 @@
+/* Selected turns the existing studies into ordered editorial rows.
+ * Auto height remains the contract, so expanding live controls never clips.
+ * Theme, native study contents, route order and touch layout stay unchanged. */
+@media (min-width:1041px) {
+ .exact-gallery-shell .exact-grid[data-selected-composition] {
+  --selected-gutter:20px;
+  grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--selected-gutter);row-gap:28px;
+ }
+ .exact-gallery-shell .exact-grid[data-selected-composition]>.exact-tile {
+  grid-column:span var(--selected-regular-span);
+ }
+ .exact-grid[data-selected-composition] .exact-tile>.demo-stage,
+ .exact-grid[data-selected-composition] .exact-deferred>.demo-stage {
+  block-size:auto;min-block-size:var(--selected-scene-height,244px);
+ }
+ .exact-grid[data-selected-composition] [data-selected-band=lead] {--selected-scene-height:340px;}
+ .exact-grid[data-selected-composition] [data-selected-band=material] {--selected-scene-height:300px;}
+ .exact-grid[data-selected-composition] [data-selected-band=signals] {--selected-scene-height:212px;}
+ .exact-grid[data-selected-composition] .exact-caption {min-block-size:34px;}
+}
+@media (min-width:1240px) {
+ .exact-gallery-shell .exact-grid[data-selected-composition]>.exact-tile {
+  grid-column:span var(--selected-broad-span);
+ }
+ .exact-grid[data-selected-composition] [data-selected-band=controls] {--selected-scene-height:224px;}
+}

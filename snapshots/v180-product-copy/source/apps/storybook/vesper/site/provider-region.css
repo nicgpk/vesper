@@ -1,0 +1,30 @@
+/* SPDX-License-Identifier: MIT
+ * Following the page uses the host's existing scenic glass. Show a separate,
+ * locally themed surface only when the visitor explicitly leaves that mode.
+ */
+.provider-region {
+  color: var(--color-text-primary);
+  color-scheme: inherit;
+}
+.provider-region[data-local-appearance] {
+  background: var(--vesper-glass-panel);
+  border: 1px solid var(--vesper-glass-rim);
+  border-radius: var(--radius-element, 12px);
+  box-shadow: var(--vesper-glass-inset);
+  backdrop-filter: blur(12px) saturate(1.1);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .provider-region[data-local-appearance] {
+    background: var(--color-background-card);
+    backdrop-filter: none;
+  }
+}
+@media (forced-colors: active) {
+  .provider-region[data-local-appearance] {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+}

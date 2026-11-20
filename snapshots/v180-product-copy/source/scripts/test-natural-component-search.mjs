@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import{loadShowcaseModule}from'./load-vesper-module.mjs';
+const {discover:d,searchText:s,libraryDemos:items}=await loadShowcaseModule("export {discover,searchText} from './vesper/site/gallery-model';export {libraryDemos} from './vesper/site/library-demos';");
+let n=0;const found=(query,id)=>{assert(d(items,'all','All',query).some(x=>x.id===id),query);n++};
+for(const q of ['file input','FileInput','file-input','file_input',' FILE   INPUT ','Prepare a review'])found(q,'form-field-family');
+for(const q of ['FieldLabel','field label'])found(q,'form-field-family');
+assert.equal(d(items,'all','All','----').length,0);n++;
+assert.equal(s('XMLParser'),'xml parser');n++;assert.equal(s('ChatToolCalls'),'chat tool calls');n++;
+assert.equal(d(items,'all','All','not_a_real_component_xyz').length,0);n++;
+assert(d(items,'all','Inputs','file input').every(x=>x.category==='Inputs'));n++;
+assert.equal(items.find(x=>x.id==='form-field-family').name,'Prepare a review');n++;
+console.log(n+' natural component search checks pass; no display names or scope semantics changed.');

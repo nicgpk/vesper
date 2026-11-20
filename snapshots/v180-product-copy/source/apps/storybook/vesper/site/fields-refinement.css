@@ -1,0 +1,11 @@
+.fr-study{display:flex;flex-direction:column;gap:var(--study-section-gap,16px);min-width:0;width:100%;font-family:var(--font-family-body);color:var(--color-text-primary)}
+.fr-study header strong{font-size:14px;font-weight:600}
+.fr-study header p{margin:var(--study-control-gap,8px) 0 0;font-size:12px;line-height:1.5;color:var(--color-text-secondary)}
+.fr-study .fr-actions{display:flex;gap:var(--study-control-gap,8px);align-items:center;flex-wrap:wrap}
+.fr-study .fr-summary{display:flex;flex-direction:column;gap:var(--study-group-gap,12px);min-width:0;overflow-wrap:anywhere}
+.fr-study .fr-summary h3{font-size:14px;line-height:1.5;margin:0;font-weight:600}
+.fr-study .fr-summary p{font-size:13px;line-height:1.6;margin:0;white-space:pre-wrap}
+.fr-study .fr-summary dl{margin:0;display:flex;gap:var(--study-control-gap,8px) 12px;flex-wrap:wrap;font-size:12px;line-height:1.5}
+.fr-study .fr-summary dt{color:var(--color-text-secondary)}
+.fr-study .fr-summary dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.fr-study .fr-note{font-size:11px;line-height:1.5;color:var(--color-text-secondary)}

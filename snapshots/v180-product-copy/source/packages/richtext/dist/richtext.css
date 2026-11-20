@@ -1,0 +1,104 @@
+/* Astryx Rich Text Pre-compiled StyleX CSS — Lexical editor and viewer */
+/* Auto-generated. Do not edit manually. */
+
+@layer astryx-base {
+  @property --x-minHeight { syntax: "*"; inherits: false;}
+  .xax9j7h{--container-padding-block-end:0px}
+  .x1047aw6{--container-padding-block-start:0px}
+  .xjsfl84{--container-padding-inline-end:0px}
+  .xrhngw9{--container-padding-inline-start:0px}
+  .x1717udv:not(#\#){padding:0}
+  .x1b2ylru:not(#\#){padding:var(--spacing-3)}
+  .xx3sua9:not(#\#):not(#\#){border-radius:var(--radius-inner)}
+  .xng3xce:not(#\#):not(#\#){border-style:none}
+  .xc342km:not(#\#):not(#\#){border-width:0}
+  .x845mor:not(#\#):not(#\#){flex:1 1 0%}
+  .xsn7fz1:not(#\#):not(#\#){gap:var(--spacing-0)}
+  .x10im51j:not(#\#):not(#\#){margin-block:0}
+  .x1yqqeh1:not(#\#):not(#\#){margin-block:var(--spacing-0-5)}
+  .xsq74q5:not(#\#):not(#\#){margin-block:var(--spacing-1)}
+  .x1g06x3t:not(#\#):not(#\#){margin-block:var(--spacing-2)}
+  .xrxpjvj:not(#\#):not(#\#){margin-inline:0}
+  .x1a2a7pz:not(#\#):not(#\#){outline:none}
+  .x13f7esw:not(#\#):not(#\#){padding-block:var(--spacing-0-5)}
+  .x1hp7d8q:not(#\#):not(#\#){padding-block:var(--spacing-0)}
+  .xu0wf1k:not(#\#):not(#\#){padding-block:var(--spacing-1)}
+  .xce4md1:not(#\#):not(#\#){padding-block:var(--spacing-2)}
+  .x17a0aqu:not(#\#):not(#\#){padding-inline:var(--spacing-0)}
+  .x7a5moj:not(#\#):not(#\#){padding-inline:var(--spacing-1)}
+  .xf314gf:not(#\#):not(#\#){padding-inline:var(--spacing-2)}
+  .xmqliwb:not(#\#):not(#\#){text-decoration:line-through}
+  .x1bvjpef:not(#\#):not(#\#){text-decoration:underline}
+  .x6s0dn4:not(#\#):not(#\#):not(#\#){align-items:center}
+  .x1qjc9v5:not(#\#):not(#\#):not(#\#){align-items:stretch}
+  .xkh2ocl:not(#\#):not(#\#):not(#\#){align-self:stretch}
+  .xwmxj5m:not(#\#):not(#\#):not(#\#){background-color:var(--color-background-muted)}
+  .x14ydlgx:not(#\#):not(#\#):not(#\#){border-inline-start-color:var(--color-border-emphasized)}
+  .x1t7ytsu:not(#\#):not(#\#):not(#\#){border-inline-start-style:solid}
+  .xct1zlm:not(#\#):not(#\#):not(#\#){border-inline-start-width:3px}
+  .x9f619:not(#\#):not(#\#):not(#\#){box-sizing:border-box}
+  .xjt36v0:not(#\#):not(#\#):not(#\#){color:var(--color-error)}
+  .xjse4m1:not(#\#):not(#\#):not(#\#){color:var(--color-text-accent)}
+  .x1tgivj0:not(#\#):not(#\#):not(#\#){color:var(--color-text-primary)}
+  .xv1l7n4:not(#\#):not(#\#):not(#\#){color:var(--color-text-secondary)}
+  .x1h6gzvc:not(#\#):not(#\#):not(#\#){cursor:not-allowed}
+  .x1ypdohk:not(#\#):not(#\#):not(#\#){cursor:pointer}
+  .x1lliihq:not(#\#):not(#\#):not(#\#){display:block}
+  .x78zum5:not(#\#):not(#\#):not(#\#){display:flex}
+  .xdt5ytf:not(#\#):not(#\#):not(#\#){flex-direction:column}
+  .x9ynric:not(#\#):not(#\#):not(#\#){font-family:var(--font-family-body)}
+  .x9m5x89:not(#\#):not(#\#):not(#\#){font-family:var(--font-family-code)}
+  .x1g81bgm:not(#\#):not(#\#):not(#\#){font-family:var(--font-family-heading)}
+  .xeb7xqv:not(#\#):not(#\#):not(#\#){font-size:.9em}
+  .x1c3i2sq:not(#\#):not(#\#):not(#\#){font-size:1.125rem}
+  .x1603h9y:not(#\#):not(#\#):not(#\#){font-size:1.25rem}
+  .xngnso2:not(#\#):not(#\#):not(#\#){font-size:1.5rem}
+  .xjm74w1:not(#\#):not(#\#):not(#\#){font-size:var(--text-body-size)}
+  .x141an7d:not(#\#):not(#\#):not(#\#){font-size:var(--text-supporting-size)}
+  .x1k4tb9n:not(#\#):not(#\#):not(#\#){font-style:italic}
+  .x1lvx875:not(#\#):not(#\#):not(#\#){font-weight:var(--font-weight-bold)}
+  .x2mo6ok:not(#\#):not(#\#):not(#\#){font-weight:var(--font-weight-semibold)}
+  .x72tfeb:not(#\#):not(#\#):not(#\#){inset-inline-end:var(--spacing-2)}
+  .x1o0tod:not(#\#):not(#\#):not(#\#){inset-inline-start:0}
+  .x13a6bvl:not(#\#):not(#\#):not(#\#){justify-content:flex-end}
+  .xw6l6zx:not(#\#):not(#\#):not(#\#){line-height:var(--text-body-leading)}
+  .x43c9pm:not(#\#):not(#\#):not(#\#){list-style-position:outside}
+  .xrylv2j:not(#\#):not(#\#):not(#\#){list-style-type:circle}
+  .x3yw8vx:not(#\#):not(#\#):not(#\#){list-style-type:decimal}
+  .xtaz4m5:not(#\#):not(#\#):not(#\#){list-style-type:disc}
+  .x1sle589:not(#\#):not(#\#):not(#\#){list-style-type:inherit}
+  .x1rrqm6h:not(#\#):not(#\#):not(#\#){list-style-type:lower-alpha}
+  .x19k9dhg:not(#\#):not(#\#):not(#\#){list-style-type:lower-roman}
+  .x3ct3a4:not(#\#):not(#\#):not(#\#){list-style-type:none}
+  .x152237o:not(#\#):not(#\#):not(#\#){list-style-type:square}
+  .xp74n0j:not(#\#):not(#\#):not(#\#){padding-inline-end:calc(var(--spacing-2) + var(--spacing-6))}
+  .x12gdq22:not(#\#):not(#\#):not(#\#){padding-inline-start:var(--spacing-2)}
+  .x126nfab:not(#\#):not(#\#):not(#\#){padding-inline-start:var(--spacing-3)}
+  .x31w388:not(#\#):not(#\#):not(#\#){padding-inline-start:var(--spacing-6)}
+  .x47corl:not(#\#):not(#\#):not(#\#){pointer-events:none}
+  .x10l6tqk:not(#\#):not(#\#):not(#\#){position:absolute}
+  .x1n2onr6:not(#\#):not(#\#):not(#\#){position:relative}
+  .x1597r2g:not(#\#):not(#\#):not(#\#){scrollbar-width:thin}
+  .x87ps6o:not(#\#):not(#\#):not(#\#){user-select:none}
+  .x126k92a:not(#\#):not(#\#):not(#\#){white-space:pre-wrap}
+  .x1vjfegm:not(#\#):not(#\#):not(#\#){z-index:1}
+  @supports (-webkit-touch-callout: none){@media (pointer: coarse){.xf9zqsd.xf9zqsd.xf9zqsd:not(#\#):not(#\#):not(#\#){font-size:max(1rem,var(--text-body-size))}}}
+  .x1pc3f07:not(#\#):not(#\#):not(#\#):not(#\#){border-top-color:var(--color-border)}
+  .x13fuv20:not(#\#):not(#\#):not(#\#):not(#\#){border-top-style:solid}
+  .x178xt8z:not(#\#):not(#\#):not(#\#):not(#\#){border-top-width:1px}
+  .xt7dq6l:not(#\#):not(#\#):not(#\#):not(#\#){height:auto}
+  .x14cgwvg:not(#\#):not(#\#):not(#\#):not(#\#){margin-bottom:var(--spacing-1)}
+  .x17ilvqm:not(#\#):not(#\#):not(#\#):not(#\#){margin-top:var(--spacing-0)}
+  .xcsaf9d:not(#\#):not(#\#):not(#\#):not(#\#){margin-top:var(--spacing-1)}
+  .x193iq5w:not(#\#):not(#\#):not(#\#):not(#\#){max-width:100%}
+  .x65nank:not(#\#):not(#\#):not(#\#):not(#\#){min-height:auto}
+  .x82snj4:not(#\#):not(#\#):not(#\#):not(#\#){min-height:var(--x-minHeight)}
+  .xeuugli:not(#\#):not(#\#):not(#\#):not(#\#){min-width:0}
+  .xw2csxc:not(#\#):not(#\#):not(#\#):not(#\#){overflow-x:auto}
+  .x10wlt62:not(#\#):not(#\#):not(#\#):not(#\#){overflow-y:hidden}
+  .x7p5m3t:not(#\#):not(#\#):not(#\#):not(#\#){overscroll-behavior-x:contain}
+  .x4xegtk:not(#\#):not(#\#):not(#\#):not(#\#){top:var(--spacing-0)}
+  .xctzyg:not(#\#):not(#\#):not(#\#):not(#\#){top:var(--spacing-2)}
+  .xnalus7:not(#\#):not(#\#):not(#\#):not(#\#){width:0}
+  .xh8yej3:not(#\#):not(#\#):not(#\#):not(#\#){width:100%}
+}

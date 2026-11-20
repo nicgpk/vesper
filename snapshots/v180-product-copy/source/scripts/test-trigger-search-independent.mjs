@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {transformSync} from 'esbuild';
+const code=transformSync(fs.readFileSync('packages/core/src/Chat/triggerSearch.ts','utf8'),{loader:'ts',format:'esm'}).code;
+const {createTriggerSearch}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+const flush=async()=>{for(let i=0;i<5;i++)await Promise.resolve()};
+const out=[];const c=createTriggerSearch((items,loading)=>out.push({items,loading}));
+let settle;let cancelled=0;
+const old={search:()=>new Promise(r=>settle=r),cancel:()=>cancelled++};
+const now={search:q=>[{id:q,label:q}]};
+c.search(old,'old',0);c.search(now,'new',0);assert.equal(cancelled,1);settle([{id:'old'}]);await flush();assert.equal(out.at(-1).items[0].id,'new');
+c.search(old,'hidden',0);c.cancel();c.search(now,'reopened',0);settle([{id:'hidden'}]);await flush();assert.equal(out.at(-1).items[0].id,'reopened');
+const thenable={search:()=>({then(resolve){resolve([{id:'thenable'}])}})};
+c.search(thenable,'real',0);await flush();assert.equal(out.at(-1).items[0].id,'thenable');
+c.search({search:()=>({get then(){throw Error('bad thenable')}})},'real',0);await flush();assert.deepEqual(out.at(-1),{items:[],loading:false});
+c.search(old,'pending',0);c.search(undefined,'no source',0);const count=out.length;settle([{id:'pending'}]);await flush();assert.equal(out.length,count);assert.deepEqual(out.at(-1),{items:[],loading:false});
+console.log('Independent trigger coordinator checks pass: source switch/cancel, close-reopen stale result, thenable, rejecting then getter, missing-source invalidation. Pure callback/local promises; no browser.');

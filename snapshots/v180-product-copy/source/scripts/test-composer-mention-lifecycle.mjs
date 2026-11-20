@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+const s=fs.readFileSync('packages/core/src/Chat/ChatComposerInput.tsx','utf8');
+const emit=s.slice(s.indexOf('    if (!editableRef.current)',s.indexOf('const emitChange = useCallback')),s.indexOf('\n  }, [onChange]);',s.indexOf('const emitChange = useCallback')));
+const insertion=s.match(/insertTokenRef.current = token => \{([\s\S]*?)\n  \};/)[1];
+let value='',hasToken=false,empty=true,changes=[],cleanup=0;
+const editableRef={current:{querySelector:()=>hasToken?{}:null}},pendingEchoValueRef={},emitChangeVersionRef={current:0},cleanupPortalsRef={current:()=>cleanup++};
+const emitFn=new Function('editableRef','serialize','pendingEchoValueRef','setIsEmpty','emitChangeVersionRef','onChange','cleanupPortalsRef',emit);
+const emitChange=()=>emitFn(editableRef,()=>value,pendingEchoValueRef,v=>empty=v,emitChangeVersionRef,v=>changes.push(v),cleanupPortalsRef);
+const tokens={insertToken:token=>{if(!editableRef.current)return undefined;value+=token.value+'\u00a0';hasToken=true;return 'token-'+changes.length;}};
+const insert=new Function('tokens','emitChange','disabledRef','token',insertion).bind(null,tokens,emitChange,{current:false});
+assert(insert({value:'@Riley'}));assert.equal(empty,false);assert.equal(changes.length,1);assert.equal(changes[0],'@Riley\u00a0');assert.equal(pendingEchoValueRef.current,value);
+insert({value:'@Riley'});assert.equal(changes.length,2);assert.equal(empty,false);
+value='';hasToken=false;emitChange();assert.equal(empty,true);
+insert({value:'@Riley'});assert.equal(empty,false);assert.equal(changes.at(-1),'@Riley\u00a0');
+value='Review ';hasToken=false;emitChange();insert({value:'@Riley'});assert.equal(changes.at(-1),'Review @Riley\u00a0');
+const count=changes.length;editableRef.current=null;assert.equal(insert({value:'@Riley'}),undefined);assert.equal(changes.length,count);
+assert(s.includes('onInsertToken: tokens.insertToken'),'trigger retains internal non-emitting insert');
+assert(s.includes('emitChangeVersionRef.current === versionBeforeTokenPaste'),'paste prevents duplicate callbacks');
+assert(s.includes('setIsEmpty(controlledValue.length === 0)'),'external clear updates empty state');
+const hook=fs.readFileSync('packages/core/src/Chat/useChatComposerTokens.ts','utf8');assert(hook.includes('onEmitChange();'),'backspace/expand still emit');
+const c=fs.readFileSync('apps/storybook/vesper/site/ChatRefinements.tsx','utf8');assert(!c.includes('getValue()'));assert(c.includes('hasReviewerReference(draft) ? <ChatComposerDrawer'));assert(!c.includes('label="Review context"'));assert(c.includes('Mention Riley'));assert(c.includes('setDraft(\'\')'));
+console.log('Mention lifecycle extracted native callbacks: empty, repeat, clear→mention, text→mention, absent editor, emission guard/source contracts pass. Mock model, not mounted DOM/browser QA.');
+
+const {hasReviewerReference}=await (await import('./load-vesper-module.mjs')).loadShowcaseModule("export {hasReviewerReference} from './vesper/site/ChatRefinements';");
+for(const text of ['@Riley','Review.@Riley\u00a0','Hi @Riley, review this'])assert(hasReviewerReference(text));
+for(const text of ['', '@Rileyson', 'person@Riley', '@Riley2'])assert(!hasReviewerReference(text));
