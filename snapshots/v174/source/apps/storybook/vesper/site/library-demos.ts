@@ -1,3 +1,4 @@
+import {imageMaterialDemo} from './ImageMaterialStudy';
 import {combineStudyFamilies} from './StudyFamilies';
 import {generativeChatDemo} from './GenerativeChatStudy';
 import './avatar-progress-refinements.css';
@@ -38,6 +39,6 @@ const refinements: Record<string, Partial<Demo>> = {
  'chat-composer': {code: "// Included local composition, not a package export.\nimport {ComposerRefinement} from './ChatRefinements';\n<ComposerRefinement />", name:'Chat composer',description:'Context-aware drafting with native mention insertion and a local message receipt.'},
  'chat-reasoning': {code: "// Included local composition, not a package export.\nimport {ReasoningRefinement} from './ChatRefinements';\n<ReasoningRefinement />", name:'Tool run',description:'Finite local tool steps with cancellation, failure recovery and inspectable results.',material:'Native tool-call rows and source disclosure, with explicit local execution states.'},
 };
-const ungroupedDemos = [...nativeDemos.map(demo => overrides[demo.id] ? {...demo,...refinements[demo.id],Preview:overrides[demo.id]} : demo), ...loadingDemos, approvalDemo, ...toolFeedbackDemos, generativeChatDemo];
+const ungroupedDemos = [...nativeDemos.map(demo => overrides[demo.id] ? {...demo,...refinements[demo.id],Preview:overrides[demo.id]} : demo), ...loadingDemos, approvalDemo, ...toolFeedbackDemos, generativeChatDemo, imageMaterialDemo];
 
 export const libraryDemos=combineStudyFamilies(ungroupedDemos);
