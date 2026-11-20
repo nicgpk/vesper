@@ -1,0 +1,28 @@
+/* Shared gallery geometry: three equal scenic entry points on the same
+   tracks as the bento. Keep studio detail routes and mobile untouched. */
+@media (min-width:1041px) {
+ .exact-gallery-shell .exact-main:has(.exact-feature-strip) {padding-top:28px}
+ .exact-gallery-shell .exact-main:has(.exact-feature-strip) .exact-intro {margin-bottom:22px}
+ .exact-gallery-shell .exact-feature-strip {
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;margin-bottom:24px;
+ }
+ .exact-gallery-shell .exact-feature {
+  min-height:clamp(144px,11.5vw,168px);padding:16px 20px;
+ }
+ .exact-gallery-shell .exact-feature img {object-position:center 54%}
+ .exact-gallery-shell .exact-feature-copy {gap:4px;padding-right:24px}
+ .exact-gallery-shell .exact-feature strong {max-width:none;font-size:clamp(19px,1.65vw,24px)}
+ .exact-gallery-shell .exact-feature-arrow {right:18px;bottom:16px}
+ .exact-gallery-shell .exact-collection-bar {
+  padding-block:8px;margin-bottom:0;border-bottom:1px solid var(--color-border);
+  gap:8px 14px;
+ }
+ .exact-gallery-shell .exact-collection-bar h2 {white-space:nowrap}
+ .exact-gallery-shell .exact-collection-bar .dunes-palettes {gap:2px}
+ .exact-gallery-shell .exact-collection-bar .dunes-palettes button {padding-inline:8px;min-height:44px}
+ .exact-gallery-shell .exact-collection-bar .exact-search {min-width:190px;min-height:44px}
+ .exact-gallery-shell .exact-discovery-row {margin-bottom:16px}
+ .exact-gallery-shell .exact-scopes {border:0}
+ .exact-gallery-shell .exact-scopes button {min-height:44px}
+}

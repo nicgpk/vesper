@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export {GeneratedUIRenderer} from './vesper/site/RealGeneratedUIRenderer';export {createElement} from 'react';export {renderToStaticMarkup} from 'react-dom/server';");
+for(const result of [{kind:'checklist',items:[{id:'a',label:'Check contrast'}]},{kind:'directions',cards:[{id:'d',title:'Quiet focus',description:'A clear view',imageKey:'nature-ocean'}]},{kind:'metrics',items:[{label:'Examples',value:0}]},{kind:'brief',fields:[{id:'name',label:'Title',value:'Review'}]}]){
+const html=m.renderToStaticMarkup(m.createElement(m.GeneratedUIRenderer,{spec:{version:1,result:{title:'<script>bad()</script>',summary:'Review this output',...result}}}));assert(!html.includes('<script>'));assert(html.includes('&lt;script&gt;'));assert(html.includes('AI-generated'));assert(html.includes('Nothing is sent or published'));assert(!html.includes('NaN'));}
+console.log('Four native result types SSR pass; text escaped; zero metrics bounded. Candidate only, not live model verification.');

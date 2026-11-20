@@ -1,0 +1,5 @@
+import assert from 'node:assert/strict';import {createUIController} from './controller.mjs';
+const pending=[];const c=createUIController({request:(prompt,opts)=>new Promise((resolve,reject)=>pending.push({prompt,...opts,resolve,reject}))});
+const first=c.submit('First');assert.equal(c.getState().phase,'waiting');c.stop();pending[0].resolve({stale:1});await first;assert.equal(c.getState().phase,'stopped');assert.equal(c.getState().prompt,'First');
+const second=c.submit('Second');const third=c.submit('Third');assert(pending[1].signal.aborted);pending[1].resolve({stale:2});pending[2].resolve({current:3});await Promise.all([second,third]);assert.deepEqual(c.getState().spec,{current:3});
+const fourth=c.submit('Retry me');pending[3].reject(new Error('AI generation is not configured yet.'));await fourth;assert.equal(c.getState().phase,'error');assert.equal(c.getState().prompt,'Retry me');c.dispose();console.log('Real request lifecycle: cancel/stale/supersede, prompt-preserving error and disposal pass. No timers simulate progress.');

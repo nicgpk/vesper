@@ -1,0 +1,19 @@
+/* Gallery artwork plane only: preserve native control and panel styling. */
+.material-choices{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.material-choices-label{font-size:11px;color:var(--color-text-secondary);margin-right:8px}
+.material-choices button{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:4px 9px 4px 5px;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--color-text-secondary);font:500 12px/1.2 var(--font-family-body);cursor:pointer}
+.material-choices button img{width:24px;height:24px;object-fit:cover;border-radius:5px;filter:saturate(.9)}
+.material-choices button[aria-pressed=true]{border-color:var(--color-border-emphasized);color:var(--color-text-primary);background:var(--color-background-card)}
+.material-choices button:hover{background:var(--color-overlay-hover)}
+.material-choices button:focus-visible{outline:2px solid var(--focus-outline-color);outline-offset:3px}
+.exact-gallery-shell[data-art=pigment]{--gallery-art:url('./assets/fine-art-pigment-current-960.webp')}
+.exact-gallery-shell[data-art=paper]{--gallery-art:url('./assets/fine-art-paper-relief-960.webp')}
+.exact-gallery-shell[data-art=print]{--gallery-art:url('./assets/fine-art-chromatic-overprint-960.webp')}
+/* On art, stronger scrim gives the original translucent controls a calm canvas.
+   Choice applies consistently to every card: no category color lottery. */
+.exact-gallery-shell:not([data-art=original]) .demo-stage::before{background-image:linear-gradient(#ffffff66,#ffffff66),var(--gallery-art);background-position:50% 50%;filter:saturate(.72) brightness(1.02)}
+[data-theme=dark] .exact-gallery-shell:not([data-art=original]) .demo-stage::before{background-image:linear-gradient(#07111a99,#07111a99),var(--gallery-art);filter:saturate(.72) brightness(.96)}
+[data-theme=contrast] .exact-gallery-shell .demo-stage::before{background-image:none!important;filter:none!important;background-color:var(--color-background-body)}
+@media(prefers-reduced-transparency:reduce){.exact-gallery-shell .demo-stage::before{background-image:none!important;filter:none!important;background-color:var(--color-background-body)}}
+@media(forced-colors:active){.material-choices button[aria-pressed=true]{outline:2px solid Highlight}.exact-gallery-shell .demo-stage::before{background-image:none!important;filter:none!important;background-color:Canvas}}
+@media(max-width:480px){.material-choices-label{width:100%;margin:0 0 3px}.material-choices button{min-height:44px}}

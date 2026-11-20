@@ -1,0 +1,3 @@
+import assert from 'node:assert/strict';import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export {RealGenerativeChat} from './vesper/site/real-genui-candidate/frontend/RealGenerativeChat';export {createElement} from 'react';export {renderToStaticMarkup} from 'react-dom/server';");
+const html=m.renderToStaticMarkup(m.createElement(m.RealGenerativeChat));assert(html.includes('Not connected'));assert(html.includes('No simulated response is substituted'));assert(!html.includes('gc-sized-skeleton'));assert(!html.includes('AI-powered'));console.log('Combined frontend bundles and SSR fails closed by default. Not live-provider/hosted testing.');

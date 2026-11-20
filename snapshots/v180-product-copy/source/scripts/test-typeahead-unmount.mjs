@@ -1,0 +1,16 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+const source=fs.readFileSync('packages/core/src/Typeahead/BaseTypeahead.tsx','utf8');
+const start=source.indexOf('async (searchQuery: string) => {',source.indexOf('// Perform search'));
+const end=source.indexOf('\n    },\n    [',start)+6;
+const searchCode=source.slice(start,end).replace('searchQuery: string','searchQuery');
+const cleanStart=source.indexOf('return () => {',source.indexOf('// Unmount:'));
+const cleanEnd=source.indexOf('\n    };',cleanStart)+6;
+const cleanupCode=source.slice(cleanStart,cleanEnd).replace('return ','');
+let resolve;const pending=new Promise(r=>resolve=r);const events=[];
+const searchSource={search:()=>pending};const searchGenRef={current:0};const resultsGenRef={current:0};
+const env={searchSource,searchGenRef,resultsGenRef,maxMenuItems:10,__queryEntries:undefined,setLoading:x=>events.push(['loading',x]),setHasSearched:x=>events.push(['searched',x]),setResults:x=>events.push(['results',x]),setHighlightedIndex:x=>events.push(['highlight',x]),showLayer:()=>events.push(['showLayer']),announce:x=>events.push(['announce',x]),t:()=>'',searchTimeoutRef:{current:null},prevSearchSourceRef:{current:searchSource},clearTimeout};
+const factory=code=>new Function(...Object.keys(env),'return ('+code+');')(...Object.values(env));
+const run=factory(searchCode)('Riley');factory(cleanupCode)();events.length=0;
+resolve([{id:'riley',label:'Riley'}]);await run;
+assert.deepEqual(events,[]);
+console.log(JSON.stringify({scope:'Extracted native async callback and cleanup only; no mounted React/browser',afterUnmountCallbacks:events,staleResultSuppressed:true},null,2));
