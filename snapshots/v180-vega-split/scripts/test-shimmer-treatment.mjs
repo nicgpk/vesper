@@ -1,0 +1,5 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+const base='apps/storybook/vesper/site/';const shared=fs.readFileSync(base+'study-shimmer.css','utf8');
+assert(shared.includes('--study-shimmer-crest:#fff'));assert(shared.includes('--study-shimmer-crest:#41414a'));assert(!shared.includes('--color-accent'));assert(shared.includes('@supports not (color:color-mix'));assert(shared.includes('86%'));
+for(const name of ['loading-studies','chat-refinements','conversation-refinements']){const css=fs.readFileSync(base+name+'.css','utf8');assert(css.includes('background-image:var(--study-shimmer-gradient)'));assert(css.includes('2.4s cubic-bezier(.4,0,.2,1)'));assert(css.includes('@media(prefers-reduced-motion:reduce)'));assert(css.includes('@media(forced-colors:active)'));assert(css.includes('@supports not (background-clip:text)'));}
+assert(fs.readFileSync(base+'LoadingStudies.tsx','utf8').includes('x="-26" y="0" width="26"'));console.log('21 shimmer source-contract checks passed; not rendered verification');

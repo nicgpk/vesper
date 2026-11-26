@@ -1,0 +1,55 @@
+import assert from 'node:assert/strict';
+import {readFileSync, statSync} from 'node:fs';
+import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export {MediaPreview,scenicFrames} from './vesper/site/ScenicMediaStudy';export {getPreviewLayout} from './vesper/site/study-preview-layout';export {createElement} from 'react';export {renderToStaticMarkup} from 'react-dom/server';export {InternationalizationProvider} from '@astryxdesign/core/i18n';export {LayerProvider} from '@astryxdesign/core/Layer';");
+const scenes=m.scenicFrames;
+const html=m.renderToStaticMarkup(m.createElement(m.InternationalizationProvider,{locale:'en-US'},m.createElement(m.LayerProvider,null,m.createElement(m.MediaPreview))));
+assert.equal(scenes.length,6);
+assert.equal(new Set(scenes.map(x=>x.asset)).size,6);
+assert.equal(m.getPreviewLayout('native-media-viewer'),'wide');
+assert.equal((html.match(/<button\b/g)||[]).length,7);
+assert.equal((html.match(/aria-pressed="true"/g)||[]).length,1);
+assert.match(html,/1 of 6/);
+assert.match(html,/aria-label="Open full size: Coast"/);
+assert.match(html,/aria-label="Choose a scene"/);
+assert.equal((html.match(/aria-pressed="false"/g)||[]).length,5);
+assert.match(html,/loading="lazy"/);
+assert.match(html,/nature-ocean-384.webp/);
+assert.match(html,/nature-ocean-768.webp/);
+assert.doesNotMatch(html,/<dialog\b/);
+const src=readFileSync('apps/storybook/vesper/site/ScenicMediaStudy.tsx','utf8');
+const css=readFileSync('apps/storybook/vesper/site/scenic-media-study.css','utf8');
+assert.match(src,/viewer.session > 0 && <Lightbox key=\{viewer.session\} className="sm-lightbox"/);
+assert.match(src,/session: current.session \+ \(open \? 1 : 0\)/);
+assert.match(src,/media=\{scenery\} index=\{index\} onIndexChange=\{setIndex\}/);
+assert.match(src,/aria-pressed=\{index === position\} onClick=\{\(\) => setIndex\(position\)\}/);
+assert.match(css,/repeat\(3, minmax\(0, 1fr\)\)/);
+assert.match(css,/repeat\(6, minmax\(0, 1fr\)\)/);
+assert.match(css,/min-block-size: 44px/);
+assert.equal((html.match(/class="[^"]*\bsm-thumb-control\b/g)||[]).length,6);
+assert.match(css,/\.sm-thumbnail > \.sm-thumb-image \{/);
+assert.match(css,/\.sm-thumb-control:focus-visible::before/);
+assert.doesNotMatch(css,/\.sm-thumbnail > div/);
+assert.match(css,/--sm-visible-height: 100dvh/);
+assert.match(css,/env\(safe-area-inset-bottom, 0px\)/);
+
+let thumbTotal=0;
+for(const {asset,title} of scenes) {
+  assert.match(html,new RegExp(asset+'-112.webp'));
+  assert.ok(html.includes(title));
+  assert.doesNotMatch(html,new RegExp(asset+'\\.webp'));
+  const sizes=[112,384,768,null].map(width=>{
+    const p='apps/storybook/vesper/site/assets/'+asset+(width?'-'+width:'')+'.webp';
+    const buffer=readFileSync(p);
+    assert.equal(buffer.toString('ascii',8,12),'WEBP');
+    return statSync(p).size;
+  });
+  assert.ok(sizes.every((size,i)=>!i||size>sizes[i-1]));
+  thumbTotal+=sizes[0];
+}
+const lum=rgb=>rgb.reduce((sum,x,i)=>sum+(x<=0.04045?x/12.92:((x+0.055)/1.055)**2.4)*[0.2126,0.7152,0.0722][i],0);
+const whiteWorst=([13,19,24]).map(x=>.76*x/255+.24);
+const contrast=1.05/(lum(whiteWorst)+.05);
+assert.ok(contrast>7);
+assert.ok(thumbTotal<8000);
+console.log({scenes:6,buttons:7,thumbTotal,worstModeledWhiteContrast:contrast.toFixed(2),verification:'SSR, source and asset checks only'});

@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {loadShowcaseModule} from './load-vesper-module.mjs';
+const m=await loadShowcaseModule("export {boundedBrightness,brightnessFilter,ArtBrightnessRefinement} from './vesper/site/ArtBrightnessRefinement';export {createElement} from 'react';export {renderToString} from 'react-dom/server';");
+for(const [value,expected] of [[-20,40],[200,140],[100,100],[NaN,100],[Infinity,100]]) assert.equal(m.boundedBrightness(value),expected);
+assert.equal(m.brightnessFilter(40),'brightness(0.4)');
+assert.equal(m.brightnessFilter(140),'brightness(1.4)');
+const html=m.renderToString(m.createElement(m.ArtBrightnessRefinement)).replace(/<!--.*?-->/g,'');
+assert.match(html,/Photo brightness/);
+assert.match(html,/Snow-covered alpine peaks at dusk/);
+assert.match(html,/75% brightness/);
+assert.match(html,/Original/);
+assert.match(html,/Reset brightness/);
+assert.equal((html.match(/aria-label="Comparison split"/g)||[]).length,1);
+console.log('Brightness mapping and exactly one in-image comparison control verified in SSR.');

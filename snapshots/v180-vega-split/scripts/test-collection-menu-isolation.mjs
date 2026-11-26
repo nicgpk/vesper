@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const file=name=>readFileSync(name,'utf8');
+const css=file('apps/storybook/vesper/site/collection-menu-refinement.css');
+const source=file('apps/storybook/vesper/site/CollectionMenuRefinement.tsx');
+assert(source.includes('className="cm-heading-copy"'));
+assert(source.includes('menuWidth={260} alignment="end"'));
+assert(css.includes('.cm-study .cm-heading-copy{'));
+assert(!/\.cm-study\s+header(?:\s|>|\{)/.test(css),'Do not style native menu layers through broad header descendants');
+assert(!css.includes('header>div'));
+assert(css.includes('.cm-study .cm-heading-copy>span'));
+const native=file('packages/core/src/DropdownMenu/DropdownMenu.tsx');
+assert(native.includes('styles.popoverCustomWidth(resolvedMenuWidth.value)'));
+const layer=file('packages/core/src/Layer/useLayer.tsx');
+assert(layer.includes(': layer}'),'Native layer can remain inline, so host selectors must not reach it');
+for(const action of ['setOpen(value=>!value)','onChange={setShowDates}','onChange={setOrder}','setFolder(location)'])assert(source.includes(action));
+console.log('Collection menu CSS isolation, end-aligned 260px native width and retained action contracts pass. No rendered geometry verification.');
