@@ -1,0 +1,3 @@
+# v171 candidate, November 18, 21:17 UTC
+
+The active Collection menus > Organize variant forced a side flyout for Move collection to even on narrow touch screens. This opt-in now uses the library's adaptive submenu: an in-place drill-in on compact touch devices and the standard flyout elsewhere. Other studies, native components, routes, builds, deployment and sharing are unchanged. Tests cover the active source setting, existing native branch selection, SSR of the actual family wrapper's default variant, document sorting and full family/route inventory. Real device geometry, focus and Back behavior are not verified. Preview remains v170.

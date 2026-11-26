@@ -1,0 +1,95 @@
+/* SPDX-License-Identifier: MIT
+ * Host geometry only. Native component padding, hit areas and paint are not
+ * overridden. Shared values describe space around native compositions.
+ */
+.exact-gallery-shell{
+ --gallery-stage-inset:12px;
+ --gallery-card-inset:16px;
+ --gallery-wide-content:620px;
+ --study-section-gap:16px;
+ --study-group-gap:12px;
+ --study-panel-inset:12px;
+ --study-control-gap:8px;
+}
+.exact-gallery-shell .exact-tile .demo-stage{padding:var(--gallery-stage-inset)}
+.exact-gallery-shell .preview-scroll{padding:var(--gallery-card-inset)}
+.exact-gallery-shell .exact-tile[data-exact-layout=wide] .demo-content{max-width:var(--gallery-wide-content)}
+.exact-gallery-shell .exact-detail .demo-stage{padding:24px}
+.exact-gallery-shell .exact-caption{align-items:flex-start;gap:4px 12px;padding-top:12px}
+.exact-gallery-shell .exact-caption>a{overflow-wrap:anywhere}
+.exact-gallery-shell .exact-caption>a>span{flex:none}
+.exact-gallery-shell :is(.cr-composition,.cv-study,.ls-study,.ap-study,.cf-feedback){gap:var(--study-section-gap)}
+.exact-gallery-shell :is(.cr-heading,.cv-heading,.ls-heading,.ap-heading){flex-wrap:wrap;gap:8px 12px}
+.exact-gallery-shell :is(.cr-actions,.cv-actions,.ls-actions,.ap-actions){gap:var(--study-control-gap)}
+.exact-gallery-shell .ls-notes{gap:8px;padding-left:12px}
+.exact-gallery-shell .ls-compose-status{gap:12px}
+.exact-gallery-shell .cr-context{flex-wrap:wrap;gap:8px 12px}
+.exact-gallery-shell :is(.cr-heading,.cv-heading,.ls-heading,.ap-heading)>*{min-width:0}
+.exact-gallery-shell .material-choices button{gap:8px}
+@media(max-width:680px){
+ .exact-gallery-shell{--gallery-card-inset:16px}
+ .exact-gallery-shell .exact-detail .demo-stage{padding:var(--gallery-stage-inset)}
+ .exact-gallery-shell .exact-grid{gap:28px 16px}
+}
+@media(max-width:480px){
+ .exact-gallery-shell .exact-feature-strip{grid-template-columns:minmax(0,1fr)}
+ .exact-gallery-shell .exact-feature{min-height:160px}
+ .exact-gallery-shell .exact-header{flex-wrap:wrap;gap:12px;padding-block:16px}
+ .exact-gallery-shell .exact-appearance{flex:1 1 100%;gap:4px}
+ .exact-gallery-shell .exact-appearance button{flex:1;min-height:44px;padding:8px}
+ .exact-gallery-shell .exact-collection-bar h2{flex-wrap:wrap;gap:4px 12px}
+ .exact-gallery-shell .exact-caption{flex-wrap:wrap}
+ .exact-gallery-shell .exact-caption>span{text-align:left}
+}
+
+/* Authored host wrappers: let their gap own spacing, never label margins.
+   Native Field/FormLayout/Chat padding and typography remain untouched. */
+.exact-gallery-shell :is(.demo-row,.demo-controls){gap:var(--study-control-gap)}
+.exact-gallery-shell .demo-stack{gap:var(--study-group-gap)}
+.exact-gallery-shell :is(.demo-stack,.demo-row,.demo-controls)>.demo-label{margin:0}
+
+/* v156: stage span and reading width are separate. Keep the workspace's
+   panoramic canvas, but share Conversation's bounded inner glass column. */
+.exact-gallery-shell .demo-stage[data-study="chat-layout"] .demo-content{
+ width:100%;max-width:var(--gallery-wide-content);margin-inline:auto;
+}
+
+/* Mobile discovery: one lead story and two supporting stories, without
+   making people scroll through three full-height cards to reach search. */
+@media (max-width:680px) {
+ .exact-gallery-shell .exact-feature-strip {
+  grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-bottom:24px;
+ }
+ .exact-gallery-shell .exact-feature {
+  min-height:124px; padding:12px; border-radius:var(--gallery-card-radius,14px);
+ }
+ .exact-gallery-shell .exact-feature:first-child {grid-column:1/-1;min-height:138px;padding:16px;}
+ .exact-gallery-shell .exact-feature:not(:first-child) strong {
+  font-size:clamp(14px,4.2vw,19px);max-width:none;line-height:1.14;overflow-wrap:break-word;
+ }
+ .exact-gallery-shell .exact-feature:not(:first-child) .exact-feature-copy {gap:5px;padding-right:0;}
+ .exact-gallery-shell .exact-feature:not(:first-child) .exact-feature-arrow {right:10px;bottom:10px;font-size:13px;}
+ .exact-gallery-shell .exact-feature:not(:first-child) .exact-feature-count {font-size:10px;padding-inline-end:16px;}
+ .exact-gallery-shell .exact-discovery-row {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;}
+ .exact-gallery-shell .exact-scopes {
+  grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:4px;padding:3px;border:1px solid var(--color-border-emphasized);border-radius:10px;
+ }
+ .exact-gallery-shell .exact-scopes button {
+  min-width:0;min-height:44px;padding:5px 3px;line-height:1.2;
+  border:1px solid transparent;border-radius:7px;
+ }
+ .exact-gallery-shell .exact-scopes button[aria-pressed=true] {
+  background:var(--color-overlay-hover);border-color:var(--color-border-emphasized);font-weight:650;
+ }
+ .exact-gallery-shell .exact-category-picker {order:0;width:min(100%,220px);margin:0;}
+ .exact-gallery-shell .exact-discovery-row>.exact-count {
+  grid-column:2;align-self:center;margin:0;padding:0;
+ }
+}
+@media (max-width:360px) {
+ .exact-gallery-shell .exact-scopes {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:680px) and (forced-colors:active) {
+ .exact-gallery-shell .exact-scopes button[aria-pressed=true]{border-color:Highlight;}
+}
